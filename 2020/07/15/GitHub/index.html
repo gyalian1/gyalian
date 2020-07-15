@@ -15,7 +15,7 @@
 <meta property="og:description" content="GitHub笔记1、绑定SSH:（1）查看是否生成SSH ：cat ~&#x2F;.ssh&#x2F;id_rsa.pub（如果有SSH则会显示，如果没有则会显示空白）（2）生成SSH：ssh-keygen -t rsa -b 4096 -C “your_email@example.com“（输入后按3次回车键，生成SSH，改成注册github的邮箱）（3）生成SSH后去获取它的命令：cat ~&#x2F;.ssh&#x2F;id_rs">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-15T14:07:20.000Z">
-<meta property="article:modified_time" content="2020-07-15T14:09:29.034Z">
+<meta property="article:modified_time" content="2020-07-15T14:18:25.878Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -88,7 +88,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="GitHub笔记"><a href="#GitHub笔记" class="headerlink" title="GitHub笔记"></a>GitHub笔记</h3><p>1、绑定SSH:<br>（1）查看是否生成SSH ：cat ~/.ssh/id_rsa.pub<br>（如果有SSH则会显示，如果没有则会显示空白）<br>（2）生成SSH：ssh-keygen -t rsa -b 4096 -C “<a href="mailto:your_email@example.com">your_email@example.com</a>“<br>（输入后按3次回车键，生成SSH，改成注册github的邮箱）<br>（3）生成SSH后去获取它的命令：cat ~/.ssh/id_rsa.pub<br>（4）复制代码到Setting里的SSH，添加到Key里去<br>（复制的文件以ssh-rsa为开头的）<br>电脑本地和Github服务器之间的SSH（安全协议外壳），可以保证本地电脑和Github之间的安全连接</p>
+        <h3 id="GitHub笔记"><a href="#GitHub笔记" class="headerlink" title="GitHub笔记"></a>GitHub笔记</h3><p>1、绑定SSH:<br>（1）查看是否生成SSH ：cat ~/.ssh/id_rsa.pub<br>（如果有SSH则会显示，如果没有则会显示空白）<br>（2）生成SSH：ssh-keygen -t rsa -b 4096 -C “<a href="mailto:your_email@example.com">your_email@example.com</a>“<br>（输入后按3次回车键，生成SSH，改成注册github的邮箱）<br>（3）生成SSH后去获取它的命令：cat ~/.ssh/id_rsa.pub<br>（4）复制代码到Setting里的SSH，添加到Key里去<br>（复制的文件以ssh-rsa为开头的）<br>电脑本地和Github服务器之间的SSH（安全协议外壳），可以保证本地电脑和Github之间的安全连接<br>2、全局变量设置<br>（1）查看当前目录下的文件：ls<br>（2）查看当前目录下的文件，以及隐藏文件： ls -a<br>（3）在当前目录下创建一个文件： touch + 文件名<br>（4）在当前目录下创建一个文件夹：mkdir + 文件夹名<br>（5）进入某个文件夹： cd +加文件夹目录<br>（6）删除： rm -rf<br>（7）使用git clone的命令将github上的仓库下载到本地电脑上：git clone 仓库地址<br>(仓库地址在仓库的code或者clone or download里面点击Use HTTPS的地址，以git开头的 )<br>（8）告诉git你的名字 ：git config –global user.name “名字”<br>（9）告诉git你的邮箱 ：git config –global user.email “邮箱”<br>      [（8）（9）的配置只需进行一次 ]</p>
+<p>3、Git的提交<br>（1）git的提交分三步：1、git add<br>                                      2、git commit<br>                                      3、git push<br>（2）git add 的命令为：git add -A<br>（3）git commit的命令为：git commit -m +”本次提交的修改的备注”<br>（知识修改，没有创建使用 git commit -am+ “本次提交的修改的备注”）<br>（4）退出命令行：ctrl+c<br>（5）git push 的三个命令：第一次提交到本分支：git push origin master<br>（origin是远程仓库的默认名称，master是主分支名称）<br>从第二次提交到本分支：git push<br>提交到其他分支：git push origin b<br>（6）git pull 是抓取远程仓库的内容<br>（多人协同开发时需要，每次提交前git pull一下，可以避免冲突）</p>
+<p>4、绑定本地仓库到Github<br>（1）首先是在github创建一个同名的空仓库就不勾选方框<br>（2）绑定远程仓库：<br>                              1、首先cd进入文件夹<br>                              2、初始化为git仓库 git init<br>                        （是将一个文件夹初始化为一个空的git仓库）<br>                                3、绑定远程仓库<br>                             查看当前git仓库绑定的远程仓库：git remote -v<br>                              （使用命令，显示空白才可以远程仓库绑定，否则会有冲突）<br>                             用于绑定远程仓库 ：git remote add origin +仓库地址<br>                                  绑定成功后再git remote -v查看一下<br>                                  （1）绑定错误，删除绑定：git remote remove origin<br>                                    (2)最后提交：git add -A    git commit -m + “备注”  git push origin master</p>
 
       
     </div>
