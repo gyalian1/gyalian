@@ -5,15 +5,22 @@
   
 
   
-  <title>Hexo</title>
+  <title>Java | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="Java笔记*1、Java 的概念    2、Java对于字符串的输出都是用英文的”引号    3、Java 文件名必须是英文字母（有数字也可以，尽量不用数字），并且不能有空格。一般来说 Java    文件名首字母是大写的，比如说ser.java、School.java、Book.java    4、Java 语言的进阶可以分为两层：Java 语言、JVM    5、源代码被编译成程序才可以被计">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java">
+<meta property="og:url" content="http://yoursite.com/2020/07/15/Java/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Java笔记*1、Java 的概念    2、Java对于字符串的输出都是用英文的”引号    3、Java 文件名必须是英文字母（有数字也可以，尽量不用数字），并且不能有空格。一般来说 Java    文件名首字母是大写的，比如说ser.java、School.java、Book.java    4、Java 语言的进阶可以分为两层：Java 语言、JVM    5、源代码被编译成程序才可以被计">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://style.youkeda.com/img/ham/course/j1/j1-1/codeDesc1.svg">
+<meta property="og:image" content="https://style.youkeda.com/img/ham/course/j1/j1-3/method1.svg">
+<meta property="article:published_time" content="2020-07-15T06:24:33.000Z">
+<meta property="article:modified_time" content="2020-07-15T09:18:16.742Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://style.youkeda.com/img/ham/course/j1/j1-1/codeDesc1.svg">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -62,85 +69,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-GitHub" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/15/GitHub/" class="article-date">
-  <time datetime="2020-07-15T14:07:20.000Z" itemprop="datePublished">2020-07-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/15/GitHub/">GitHub</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="GitHub笔记"><a href="#GitHub笔记" class="headerlink" title="GitHub笔记"></a>GitHub笔记</h3><p>1、绑定SSH:<br>（1）查看是否生成SSH ：cat ~/.ssh/id_rsa.pub<br>（如果有SSH则会显示，如果没有则会显示空白）<br>（2）生成SSH：ssh-keygen -t rsa -b 4096 -C “<a href="mailto:your_email@example.com">your_email@example.com</a>“<br>（输入后按3次回车键，生成SSH，改成注册github的邮箱）<br>（3）生成SSH后去获取它的命令：cat ~/.ssh/id_rsa.pub<br>（4）复制代码到Setting里的SSH，添加到Key里去<br>（复制的文件以ssh-rsa为开头的）<br>电脑本地和Github服务器之间的SSH（安全协议外壳），可以保证本地电脑和Github之间的安全连接</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/GitHub/" data-id="ckcnfyfb30001v8tb7fi324mv" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hexo" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/15/hexo/" class="article-date">
-  <time datetime="2020-07-15T09:20:45.000Z" itemprop="datePublished">2020-07-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/15/hexo/">hexo</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Hexo笔记"><a href="#Hexo笔记" class="headerlink" title="Hexo笔记"></a>Hexo笔记</h3><p>3.1<br>1、hexo是一个快速、简洁且高效的博客框架，它支持几条简短的命令发布博客<br>（1）执行创建命令创建博客文件夹 : hexo init blog<br>（2）进入博客目录： cd blog<br>2、npm install hexo-deployer-git –save 需在博客目录内安装<br>3、打开博客文件夹，在_config.yml的最后编辑：<br>deploy ：<br> type： git<br>repository：你的仓库地址<br>branch： master<br>4、Hexo的提交：hexo clean 用途是清除缓存，能让新发布的博客能快速生效<br>（hexo generate 作用是生成新的静态文件<br>hexo deploy 作用是把生成的文件部署到我们的博客上）</p>
-<p>3.2<br>1、用命令创建博客文件: hexo new + 博客名<br>2、hexo更换主题：更换成next的主题：git clone –depth 1 <a href="mailto:git@github.com">git@github.com</a>:iissnan/hexo-theme-next.git themes/next</p>
-<p>3.3<br>1、进入blog ：cd blog<br>2、生成public文件夹：hexo g<br>3、博客持久化： （1）博客变成git仓库：git init<br>                               git remote -v<br>  git remote add origin + 仓库地址<br>（2）创建一个新的分支：git checkout -b dev<br>（3）提交 ：git add -A<br>                         git commit -m “备注”<br>                     git push –set–upstream origin dev（可以先git push，然后复制命令）</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/hexo/" data-id="ckcng2ojv00002otb5frvbus0" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Java" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Java" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/07/15/Java/" class="article-date">
   <time datetime="2020-07-15T06:24:33.000Z" itemprop="datePublished">2020-07-15</time>
@@ -153,8 +82,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/15/Java/">Java</a>
+    <h1 class="article-title" itemprop="name">
+      Java
     </h1>
   
 
@@ -173,120 +102,28 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-chu" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/15/chu/" class="article-date">
-  <time datetime="2020-07-15T06:07:28.000Z" itemprop="datePublished">2020-07-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <a href="/2020/07/15/hexo/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/15/chu/">chu</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="美好的一天"><a href="#美好的一天" class="headerlink" title="美好的一天"></a>美好的一天</h3><p><strong>终于熟练地掌握了方法，开心</strong><br><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1594803645640&di=5432d59c28e66a1f44ae086dca01cc65&imgtype=0&src=http%3A%2F%2Fdmimg.5054399.com%2Fallimg%2Fpkm%2Fpk%2F13.jpg" alt=""></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/chu/" data-id="ckcnfyfav0000v8tb1gm2ap7z" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-chushi" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/15/chushi/" class="article-date">
-  <time datetime="2020-07-15T05:42:03.000Z" itemprop="datePublished">2020-07-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+          hexo
         
+      </div>
+    </a>
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/15/chushi/">chushi</a>
-    </h1>
   
+    <a href="/2020/07/15/chu/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">chu</div>
+    </a>
+  
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="���ڷܶ�"><a href="#���ڷܶ�" class="headerlink" title="���ڷܶ�"></a>���ڷܶ�</h3>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/chushi/" data-id="ckcnfyfb50002v8tbbx7f4zxg" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-hello" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/15/hello/" class="article-date">
-  <time datetime="2020-07-15T05:10:12.000Z" itemprop="datePublished">2020-07-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/15/hello/">hello</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="����ѧϰ5��Сʱ���е�T"><a href="#����ѧϰ5��Сʱ���е�T" class="headerlink" title="����ѧϰ5��Сʱ���е�Ʈ"></a>����ѧϰ5��Сʱ���е�Ʈ</h3>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/hello/" data-id="ckcnfyfb70003v8tb04vm6oaz" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
 
 </section>
         
