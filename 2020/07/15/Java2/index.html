@@ -5,13 +5,17 @@
   
 
   
-  <title>Hexo</title>
+  <title>Java2 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="逻辑语句4.1  条件执行1、编程的很多工作都是要进行各种条件的判断，Java和其他编程语言一样支持条件语句，条件语句就是让我们执行条件判断的语法2、关键字 if 后括号中的代码叫做：条件表达式，如果它为真，大括号中的语句就会执行；反之，则什么都不会发生if(表达式){代码块}3、条件表达式可以包含任意的比较运算符（有时候也叫做关系运算符）x &#x3D;&#x3D; y   &#x2F;&#x2F; x 等于 yx !&#x3D; y   &#x2F;&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java2">
+<meta property="og:url" content="http://yoursite.com/2020/07/15/Java2/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="逻辑语句4.1  条件执行1、编程的很多工作都是要进行各种条件的判断，Java和其他编程语言一样支持条件语句，条件语句就是让我们执行条件判断的语法2、关键字 if 后括号中的代码叫做：条件表达式，如果它为真，大括号中的语句就会执行；反之，则什么都不会发生if(表达式){代码块}3、条件表达式可以包含任意的比较运算符（有时候也叫做关系运算符）x &#x3D;&#x3D; y   &#x2F;&#x2F; x 等于 yx !&#x3D; y   &#x2F;&#x2F;">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-15T14:51:32.000Z">
+<meta property="article:modified_time" content="2020-07-16T07:39:45.664Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -62,9 +66,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-Java2" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Java2" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/07/15/Java2/" class="article-date">
   <time datetime="2020-07-15T14:51:32.000Z" itemprop="datePublished">2020-07-15</time>
@@ -77,8 +79,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/15/Java2/">Java2</a>
+    <h1 class="article-title" itemprop="name">
+      Java2
     </h1>
   
 
@@ -144,235 +146,19 @@ System.out.println(amount);</code></pre><p>  }<br>   //计算个人缴纳的个�
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-GitHub" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/15/GitHub/" class="article-date">
-  <time datetime="2020-07-15T14:07:20.000Z" itemprop="datePublished">2020-07-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/15/GitHub/">GitHub</a>
-    </h1>
+    <a href="/2020/07/15/GitHub/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">GitHub</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="GitHub笔记"><a href="#GitHub笔记" class="headerlink" title="GitHub笔记"></a>GitHub笔记</h3><p>1、绑定SSH:<br>（1）查看是否生成SSH ：cat ~/.ssh/id_rsa.pub<br>（如果有SSH则会显示，如果没有则会显示空白）<br>（2）生成SSH：ssh-keygen -t rsa -b 4096 -C “<a href="mailto:your_email@example.com">your_email@example.com</a>“<br>（输入后按3次回车键，生成SSH，改成注册github的邮箱）<br>（3）生成SSH后去获取它的命令：cat ~/.ssh/id_rsa.pub<br>（4）复制代码到Setting里的SSH，添加到Key里去<br>（复制的文件以ssh-rsa为开头的）<br>电脑本地和Github服务器之间的SSH（安全协议外壳），可以保证本地电脑和Github之间的安全连接<br>2、全局变量设置<br>（1）查看当前目录下的文件：ls<br>（2）查看当前目录下的文件，以及隐藏文件： ls -a<br>（3）在当前目录下创建一个文件： touch + 文件名<br>（4）在当前目录下创建一个文件夹：mkdir + 文件夹名<br>（5）进入某个文件夹： cd +加文件夹目录<br>（6）删除： rm -rf<br>（7）使用git clone的命令将github上的仓库下载到本地电脑上：git clone 仓库地址<br>(仓库地址在仓库的code或者clone or download里面点击Use HTTPS的地址，以git开头的 )<br>（8）告诉git你的名字 ：git config –global user.name “名字”<br>（9）告诉git你的邮箱 ：git config –global user.email “邮箱”<br>      [（8）（9）的配置只需进行一次 ]</p>
-<p>3、Git的提交<br>（1）git的提交分三步：1、git add<br>                                      2、git commit<br>                                      3、git push<br>（2）git add 的命令为：git add -A<br>（3）git commit的命令为：git commit -m +”本次提交的修改的备注”<br>（知识修改，没有创建使用 git commit -am+ “本次提交的修改的备注”）<br>（4）退出命令行：ctrl+c<br>（5）git push 的三个命令：第一次提交到本分支：git push origin master<br>（origin是远程仓库的默认名称，master是主分支名称）<br>从第二次提交到本分支：git push<br>提交到其他分支：git push origin b<br>（6）git pull 是抓取远程仓库的内容<br>（多人协同开发时需要，每次提交前git pull一下，可以避免冲突）</p>
-<p>4、绑定本地仓库到Github<br>（1）首先是在github创建一个同名的空仓库就不勾选方框<br>（2）绑定远程仓库：<br>                              1、首先cd进入文件夹<br>                              2、初始化为git仓库 git init<br>                        （是将一个文件夹初始化为一个空的git仓库）<br>                                3、绑定远程仓库<br>                             查看当前git仓库绑定的远程仓库：git remote -v<br>                              （使用命令，显示空白才可以远程仓库绑定，否则会有冲突）<br>                             用于绑定远程仓库 ：git remote add origin +仓库地址<br>                                  绑定成功后再git remote -v查看一下<br>                                  （1）绑定错误，删除绑定：git remote remove origin<br>                                    (2)最后提交：git add -A    git commit -m + “备注”  git push origin master</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/GitHub/" data-id="ckcnfyfb30001v8tb7fi324mv" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-hexo" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/15/hexo/" class="article-date">
-  <time datetime="2020-07-15T09:20:45.000Z" itemprop="datePublished">2020-07-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/15/hexo/">hexo</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Hexo笔记"><a href="#Hexo笔记" class="headerlink" title="Hexo笔记"></a>Hexo笔记</h3><p>3.1<br>1、hexo是一个快速、简洁且高效的博客框架，它支持几条简短的命令发布博客<br>（1）执行创建命令创建博客文件夹 : hexo init blog<br>（2）进入博客目录： cd blog<br>2、npm install hexo-deployer-git –save 需在博客目录内安装<br>3、打开博客文件夹，在_config.yml的最后编辑：<br>deploy ：<br> type： git<br>repository：你的仓库地址<br>branch： master<br>4、Hexo的提交：hexo clean 用途是清除缓存，能让新发布的博客能快速生效<br>（hexo generate 作用是生成新的静态文件<br>hexo deploy 作用是把生成的文件部署到我们的博客上）</p>
-<p>3.2<br>1、用命令创建博客文件: hexo new + 博客名<br>2、hexo更换主题：更换成next的主题：git clone –depth 1 <a href="mailto:git@github.com">git@github.com</a>:iissnan/hexo-theme-next.git themes/next</p>
-<p>3.3<br>1、进入blog ：cd blog<br>2、生成public文件夹：hexo g<br>3、博客持久化： （1）博客变成git仓库：git init<br>                               git remote -v<br>  git remote add origin + 仓库地址<br>（2）创建一个新的分支：git checkout -b dev<br>（3）提交 ：git add -A<br>                         git commit -m “备注”<br>                     git push –set–upstream origin dev（可以先git push，然后复制命令）</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/hexo/" data-id="ckcng2ojv00002otb5frvbus0" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Java" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/15/Java/" class="article-date">
-  <time datetime="2020-07-15T06:24:33.000Z" itemprop="datePublished">2020-07-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/15/Java/">Java</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Java笔记"><a href="#Java笔记" class="headerlink" title="Java笔记"></a>Java笔记</h2><p><em>*<br>1、Java 的概念<br><img src="https://style.youkeda.com/img/ham/course/j1/j1-1/codeDesc1.svg" alt=""><br>    2、Java对于字符串的输出都是用英文的”引号<br>    3、Java 文件名必须是英文字母（有数字也可以，尽量不用数字），并且不能有空格。一般来说 Java    文件名首字母是大写的，比如说ser.java、School.java、Book.java<br>    4、Java 语言的进阶可以分为两层：Java 语言、JVM<br>    5、源代码被编译成程序才可以被计算机执行<br>    6、Java遵循两种代码注释：块注释和行注释<br>    7、Java 是一个面向对象的语言,Java把一切内容（字符串、数字、布尔、日期、时间）都用对象来表示，所以在 Java的世界中变量内容就是对象<br>    8、每个变量都需要一个类型来决定可以存储什么类型的数值。比如，int 类型可以存储整数，String 类型可以存储字符串<br>    9、Java中常见的关键字有public、 class、 void、 int<br>    10、在编程语言中，存储数据的行为叫做：赋值<br>    11、实际上在所有的编程语言里，基本上都包含三种基础数据类型：字符串、数字、布尔<br>    12、字符串就是String，字符串用英文引号””<br>    13、数字类型：小整数 int  ； 大整数 long ；浮点数 double<br>    14、字符串就是String，字符串用英文引号””<br>    15、小整数和大整数的区别在于存储的数据大小不一样，我们一般接触的数字都是小整数，所以用大部分时候 int 就可以了<br>    16、long类型赋值的时候要在数字最后更上一个小写的l（是字母L)<br>    17、布尔：boolean  ，布尔的值只能是true 或者 false<br>    18、在编程语言中加减乘除这些数学符号称为：运算符<br>    加+  减-  乘</em> 除/  整除运算符%<br>    19、Java 执行的是整除除法，也就是说当两个操作数都是整数时，结果也会自动变成整数（直接去掉了小数点的值）<br>    20、计算百分比的话System.out.println(100<em>now/xxx)<br>    21、平均分的代码：int total = 0；<br>    int u1 = x；total=total+u1；<br>    int u2 = xx；total= total+u2；<br>    int average = total/4；<br>    System.out.println（average）；<br>    22、Java 在数学上面的能力非常强大，有很多内置的数学函数，这些函数在 Java 当中称为方法（method），有一个数学函数是我们应该知道的，而且非常实用。那就是随机数<br>    23、Math.random() 方法用于返回一个随机数，随机数范围为 0.0 =&lt; Math.random &lt; 1.0。<br>    代码：double value = Math.random();  System.out.println(value);<br>    或者是Math.random()+1<br>    24、浮点数如何转化为整数，理论上数字类型都可以转化，只是会丢失掉精度（自动去掉小数点了）<br>    Java中类型转换的语法：int nValue =（int）(value</em>10)<br>    25、main 方法有特殊的含义（它是程序执行的入口,如果要执行代码就必须要有 main 方法）<br>main方法用于启动程序<br>    26、紧跟着方法名的空小括号表明此方法不需要参数<br>    27、自定义方法调用：代码编写的顺序，一定是先定义方法，再调用方法<br>    28、自定义的方法都是在 class 类当中的，方法的顺序无所谓，放在 main 方法前面或者后面都可以，但是方法内是不能这样新建方法的<br>    29、方法参数<br>    <img src="https://style.youkeda.com/img/ham/course/j1/j1-3/method1.svg" alt=""><br>    30、方法参数和声明变量并无区别，只是这个变量是要定义在方法参数这个位置里，编程语言里把这个声明的变量叫做形参<br>    31、方法参数<br>    public static void main（String[] args）{<br>        code(100000);<br>    }<br>    public static void code (int length){<br>        int code =(int)((Math.random()+1)<em>length);<br>        System.out.println(“——“);<br>    }<br>    32、多参数方法<br>    public static void main（String[] args）{<br>       String text = “”;<br>        code(text,100000);<br>    }<br>    public static void code (String text,int length){<br>        int code =(int)((Math.random()+1)</em>length);<br>        System.out.println(text+”【”+code+”】”);<br>    }<br>**</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/Java/" data-id="ckcng2ok400012otb5ot4d9eo" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-chu" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/15/chu/" class="article-date">
-  <time datetime="2020-07-15T06:07:28.000Z" itemprop="datePublished">2020-07-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/15/chu/">chu</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="美好的一天"><a href="#美好的一天" class="headerlink" title="美好的一天"></a>美好的一天</h3><p><strong>终于熟练地掌握了方法，开心</strong><br><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1594803645640&di=5432d59c28e66a1f44ae086dca01cc65&imgtype=0&src=http%3A%2F%2Fdmimg.5054399.com%2Fallimg%2Fpkm%2Fpk%2F13.jpg" alt=""></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/chu/" data-id="ckcnfyfav0000v8tb1gm2ap7z" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-chushi" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/15/chushi/" class="article-date">
-  <time datetime="2020-07-15T05:42:03.000Z" itemprop="datePublished">2020-07-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/15/chushi/">chushi</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="���ڷܶ�"><a href="#���ڷܶ�" class="headerlink" title="���ڷܶ�"></a>���ڷܶ�</h3>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/chushi/" data-id="ckcnfyfb50002v8tbbx7f4zxg" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/15/hello/" class="article-date">
-  <time datetime="2020-07-15T05:10:12.000Z" itemprop="datePublished">2020-07-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/15/hello/">hello</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="����ѧϰ5��Сʱ���е�T"><a href="#����ѧϰ5��Сʱ���е�T" class="headerlink" title="����ѧϰ5��Сʱ���е�Ʈ"></a>����ѧϰ5��Сʱ���е�Ʈ</h3>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/hello/" data-id="ckcnfyfb70003v8tb04vm6oaz" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
 
 </section>
         
