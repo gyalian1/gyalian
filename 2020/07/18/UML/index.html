@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>UML | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Java面向对象1.1面向对象入门1、在Java中对象其实就是一个class类，在Java的世界中所有的程序都是由Class（对象、类）组成的在编程世界里有一个专门的图形表示的语言来管理和维护对象，这个语言就是 UML（统一建模语言）2、UML 的目标之一就是为开发团队提供标准、通用的面向对象设计语言。UML提供了一套图形标准，通过使用 UML 可以让编程人员能够阅读和交流系统架构图、设计图，就好">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UML">
+<meta property="og:url" content="http://yoursite.com/2020/07/18/UML/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Java面向对象1.1面向对象入门1、在Java中对象其实就是一个class类，在Java的世界中所有的程序都是由Class（对象、类）组成的在编程世界里有一个专门的图形表示的语言来管理和维护对象，这个语言就是 UML（统一建模语言）2、UML 的目标之一就是为开发团队提供标准、通用的面向对象设计语言。UML提供了一套图形标准，通过使用 UML 可以让编程人员能够阅读和交流系统架构图、设计图，就好">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://style.youkeda.com/img/ham/course/group_user.svg">
+<meta property="og:image" content="https://style.youkeda.com/img/ham/course/j2/student_major_3.svg">
+<meta property="og:image" content="https://style.youkeda.com/img/ham/course/j2/student_major_4.svg">
+<meta property="article:published_time" content="2020-07-18T15:32:13.000Z">
+<meta property="article:modified_time" content="2020-07-18T18:13:41.219Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://style.youkeda.com/img/ham/course/group_user.svg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-UML" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/18/UML/" class="article-date">
+  <time datetime="2020-07-18T15:32:13.000Z" itemprop="datePublished">2020-07-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      UML
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Java面向对象"><a href="#Java面向对象" class="headerlink" title="Java面向对象"></a>Java面向对象</h3><p><strong>1.1面向对象入门</strong><br>1、在Java中对象其实就是一个class类，在Java的世界中所有的程序都是由Class（对象、类）组成的<br>在编程世界里有一个专门的图形表示的语言来管理和维护对象，这个语言就是 UML（统一建模语言）<br>2、UML 的目标之一就是为开发团队提供标准、通用的面向对象设计语言。UML提供了一套图形标准，通过使用 UML 可以让编程人员能够阅读和交流系统架构图、设计图，就好比建筑工人看施工图来施工一样。<br>3、UML 不是只针对 Java 语言的，它适合于所有编程语言<br>4、举例：<br><img src="https://style.youkeda.com/img/ham/course/group_user.svg" alt=""><br>转化成代码：<br>      package com.qq.model;<br>      public class Group{<br>          //群唯一的ID<br>          String id;<br>          //群号<br>          String groupNo;<br>          //群图标<br>          String icon;<br>          //群名称<br>          String name;<br>          //群公告<br>          String notice;<br>          //群简介<br>          String desc;<br>          // 群成员<br>          ArrayList<User> users;<br>      }</p>
+<p><strong>1.2 类的关联关系</strong><br>1、Java是面向对象的语言<br>2、对象是对问题领域中事物的抽象，象是对问题领域中事物的抽象能力<br>3、对象的特性：（1）万物皆可对象<br>                          （2）每个对象的事唯一的<br>                        对象的唯一是指的类实例化后的每个实例都是唯一的，对于相同事物抽象后的类可以是相同的<br>                          （3）对象具备属性和办法<br>                        每一个对象都拥有自己的属性定义和值，加上我们前面学习过的方法，那么属性+方法对象就是完整的了<br>4、举例<br><img src="https://style.youkeda.com/img/ham/course/j2/student_major_3.svg" alt=""><br> 代码：<br>        package com.youkeda.model;<br>        import java.time.LocalDate;</p>
+<pre><code>public class Student {
+    String id;
+    String name;
+    String gender;
+    String sid;
+    String schoolName;
+    LocalDate startDate;
+    Major major;
+}</code></pre><p>5、举例<br><img src="https://style.youkeda.com/img/ham/course/j2/student_major_4.svg" alt=""><br>代码：package com.youkeda.model;<br>          import java.time.LocalDate;<br>          public class Student {<br>              String id;<br>              String name;<br>              String gender;<br>              String sid;<br>              School school;<br>              LocalDate startDate;<br>              Major major;<br>          }</p>
+<p><strong>1.3访问控制修饰符</strong><br>1、访问控制分为4种级别<br>（1）公开级别：  public修饰，对外公开<br>（2）受保护级别： protected修饰，向子类及同一个包中的类公开<br>（3）默认级别：  没有访问修饰符，向同一个包中的类公开<br>（4）私有级别：  private修饰，只有类本身可以访问，不对外公开<br>2、访问修饰符：<br>（1）类<br>我们在创建类的时候，可以选择public和默认这两种，至于 protected 和 private这两个是不允许使用的。不过默认情况下，我们都是创建 public 的 class<br>public class Hello{ }    或者class Hello{ }<br>（2）类的方法/实例变量<br>一般情况下类的成员变量（属性）就叫做实例变量<br>公开访问：<br>public class Hello {<br>  // 声明一个公开访问的字符串类型实例变量<br>  public String msg = “Hello”;</p>
+<p>  // 声明一个公开访问的方法<br>  public String say(String word){<br>      return msg + word;<br>  }</p>
+<p>}</p>
+<p>私有访问：<br>public class Hello {<br>  // 声明一个公开访问的字符串类型类变量<br>  public String msg = “Hello”;</p>
+<p>  // 声明一个私有访问的方法<br>  private String say(String word){<br>      return msg + word;<br>  }<br>}</p>
+<p>声明了一个私有方法，那么除了在类中可以调用，其他的地方都不可以调用的，规则如上面所说的一样。这意味着：如果我们想屏蔽代码细节，我们可以把具体的方法或者变量声明为私有的权限范围</p>
+<p>3、package com.qq.model;</p>
+<p>public class User {</p>
+<p>  private String id;</p>
+<p>  private String name;</p>
+<p>  public void printName(){</p>
+<p>  }</p>
+<p>}</p>
+<p>（1）是（红色）正方形图标，说明当前的访问控制修饰符是private<br>（2）是（绿色）圆形图标，说明是public<br>（3)  是（黄）菱形图标，说明是protected<br>颜色不重要，图形才是重点</p>
+<p><strong>1.4封装</strong><br>1、封装简单的来说就是把对象的属性隐藏起来，只能通过公开的方法来得到或者设置属性值。<br>public class User{<br>  //定义了一个关于名称的实例变量<br>  private String name;</p>
+<p>  /**</p>
+<ul>
+<li><p>获取 name 的值</p>
+</li>
+<li><p>/<br>public String getName(){<br>return this.name;<br>}</p>
+<p>/**</p>
+</li>
+<li><p>设置 name 的值</p>
+</li>
+<li><p>/<br>public void setName(String name){<br>this.name = name;<br>}</p>
+</li>
+</ul>
+<p>}</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/18/UML/" data-id="ckcrz0m6g0001uotbdnm38gr0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/07/17/Java3/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Java3</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/18/UML/">UML</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/17/Java3/">Java3</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/15/Java2/">Java2</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/15/GitHub/">GitHub</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/15/hexo/">hexo</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
