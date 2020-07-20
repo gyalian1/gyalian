@@ -17,8 +17,12 @@
 <meta property="og:image" content="https://style.youkeda.com/img/ham/course/group_user.svg">
 <meta property="og:image" content="https://style.youkeda.com/img/ham/course/j2/student_major_3.svg">
 <meta property="og:image" content="https://style.youkeda.com/img/ham/course/j2/student_major_4.svg">
+<meta property="og:image" content="https://style.youkeda.com/img/ham/course/j2/setter2.svg">
+<meta property="og:image" content="https://style.youkeda.com/img/ham/course/j2/user3.svg">
+<meta property="og:image" content="https://style.youkeda.com/img/ham/course/j2/setter3.svg">
+<meta property="og:image" content="https://style.youkeda.com/img/ham/course/j2/LoginService.svg">
 <meta property="article:published_time" content="2020-07-18T15:32:13.000Z">
-<meta property="article:modified_time" content="2020-07-18T18:13:41.219Z">
+<meta property="article:modified_time" content="2020-07-20T18:11:54.149Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://style.youkeda.com/img/ham/course/group_user.svg">
@@ -103,7 +107,7 @@
     LocalDate startDate;
     Major major;
 }</code></pre><p>5、举例<br><img src="https://style.youkeda.com/img/ham/course/j2/student_major_4.svg" alt=""><br>代码：package com.youkeda.model;<br>          import java.time.LocalDate;<br>          public class Student {<br>              String id;<br>              String name;<br>              String gender;<br>              String sid;<br>              School school;<br>              LocalDate startDate;<br>              Major major;<br>          }</p>
-<p><strong>1.3访问控制修饰符</strong><br>1、访问控制分为4种级别<br>（1）公开级别：  public修饰，对外公开<br>（2）受保护级别： protected修饰，向子类及同一个包中的类公开<br>（3）默认级别：  没有访问修饰符，向同一个包中的类公开<br>（4）私有级别：  private修饰，只有类本身可以访问，不对外公开<br>2、访问修饰符：<br>（1）类<br>我们在创建类的时候，可以选择public和默认这两种，至于 protected 和 private这两个是不允许使用的。不过默认情况下，我们都是创建 public 的 class<br>public class Hello{ }    或者class Hello{ }<br>（2）类的方法/实例变量<br>一般情况下类的成员变量（属性）就叫做实例变量<br>公开访问：<br>public class Hello {<br>  // 声明一个公开访问的字符串类型实例变量<br>  public String msg = “Hello”;</p>
+<p><strong>1.3访问控制修饰符</strong><br>1、访问控制分为4种级别<br><strong>（1）公开级别：  public修饰，对外公开<br>（2）受保护级别： protected修饰，向子类及同一个包中的类公开<br>（3）默认级别：  没有访问修饰符，向同一个包中的类公开<br>（4）私有级别：  private修饰，只有类本身可以访问，不对外公开</strong><br>2、访问修饰符：<br>（1）类<br>我们在创建类的时候，可以选择public和默认这两种，至于 protected 和 private这两个是不允许使用的。不过默认情况下，我们都是创建 public 的 class<br>public class Hello{ }    或者class Hello{ }<br>（2）类的方法/实例变量<br>一般情况下类的成员变量（属性）就叫做实例变量<br>公开访问：<br>public class Hello {<br>  // 声明一个公开访问的字符串类型实例变量<br>  public String msg = “Hello”;</p>
 <p>  // 声明一个公开访问的方法<br>  public String say(String word){<br>      return msg + word;<br>  }</p>
 <p>}</p>
 <p>私有访问：<br>public class Hello {<br>  // 声明一个公开访问的字符串类型类变量<br>  public String msg = “Hello”;</p>
@@ -116,26 +120,128 @@
 <p>  public void printName(){</p>
 <p>  }</p>
 <p>}</p>
-<p>（1）是（红色）正方形图标，说明当前的访问控制修饰符是private<br>（2）是（绿色）圆形图标，说明是public<br>（3)  是（黄）菱形图标，说明是protected<br>颜色不重要，图形才是重点</p>
+<p><strong>（1）是（红色）正方形图标，说明当前的访问控制修饰符是private<br>（2）是（绿色）圆形图标，说明是public<br>（3)  是（黄）菱形图标，说明是protected<br>颜色不重要，图形才是重点</strong></p>
 <p><strong>1.4封装</strong><br>1、封装简单的来说就是把对象的属性隐藏起来，只能通过公开的方法来得到或者设置属性值。<br>public class User{<br>  //定义了一个关于名称的实例变量<br>  private String name;</p>
-<p>  /**</p>
-<ul>
-<li><p>获取 name 的值</p>
-</li>
-<li><p>/<br>public String getName(){<br>return this.name;<br>}</p>
-<p>/**</p>
-</li>
-<li><p>设置 name 的值</p>
-</li>
-<li><p>/<br>public void setName(String name){<br>this.name = name;<br>}</p>
-</li>
-</ul>
+<p>  //获取 name 的值</p>
+<p>  public String getName(){<br>    return this.name;<br>  }</p>
+<p>   //设置 name 的值</p>
+<p>  public void setName(String name){<br>    this.name = name;<br>  }</p>
 <p>}</p>
+<p>3、getter、setter方法，这个方法名的格式：<br>get + 属性名称（属性名的首字母要大写），用于获取属性<br>set + 属性名称  （属性名的首字母要大写），用于设置属性</p>
+<p>4、变量作用域<br>类的实例变量怎么被访问，this<br><img src="https://style.youkeda.com/img/ham/course/j2/setter2.svg" alt=""><br>this 就是类被实例化的对象，通过this就可以很轻松的调用实例内的成员和方法</p>
+<p>5、public void say(String name){<br>  // 这个 private 是错误的<br>  private String msg = “hello”;</p>
+<p>  // 这个 name 变量名是错误的，因为重复了<br>  String name = “a”;</p>
+<p>  int age = 18;<br>  // 这个字符串 age 变量名是错误的，因为重复了<br>  String age = “18岁”;<br>}</p>
+<p>6、public class User{<br>  private String name;<br>  //这个数字 name 变量名称是错误的，因为重复了<br>  private int name;<br>}</p>
+<p>7、<img src="https://style.youkeda.com/img/ham/course/j2/user3.svg" alt=""><br><img src="https://style.youkeda.com/img/ham/course/j2/setter3.svg" alt=""></p>
+<p>8、getter和setter属性在代码中，是每一个都要对应的getter、setter<br><strong>9、有LocalDate的代码，需要加入import java.time.LocalDate;</strong></p>
+<p><strong>1.5常量</strong><br>1、不需要通过实例化才能得到变量，而可以直接获取或者操作变量<br>public static ArrayList<School>schools = new ArrayList&lt;&gt;();<br>        static关键字                                          变量实例化</p>
+<p>2、想存储和调用学校的记录<br>public class SchoolService{<br>  // 学校数据的常量<br>  public static ArrayList<School> schools = new ArrayList&lt;&gt;();<br>}</p>
+<p> 当定义了静态变量后，可以直接操作schools变量了<br> public class SchoolServiceTest{</p>
+<p>  public static void main(String[] args){<br>    School school = new School();<br>    school.setId(“1”);<br>    school.setName(“北京大学”);</p>
+<pre><code>// 存储数据
+SchoolService.schools.add(school);</code></pre><p>  }<br>}<br>3、为了和变量区分开，所以一般情况下，常量的变量名采用全大写字母来定义，单词之间用   _   分隔，所以学校的常量为SCHOOLS</p>
+<p><strong>4、常用字符串的常量</strong><br>//用户Session key<br>public static final String USER_KEY = “m_key”;</p>
+<p>//手机验证码 key<br>public static final String SMS_KEY = “m_sms_key”;</p>
+<p><strong>final 代表着这个变量不可以被再次修改，用来保证代码的安全</strong></p>
+<p>public class UserService{</p>
+<p> // 用户Session key</p>
+<p>  public static final String USER_KEY = “m_key”;</p>
+<p>  public boolean hasKey(String key){<br>    // 使用常量的时候<br>    if(key.equals(USER_KEY)){<br>      return true;<br>    }<br>    return false;<br>  }<br>}</p>
+<p><strong>内存缓存</strong><br>static关键字除了声明静态变量外，还可以声明一个静态代码块（可以在其中执行代码并且调用static变量）<br>package com.youkeda.service;<br>import com.youkeda.model.School;<br>// 学校服务<br>public class SchoolService{<br>  // 学校数据的常量<br>  public static ArrayList<School> SCHOOLS = new ArrayList&lt;&gt;();  </p>
+<p>  // 声明一个静态代码块，用于初始化学校数据<br>  static{<br>    School school = new School();<br>    school.setId(“1”);<br>    school.setName(“北京大学”);<br>    SCHOOLS.add(school);</p>
+<pre><code>school = new School();
+school.setId(&quot;2&quot;);
+school.setName(&quot;清华大学&quot;);
+SCHOOLS.add(school);</code></pre><p>  }</p>
+<p>  public static void main(String[] args){<br>    // 测试打印一下内存的数据<br>    for(int i=0;i&lt;SCHOOLS.size();i++){<br>      School school = SCHOOLS.get(i);<br>      System.out.println(school.getName());<br>    }<br>  }</p>
+<p>}</p>
+<p><strong>2.1 继承语法</strong><br>1、extends  继承语法<br>public class Dog extends Animal{  }<br>Dog 称为Animal的子类，Animal称为父类</p>
+<p><em>Animal.java</em><br>package com.youkeda.model;<br>public class Animal {<br>    private String name;<br>    private int age;<br>    public String getName() {<br>        return name;<br>    }<br>    public void setName(String name) {<br>        this.name = name;<br>    }</p>
+<pre><code>public int getAge() {
+    return age;
+}
+public void setAge(int age) {
+    this.age = age;
+}</code></pre><p>}</p>
+<p><em>Dog.java</em><br>package com.youkeda.model;<br>public class Dog extends Animal{<br>}</p>
+<p>2、UML继承<br>在继承关系中，private级别的变量或者方法子类是获取不到的，子类如果想获取父类的变量和方法可以设置父类的变量和方法为 protected 或者 public 访问控制符</p>
+<p><strong>2.2方法覆盖</strong><br>1、在父子类当中，子类如果想要重写父类定义的方法这个行为就叫方法覆盖<br>假如说：在Dog对象里覆盖eat方法，并打印出xxxx</p>
+<p>package com.youkeda.model;<br>public class Dog extends Animal{<br>    public void eat(){<br>        System.out.println(“xxxx”);<br>    }<br>}</p>
+<p><strong>2、利用父子类实例化</strong><br>（1）实例化Dog对象<br>public class Test {<br>  public static void main(String[] args){<br>    // 实例化 dog 对象<br>    Dog d = new Dog();<br>    d.setName(“小灰”);<br>    d.setAge(3);<br>    System.out.println(d.getName()+”—“+d.getAge());<br>  }<br>}<br>（2）实例化Animal对象<br>public class Test {<br>  public static void main(String[] args){<br>    // 实例化 dog 对象并赋值给 Animal 对象<br>    Animal d = new Dog();<br>    d.setName(“小灰”);<br>    d.setAge(3);<br>    System.out.println(d.getName()+”—“+d.getAge());<br>  }<br>}</p>
+<p><strong>父类对象可以直接是子类的实例，子类的对象可以转化为父类的对象，但是父类的不能转化为子类</strong><br>加上d.eat();</p>
+<p><strong>2.3 super关键词</strong><br>1、this 关键字可以操作实例内的变量或者方法<br>操作父类也有一个关键词super<br>super只发生在子类中<br>public class Dog extends Animal{</p>
+<pre><code>public void eat(){
+    // 调用父类的方法
+    super.eat();
+    System.out.println(&quot;狗狗喜欢吃肉骨头&quot;);
+}</code></pre><p>}</p>
+<p>2、子类的构造函数</p>
+<p>当父类只有一个有参数的构造函数的时候，子类也必须要具备这个构造函数，或者调用 super方法来实现新的构造函数</p>
+<p>public class CustomFile{<br>  // 存储文件路径的变量<br>  public String filePath;<br>  // 存储文件后缀变量，通过后缀来区分文件类型<br>  public String ext;</p>
+<p>  // 声明一个构造函数，接受文件路径<br>  public CustomFile(String filePath){<br>    //给类变量 filePath 赋值<br>    //this代表的是当前类的实例<br>    this.filePath = filePath;<br>  }</p>
+<p> //获取文件名称</p>
+<p>  public String getName(){<br>    // 比如文件路径是 /Users/mac/work/face.png<br>    // 把文件路径分隔成数组（分隔符是 / ）<br>    // 数组的最后一位就是文件名<br>    String[] paths = filePath.split(“/“);<br>    // 数组的最后一位需要减1，因为数组是从索引0开始的。<br>    return  paths[paths.length-1];<br>  }<br>}</p>
+<p>public class JavaFile extends CustomFile{<br>  private String packageName;<br>  // 声明一个构造函数<br>  public JavaFile(String filePath,String packageName){<br>    super(filePath);<br>    this.packageName = packageName;<br>  }</p>
+<p>  public String getPackageName(){<br>      return this.packageName;<br>  }</p>
+<p>}</p>
+<p><strong>3.1接口的语法</strong><br>1、interface 接口<br>在java中，接口也是一个类，也包含方法，定义一个接口类以后，可以支持多个现实类<br><img src="https://style.youkeda.com/img/ham/course/j2/LoginService.svg" alt=""></p>
+<p>接口的方法都是public<br>接口的方法默认不需要方法体</p>
+<p>2、UML接口的定义<br>大写的  I<br>public interface LoginService {</p>
+<p>  String getLoginPageUrl();</p>
+<p>}</p>
+<p><strong>3、接口的例子看优课达3.1.3</strong></p>
+<p><strong>3.2接口实现类</strong><br>1、实现接口的语法：implements</p>
+<p><strong>超级难</strong></p>
+<p><strong>3.3常用接口</strong><br>1、java中最常见的两个接口：Map和List<br>2、面向接口开发的核心之一：尽可能用接口来设计属性或者方法<br>3、Map（映射）是遵循key：value这种形式的集合，key 、value的类型可以是任何的java对象<br>如果想得到一个Map的实例可以使用HashMap</p>
+<p>import java.util.Map;<br>import java.util.HashMap;<br>// key value 得是 Java 类型<br>Map&lt;key,value&gt; map = new HashMap&lt;&gt;();</p>
+<p><strong>数字映射为英文</strong><br>首先使用map.put(key,value)完成数据的存储<br>key是数字类型，value是字符串类型，所以Map&lt;Integer,String&gt;</p>
+<p>import java.util.Map;<br>import java.util.HashMap;</p>
+<p> //MapTest</p>
+<p>public class MapTest {<br>    public static void main(String[] args) {<br>      Map&lt;Integer,String&gt; map = new HashMap&lt;&gt;();</p>
+<pre><code>  map.put(1,&quot;Monday&quot;);
+  map.put(2,&quot;Tuesday&quot;);
+  map.put(3,&quot;Wednesday&quot;);
+  map.put(4,&quot;Thursday&quot;);
+  map.put(5,&quot;Friday&quot;);
+  map.put(6,&quot;Saturday&quot;);
+  map.put(7,&quot;Sunday&quot;);
+
+  // 获取数字3对应的星期值
+  String weekText = map.get(3);
+  System.out.println(weekText);
+}</code></pre><p>}</p>
+<p>集合的大小加的方法：size（）和遍历能力for<br>int size = map.size();<br>System.out.println(size);</p>
+<p>for (Map.Entry&lt;Integer,String&gt; entry : map.entrySet()){ </p>
+<p>   System.out.println(“Key = “ + entry.getKey() +<br>                  “, Value = “ + entry.getValue());<br> }</p>
+<p> 4、List<br> List是ArrayList的接口<br> List<String> strings = new ArrayList&lt;&gt;();</p>
+<p> 另外一种遍历方法：<br> List<String> strings = new ArrayList&lt;&gt;();<br>for(String str : strings){<br>    System.out.println(str);<br>}</p>
+<p><strong>4.1Java异常机制</strong><br>1、java.lang.NullPointerException是经常的异常，当操作的不是真正的对象而是null时，就会抛出NullPointerException<br>2、如何捕获异常<br><strong>try{ 开始捕获<br>}<br>catch（）抓住异常</strong></p>
+<p>public class ExceptionTest2 {</p>
+<pre><code>public static void main(String[] args) {
+
+    try {
+
+        int len = getStrLength(null);
+
+    } catch (NullPointerException e) {
+
+        //可以记录一下异常信息或者执行其他代码逻辑
+
+    }
+
+    System.out.println(&quot;程序执行到这&quot;);
+}
+
+// 获取字符串的长度
+public static int getStrLength(String str) {
+    return str.length();
+}</code></pre><p>}</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/18/UML/" data-id="ckct8s2ck0001lgtb9yw8f40f" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/18/UML/" data-id="ckcutw5ci000244tb6qyg85rw" class="article-share-link">Share</a>
       
       
     </footer>
