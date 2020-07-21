@@ -64,6 +64,54 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Exception3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/21/Exception3/" class="article-date">
+  <time datetime="2020-07-21T15:45:09.000Z" itemprop="datePublished">2020-07-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/21/Exception3/">Exception3</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="4-4自定义异常"><a href="#4-4自定义异常" class="headerlink" title="4.4自定义异常"></a>4.4自定义异常</h1><p>1、创建异常类<br>创建异常类只要继承于Exception即可</p>
+<p>创建一个ParamNullException<br>public class ParamNullException extends Exception {<br>}<br>实现类：<br>public User login(String userName,<br>                  String password) throws ParamNullException {<br>  if (userName == null || password == null) {<br>    throw new ParamNullException();<br>  }<br>  for (User user : USERS) {<br>    if (user.getUserName().equals(userName) &amp;&amp; user.getPassword().equals(password)) {<br>        return user;<br>    }<br>  }<br>  return null;<br>}</p>
+<p>2、自定义异常类的构造函数<br>public class ParamNullException extends Exception {</p>
+<p>  public ParamNullException() {</p>
+<p>  }</p>
+<p>  public ParamNullException(String msg) {<br>    super(msg);<br>  }<br>}</p>
+<p>3、finally<br>public void work() throws LeaveEarlyException {<br>    try {<br>      开门<br>      工作 8个小时 // 可能会抛出异常 DiseaseException<br>      关门</p>
+<pre><code>} catch (DiseaseException e){
+  throw new LeaveEarlyException();
+} finally{
+  关门
+}</code></pre><p>}</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/21/Exception3/" data-id="ckcw5lssw0003jotb5e0h1u41" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Exception2" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/07/21/Exception2/" class="article-date">
@@ -129,7 +177,7 @@ public static int getInt(String str) throws Exception {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/21/Exception2/" data-id="ckcw3yppw0002p4tb6n78fqcj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/21/Exception2/" data-id="ckcw5lsso0000jotb9itobzwk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -244,7 +292,7 @@ public static int getInt(String str) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/21/Exception/" data-id="ckcw3yppt0001p4tbfzne3gzj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/21/Exception/" data-id="ckcw5lsst0001jotbcfurhuzg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -307,7 +355,7 @@ public static int getStrLength(String str) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/21/A/" data-id="ckcw3yppn0000p4tb7n97dnn6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/21/A/" data-id="ckcw5lssu0002jotb72mw9vrx" class="article-share-link">Share</a>
       
       
     </footer>
@@ -484,7 +532,7 @@ public static int getStrLength(String str) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/18/UML/" data-id="ckcw3ypq20007p4tbbbb45bb1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/18/UML/" data-id="ckcw5lst10008jotb40tgejtd" class="article-share-link">Share</a>
       
       
     </footer>
@@ -642,7 +690,7 @@ for(String str : strs){
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/17/Java3/" data-id="ckcw3ypq10006p4tb8d8u4uph" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/17/Java3/" data-id="ckcw5lst00007jotb6r4ghk6f" class="article-share-link">Share</a>
       
       
     </footer>
@@ -753,7 +801,7 @@ System.out.println(amount);</code></pre><p>  }<br>   //计算个人缴纳的个�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/Java2/" data-id="ckcw3ypq00005p4tb8enc23xf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/Java2/" data-id="ckcw5lssz0006jotb4nep23w8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -792,7 +840,7 @@ System.out.println(amount);</code></pre><p>  }<br>   //计算个人缴纳的个�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/GitHub/" data-id="ckcw3yppx0003p4tb2a2v5wug" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/GitHub/" data-id="ckcw5lssx0004jotbc5r8g2t5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -831,7 +879,7 @@ System.out.println(amount);</code></pre><p>  }<br>   //计算个人缴纳的个�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/hexo/" data-id="ckcw3ypq8000bp4tbgqr615kl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/hexo/" data-id="ckcw5lstj000cjotbfns41lox" class="article-share-link">Share</a>
       
       
     </footer>
@@ -868,44 +916,7 @@ System.out.println(amount);</code></pre><p>  }<br>   //计算个人缴纳的个�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/Java/" data-id="ckcw3yppy0004p4tb1wy55hv0" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-chu" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/15/chu/" class="article-date">
-  <time datetime="2020-07-15T06:07:28.000Z" itemprop="datePublished">2020-07-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/15/chu/">chu</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="美好的一天"><a href="#美好的一天" class="headerlink" title="美好的一天"></a>美好的一天</h3><p><strong>终于熟练地掌握了方法，开心</strong><br><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1594803645640&di=5432d59c28e66a1f44ae086dca01cc65&imgtype=0&src=http%3A%2F%2Fdmimg.5054399.com%2Fallimg%2Fpkm%2Fpk%2F13.jpg" alt=""></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/chu/" data-id="ckcw3ypq30008p4tbhzxm3516" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/Java/" data-id="ckcw5lssy0005jotbdmwf59vq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -951,6 +962,10 @@ System.out.println(amount);</code></pre><p>  }<br>   //计算个人缴纳的个�
       <ul>
         
           <li>
+            <a href="/2020/07/21/Exception3/">Exception3</a>
+          </li>
+        
+          <li>
             <a href="/2020/07/21/Exception2/">Exception2</a>
           </li>
         
@@ -964,10 +979,6 @@ System.out.println(amount);</code></pre><p>  }<br>   //计算个人缴纳的个�
         
           <li>
             <a href="/2020/07/18/UML/">UML</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/17/Java3/">Java3</a>
           </li>
         
       </ul>

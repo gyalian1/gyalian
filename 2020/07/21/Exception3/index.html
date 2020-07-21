@@ -5,17 +5,17 @@
   
 
   
-  <title>Exception2 | Hexo</title>
+  <title>Exception3 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="4.3 抛出异常1、java.lang.IllegalArgumentException这个异常用于检查参数是否合法public class ExceptionTest5 { public static void main(String[] args) {     int num &#x3D; getInt(null);     System.out.println(num); }  public stat">
+  <meta name="description" content="4.4自定义异常1、创建异常类创建异常类只要继承于Exception即可 创建一个ParamNullExceptionpublic class ParamNullException extends Exception {}实现类：public User login(String userName,                  String password) throws ParamNull">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Exception2">
-<meta property="og:url" content="http://yoursite.com/2020/07/21/Exception2/index.html">
+<meta property="og:title" content="Exception3">
+<meta property="og:url" content="http://yoursite.com/2020/07/21/Exception3/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="4.3 抛出异常1、java.lang.IllegalArgumentException这个异常用于检查参数是否合法public class ExceptionTest5 { public static void main(String[] args) {     int num &#x3D; getInt(null);     System.out.println(num); }  public stat">
+<meta property="og:description" content="4.4自定义异常1、创建异常类创建异常类只要继承于Exception即可 创建一个ParamNullExceptionpublic class ParamNullException extends Exception {}实现类：public User login(String userName,                  String password) throws ParamNull">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-07-21T14:04:18.000Z">
-<meta property="article:modified_time" content="2020-07-21T15:41:19.089Z">
+<meta property="article:published_time" content="2020-07-21T15:45:09.000Z">
+<meta property="article:modified_time" content="2020-07-21T16:28:30.698Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -66,10 +66,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Exception2" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Exception3" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/07/21/Exception2/" class="article-date">
-  <time datetime="2020-07-21T14:04:18.000Z" itemprop="datePublished">2020-07-21</time>
+    <a href="/2020/07/21/Exception3/" class="article-date">
+  <time datetime="2020-07-21T15:45:09.000Z" itemprop="datePublished">2020-07-21</time>
 </a>
     
   </div>
@@ -80,7 +80,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Exception2
+      Exception3
     </h1>
   
 
@@ -88,50 +88,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="4-3-抛出异常"><a href="#4-3-抛出异常" class="headerlink" title="4.3 抛出异常"></a>4.3 抛出异常</h1><p>1、java.lang.IllegalArgumentException这个异常用于检查参数是否合法<br>public class ExceptionTest5 {</p>
-<pre><code>public static void main(String[] args) {
-    int num = getInt(null);
-    System.out.println(num);
-}
-
-public static int getInt(String str){
-    if(str == null){
-        throw new IllegalArgumentException(&quot;姓名不能为空&quot;);
-    }
-    return Integer.parseInt(str);
+        <h1 id="4-4自定义异常"><a href="#4-4自定义异常" class="headerlink" title="4.4自定义异常"></a>4.4自定义异常</h1><p>1、创建异常类<br>创建异常类只要继承于Exception即可</p>
+<p>创建一个ParamNullException<br>public class ParamNullException extends Exception {<br>}<br>实现类：<br>public User login(String userName,<br>                  String password) throws ParamNullException {<br>  if (userName == null || password == null) {<br>    throw new ParamNullException();<br>  }<br>  for (User user : USERS) {<br>    if (user.getUserName().equals(userName) &amp;&amp; user.getPassword().equals(password)) {<br>        return user;<br>    }<br>  }<br>  return null;<br>}</p>
+<p>2、自定义异常类的构造函数<br>public class ParamNullException extends Exception {</p>
+<p>  public ParamNullException() {</p>
+<p>  }</p>
+<p>  public ParamNullException(String msg) {<br>    super(msg);<br>  }<br>}</p>
+<p>3、finally<br>public void work() throws LeaveEarlyException {<br>    try {<br>      开门<br>      工作 8个小时 // 可能会抛出异常 DiseaseException<br>      关门</p>
+<pre><code>} catch (DiseaseException e){
+  throw new LeaveEarlyException();
+} finally{
+  关门
 }</code></pre><p>}</p>
-<p>在你想抛出的地方使用throw关键字就可以抛出异常。throw后是具体的异常事例（异常也是java类，也需要new实例化）</p>
-<p>若果是Exception，想要在某方法你抛出异常，就必须在此方法签名上声明它<br>调用者捕获它<br>public class ExceptionTest8 {</p>
-<pre><code>public static void main(String[] args) {
-    int num = 0;
-    try {
-        num = getInt(null);
-    } catch (Exception e) {
-        System.out.println(e.getMessage());
-    }
-    System.out.println(num);
-}
-
-public static int getInt(String str) throws Exception {
-    if (str == null) {
-        throw new Exception(&quot;姓名不能为空&quot;);
-    }
-    return Integer.parseInt(str);
-}</code></pre><p>}</p>
-<p> UserService userService = new UserServiceImpl();</p>
-<pre><code>  User user = new User();
-  try{
-   user = userService.login(&quot;xihongshi&quot;,&quot;Didi5&quot;);
-  }catch (Exception e) {
-       System.out.println(e.getMessage());
-   }
-   System.out.println(user.getNickName()+&quot;:&quot;+user.getUserName());
-}</code></pre><p>2、例子<br>4.3.2的例子，  throws Exception</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/21/Exception2/" data-id="ckcw5lsso0000jotb9itobzwk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/21/Exception3/" data-id="ckcw5lssw0003jotb5e0h1u41" class="article-share-link">Share</a>
       
       
     </footer>
@@ -140,19 +113,10 @@ public static int getInt(String str) throws Exception {
     
 <nav id="article-nav">
   
-    <a href="/2020/07/21/Exception3/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Exception3
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/07/21/Exception/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/07/21/Exception2/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Exception</div>
+      <div class="article-nav-title">Exception2</div>
     </a>
   
 </nav>
