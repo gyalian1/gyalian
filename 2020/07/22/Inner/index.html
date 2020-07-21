@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Inner | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="内部类语法1、InnerTool称为内部类Outer称为外部类先实例化再调用内部类，实例化只能在Outer内完成package com.youkeda.util;public class OuterUtil {    public class InnerTool { &#x2F;&#x2F; 内部类        public int add(int a,int b){            return a+b;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Inner">
+<meta property="og:url" content="http://yoursite.com/2020/07/22/Inner/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="内部类语法1、InnerTool称为内部类Outer称为外部类先实例化再调用内部类，实例化只能在Outer内完成package com.youkeda.util;public class OuterUtil {    public class InnerTool { &#x2F;&#x2F; 内部类        public int add(int a,int b){            return a+b;">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-21T16:38:05.000Z">
+<meta property="article:modified_time" content="2020-07-21T17:47:41.618Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Inner" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/22/Inner/" class="article-date">
+  <time datetime="2020-07-21T16:38:05.000Z" itemprop="datePublished">2020-07-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Inner
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="内部类语法"><a href="#内部类语法" class="headerlink" title="内部类语法"></a>内部类语法</h1><p>1、InnerTool称为内部类<br>Outer称为外部类<br>先实例化再调用内部类，实例化只能在Outer内完成<br>package com.youkeda.util;<br>public class OuterUtil {<br>    public class InnerTool { // 内部类<br>        public int add(int a,int b){<br>            return a+b;<br>        }<br>    }<br>    private InnerTool tool = new InnerTool();<br>}</p>
+<p>2、内部实例化<br>实现3个数字的加法<br>package com.youkeda.util;<br>public class OuterUtil {<br>    public class InnerTool { // 内部类<br>        public int add(int a,int b){<br>            return a+b;<br>        }<br>    }<br>    private InnerTool tool = new InnerTool();<br>    public int add(int a,int b,int c){<br>       return tool.add( tool.add(a,b) , c );<br>    }<br>}</p>
+<p>test测试类：<br>package com.youkeda.test;<br>import com.youkeda.util.OuterUtil;<br>public class OuterUtilTest {<br>   public static void main(String[] args){<br>       OuterUtil outer = new OuterUtil();<br>       int sum = outer.add(1,2,3);<br>       System.out.println(sum);<br>   }<br>}</p>
+<p>3、访问实例内部类<br>OuterUtil.InnerTool tool = new OuterUtil().new InnerTool();</p>
+<p>4、静态内部类<br>内部类也可以声明静态内部类，只要增加一个static关键词<br>package com.youkeda.util;<br>public class OuterUtil {<br>    public static class InnerTool { // 内部类<br>        public int add(int a,int b){<br>            return a+b;<br>        }<br>    }<br>}</p>
+<p>如果声明为静态内部类后，就可以直接调用内部类，不需要实例外部类<br>package com.youkeda.test;<br>import com.youkeda.util.OuterUtil;<br>// 静态内部类是需要单独 import 的<br>import com.youkeda.util.OuterUtil.InnerTool;<br>public class OuterUtilTest {<br>   public static void main(String[] args){<br>       InnerTool tool = new InnerTool();<br>       int sum = tool.add(1,2);<br>       System.out.println(sum);<br>   }<br>}</p>
+<p>5、局部内部类<br>在方法内部定义一个类，这个类就是局部内部类<br>public class Tester {<br>    public void test(){<br>        class B{<br>            int a;<br>        }<br>        B b = new B();<br>    }<br>}</p>
+<p>6、例子<br>package com.youkeda.test;<br>import com.youkeda.util.OuterUtil;</p>
+<p>public class InnerTest {<br>  public static void main (String[] args) {</p>
+<pre><code>OuterUtil outer = new OuterUtil();
+
+int sum = outer.add(12,13,25);
+
+int sub = outer.less(80,40);
+
+System.out.println(&quot;加法的结果是:&quot;+sum);
+System.out.println(&quot;减法的结果是:&quot;+sub);</code></pre><p>  }</p>
+<p>}</p>
+<p>package com.youkeda.util;<br>public class OuterUtil {<br>  public class InnerTool{<br>    public int add(int a,int b){<br>      return a+b;<br>    }<br>    public int less(int a,int b){<br>      return a-b;<br>    }<br>  }<br>  private InnerTool tool = new InnerTool();<br>  public int add(int a,int b,int c){<br>    return tool.add(tool.add(a,b) , c);<br>  }</p>
+<p>   public int less(int a,int b){<br>      return tool.less(a,b);<br>  }<br>}</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/22/Inner/" data-id="ckcw8eoy30005pgtb1iwe6w0c" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/07/21/Exception3/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Exception3</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/22/Inner/">Inner</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/21/Exception3/">Exception3</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/21/Exception2/">Exception2</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/21/Exception/">Exception</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/21/A/">A</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

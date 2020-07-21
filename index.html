@@ -64,6 +64,62 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Inner" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/22/Inner/" class="article-date">
+  <time datetime="2020-07-21T16:38:05.000Z" itemprop="datePublished">2020-07-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/22/Inner/">Inner</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="内部类语法"><a href="#内部类语法" class="headerlink" title="内部类语法"></a>内部类语法</h1><p>1、InnerTool称为内部类<br>Outer称为外部类<br>先实例化再调用内部类，实例化只能在Outer内完成<br>package com.youkeda.util;<br>public class OuterUtil {<br>    public class InnerTool { // 内部类<br>        public int add(int a,int b){<br>            return a+b;<br>        }<br>    }<br>    private InnerTool tool = new InnerTool();<br>}</p>
+<p>2、内部实例化<br>实现3个数字的加法<br>package com.youkeda.util;<br>public class OuterUtil {<br>    public class InnerTool { // 内部类<br>        public int add(int a,int b){<br>            return a+b;<br>        }<br>    }<br>    private InnerTool tool = new InnerTool();<br>    public int add(int a,int b,int c){<br>       return tool.add( tool.add(a,b) , c );<br>    }<br>}</p>
+<p>test测试类：<br>package com.youkeda.test;<br>import com.youkeda.util.OuterUtil;<br>public class OuterUtilTest {<br>   public static void main(String[] args){<br>       OuterUtil outer = new OuterUtil();<br>       int sum = outer.add(1,2,3);<br>       System.out.println(sum);<br>   }<br>}</p>
+<p>3、访问实例内部类<br>OuterUtil.InnerTool tool = new OuterUtil().new InnerTool();</p>
+<p>4、静态内部类<br>内部类也可以声明静态内部类，只要增加一个static关键词<br>package com.youkeda.util;<br>public class OuterUtil {<br>    public static class InnerTool { // 内部类<br>        public int add(int a,int b){<br>            return a+b;<br>        }<br>    }<br>}</p>
+<p>如果声明为静态内部类后，就可以直接调用内部类，不需要实例外部类<br>package com.youkeda.test;<br>import com.youkeda.util.OuterUtil;<br>// 静态内部类是需要单独 import 的<br>import com.youkeda.util.OuterUtil.InnerTool;<br>public class OuterUtilTest {<br>   public static void main(String[] args){<br>       InnerTool tool = new InnerTool();<br>       int sum = tool.add(1,2);<br>       System.out.println(sum);<br>   }<br>}</p>
+<p>5、局部内部类<br>在方法内部定义一个类，这个类就是局部内部类<br>public class Tester {<br>    public void test(){<br>        class B{<br>            int a;<br>        }<br>        B b = new B();<br>    }<br>}</p>
+<p>6、例子<br>package com.youkeda.test;<br>import com.youkeda.util.OuterUtil;</p>
+<p>public class InnerTest {<br>  public static void main (String[] args) {</p>
+<pre><code>OuterUtil outer = new OuterUtil();
+
+int sum = outer.add(12,13,25);
+
+int sub = outer.less(80,40);
+
+System.out.println(&quot;加法的结果是:&quot;+sum);
+System.out.println(&quot;减法的结果是:&quot;+sub);</code></pre><p>  }</p>
+<p>}</p>
+<p>package com.youkeda.util;<br>public class OuterUtil {<br>  public class InnerTool{<br>    public int add(int a,int b){<br>      return a+b;<br>    }<br>    public int less(int a,int b){<br>      return a-b;<br>    }<br>  }<br>  private InnerTool tool = new InnerTool();<br>  public int add(int a,int b,int c){<br>    return tool.add(tool.add(a,b) , c);<br>  }</p>
+<p>   public int less(int a,int b){<br>      return tool.less(a,b);<br>  }<br>}</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/22/Inner/" data-id="ckcw8eoy30005pgtb1iwe6w0c" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Exception3" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/07/21/Exception3/" class="article-date">
@@ -102,7 +158,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/21/Exception3/" data-id="ckcw5lssw0003jotb5e0h1u41" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/21/Exception3/" data-id="ckcw8eoy10003pgtbgod14v8x" class="article-share-link">Share</a>
       
       
     </footer>
@@ -177,7 +233,7 @@ public static int getInt(String str) throws Exception {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/21/Exception2/" data-id="ckcw5lsso0000jotb9itobzwk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/21/Exception2/" data-id="ckcw8eoy00002pgtbf5ml66xj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -292,7 +348,7 @@ public static int getInt(String str) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/21/Exception/" data-id="ckcw5lsst0001jotbcfurhuzg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/21/Exception/" data-id="ckcw8eoxy0001pgtb4vu02wo9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -355,7 +411,7 @@ public static int getStrLength(String str) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/21/A/" data-id="ckcw5lssu0002jotb72mw9vrx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/21/A/" data-id="ckcw8eoxp0000pgtbcwokhgpb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -532,7 +588,7 @@ public static int getStrLength(String str) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/18/UML/" data-id="ckcw5lst10008jotb40tgejtd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/18/UML/" data-id="ckcw8eoyd000dpgtbffbcan5l" class="article-share-link">Share</a>
       
       
     </footer>
@@ -690,7 +746,7 @@ for(String str : strs){
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/17/Java3/" data-id="ckcw5lst00007jotb6r4ghk6f" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/17/Java3/" data-id="ckcw8eoy60008pgtbhbtoc423" class="article-share-link">Share</a>
       
       
     </footer>
@@ -801,7 +857,7 @@ System.out.println(amount);</code></pre><p>  }<br>   //计算个人缴纳的个�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/Java2/" data-id="ckcw5lssz0006jotb4nep23w8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/Java2/" data-id="ckcw8eoy50007pgtb9dek7xe8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -840,7 +896,7 @@ System.out.println(amount);</code></pre><p>  }<br>   //计算个人缴纳的个�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/GitHub/" data-id="ckcw5lssx0004jotbc5r8g2t5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/GitHub/" data-id="ckcw8eoy20004pgtb9p29bivz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -879,44 +935,7 @@ System.out.println(amount);</code></pre><p>  }<br>   //计算个人缴纳的个�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/hexo/" data-id="ckcw5lstj000cjotbfns41lox" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Java" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/15/Java/" class="article-date">
-  <time datetime="2020-07-15T06:24:33.000Z" itemprop="datePublished">2020-07-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/15/Java/">Java</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Java笔记"><a href="#Java笔记" class="headerlink" title="Java笔记"></a>Java笔记</h2><p><strong>1、Java 的概念</strong><br><img src="https://style.youkeda.com/img/ham/course/j1/j1-1/codeDesc1.svg" alt=""><br><strong>2、Java对于字符串的输出都是用英文的”引号</strong><br><strong>3、Java 文件名必须是英文字母（有数字也可以，尽量不用数字），并且不能有空格。一般来说 Java    文件名首字母是大写的，比如说ser.java、School.java、Book.java</strong><br><strong>4、Java 语言的进阶可以分为两层：Java 语言、JVM</strong><br><strong>5、源代码被编译成程序才可以被计算机执行</strong><br><strong>6、Java遵循两种代码注释：块注释和行注释</strong><br><strong>7、Java 是一个面向对象的语言,Java把一切内容（字符串、数字、布尔、日期、时间）都用对象来表示，所以在 Java的世界中变量内容就是对象</strong><br><strong>8、每个变量都需要一个类型来决定可以存储什么类型的数值。比如，int 类型可以存储整数，String 类型可以存储字符串</strong><br><strong>9、Java中常见的关键字有public、 class、 void、 int</strong><br><strong>10、在编程语言中，存储数据的行为叫做：赋值</strong><br><strong>11、</strong>实际上在所有的编程语言里，基本上都包含三种基础数据类型：<br>    <strong>字符串、数字、布尔</strong><br><strong>12、字符串就是String，字符串用英文引号””</strong><br><strong>13、数字类型：小整数 int  ； 大整数 long ；浮点数 double</strong>    <strong>15、小整数和大整数的区别在于存储的数据大小不一样，我们一般接触的数字都是小整数，所以用大部分时候 int 就可以了</strong><br><strong>16、long类型赋值的时候要在数字最后更上一个小写的l（是字母L)</strong><br><em>17、布尔：boolean  ，布尔的值只能是true 或者 false</em><br> <strong>18、在编程语言中加减乘除这些数学符号称为：</strong><br> 运算符<br> <strong>加+  减-  乘* 除/  整除运算符%</strong><br><strong>19、Java 执行的是整除除法，也就是说当两个操作数都是整数时，结果也会自动变成整数（直接去掉了小数点的值）</strong><br><strong>20、计算百分比的话System.out.println(100*now/xxx)</strong><br><strong>21、平均分的代码：int total = 0；</strong><br>    int u1 = x；total=total+u1；<br>    int u2 = xx；total= total+u2；<br>    int average = total/4；<br>    System.out.println（average）；<br><strong>22、Java 在数学上面的能力非常强大，有很多内置的数学函数，这些函数在 Java 当中称为方法（method），有一个数学函数是我们应该知道的，而且非常实用。那就是随机数</strong><br><strong>23、Math.random() 方法用于返回一个随机数，随机数范围为 0.0 =&lt; Math.random &lt; 1.0。<br>    代码：double value = Math.random();  System.out.println(value);<br>    或者是Math.random()+1</strong><br><strong>24、浮点数如何转化为整数，理论上数字类型都可以转化，只是会丢失掉精度（自动去掉小数点了）<br>    Java中类型转换的语法：int nValue =（int）(value*10)</strong><br><strong>25、main 方法有特殊的含义（它是程序执行的入口,如果要执行代码就必须要有 main 方法）<br>main方法用于启动程序</strong><br><strong>26、紧跟着方法名的空小括号表明此方法不需要参数</strong><br><strong>27、自定义方法调用：代码编写的顺序，一定是先定义方法，再调用方法</strong><br><strong>28、自定义的方法都是在 class 类当中的，方法的顺序无所谓，放在 main 方法前面或者后面都可以，但是方法内是不能这样新建方法的</strong><br><strong>29、方法参数</strong><br>    <img src="https://style.youkeda.com/img/ham/course/j1/j1-3/method1.svg" alt=""><br><strong>30、方法参数和声明变量并无区别，只是这个变量是要定义在方法参数这个位置里，编程语言里把这个声明的变量叫做形参</strong><br>   <strong>31、方法参数</strong><br>    public static void main（String[] args）{<br>        code(100000);<br>    }<br>    public static void code (int length){<br>        int code =(int)((Math.random()+1)<em>length);<br>        System.out.println(“——“);<br>    }<br>    *</em>32、多参数方法**<br>    public static void main（String[] args）{<br>       String text = “”;<br>        code(text,100000);<br>    }<br>    public static void code (String text,int length){<br>        int code =(int)((Math.random()+1)*length);<br>        System.out.println(text+”【”+code+”】”);<br>    }</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/Java/" data-id="ckcw5lssy0005jotbdmwf59vq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/hexo/" data-id="ckcw8eoyc000cpgtbf430a6lm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -962,6 +981,10 @@ System.out.println(amount);</code></pre><p>  }<br>   //计算个人缴纳的个�
       <ul>
         
           <li>
+            <a href="/2020/07/22/Inner/">Inner</a>
+          </li>
+        
+          <li>
             <a href="/2020/07/21/Exception3/">Exception3</a>
           </li>
         
@@ -975,10 +998,6 @@ System.out.println(amount);</code></pre><p>  }<br>   //计算个人缴纳的个�
         
           <li>
             <a href="/2020/07/21/A/">A</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/18/UML/">UML</a>
           </li>
         
       </ul>
