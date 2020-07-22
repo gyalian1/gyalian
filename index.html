@@ -64,6 +64,55 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Exception4" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/22/Exception4/" class="article-date">
+  <time datetime="2020-07-22T12:55:45.000Z" itemprop="datePublished">2020-07-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/22/Exception4/">Exception4</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="匿名类"><a href="#匿名类" class="headerlink" title="匿名类"></a>匿名类</h1><p><strong>比较重要</strong><br>匿名类本质上就是一个局部内部类，不同的是匿名类只用于类的实例化，而不是声明</p>
+<p>有一个接口A<br>public interface A {<br>  public void method();<br>}</p>
+<p>public class ATest {<br>  public static void main(String[] args){<br>    A a = new A(){<br>       public void method(){<br>         System.out.println(“执行内部类”);<br>       }<br>    };<br>    a.method();<br>  }<br>}</p>
+<p>匿名内除了实现接口，也可以继承父类<br>public class Sub {<br>  public void print(){<br>  }<br>}<br>public class SubTest {<br>  public static void main(String[] args){<br>    Sub sub = new Sub(){<br>       public void print(){<br>         System.out.println(“执行内部类”);<br>       }<br>    };<br>    sub.print();<br>  }<br>}</p>
+<h2 id="5-3接口中的默认方法"><a href="#5-3接口中的默认方法" class="headerlink" title="5.3接口中的默认方法"></a>5.3接口中的默认方法</h2><p>abstract 需要声明在 class 类上以及需要抽象的方法上<br>// 定义一个武器的抽象类<br>public abstract class Weapon{<br>  // 抽象方法：攻击<br>  public abstract void attack();<br>}</p>
+<p>他的子类必须也实现抽象方法<br>public class GoldenBar extends Weapon {<br>  public void attack(){<br>    System.out.println(“使用金箍棒进行劈一棍”);<br>  }<br>}</p>
+<p><img src="https://style.youkeda.com/img/ham/course/j2/weapon.svg" alt=""></p>
+<p><strong>接口的默认方法</strong><br>public interface Vehicle {<br>   default void print(){<br>      System.out.println(“我是一辆车!”);<br>   }<br>}</p>
+<p>我们在接口的方法中使用了 default关键字，这个时候实现类如果没有自己的实现逻辑，就可以不用覆盖默认方法</p>
+<p><strong>覆盖接口默认方法实现</strong><br>public class Car implements Vehicle {<br>   public void print(){<br>      System.out.println(“我是一辆汽车!”);<br>   }<br>}</p>
+<p><strong>非覆盖接口默认方法实现</strong><br>public class Car implements Vehicle {<br>}</p>
+<p>public class CarTester {<br>   public static void main(String args[]){<br>      Vehicle vehicle = new Car();<br>      vehicle.print();<br>   }<br>}</p>
+<p><strong>例子</strong><br>5.3</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/22/Exception4/" data-id="ckcxjczt50002b8tbf048dilp" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Inner" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/07/22/Inner/" class="article-date">
@@ -110,7 +159,7 @@ System.out.println(&quot;减法的结果是:&quot;+sub);</code></pre><p>  }</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/22/Inner/" data-id="ckcw8eoy30005pgtb1iwe6w0c" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/22/Inner/" data-id="ckcxjczv0000db8tbanbibb3b" class="article-share-link">Share</a>
       
       
     </footer>
@@ -158,7 +207,7 @@ System.out.println(&quot;减法的结果是:&quot;+sub);</code></pre><p>  }</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/21/Exception3/" data-id="ckcw8eoy10003pgtbgod14v8x" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/21/Exception3/" data-id="ckcxjczt80006b8tbdb8g8pnv" class="article-share-link">Share</a>
       
       
     </footer>
@@ -233,7 +282,7 @@ public static int getInt(String str) throws Exception {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/21/Exception2/" data-id="ckcw8eoy00002pgtbf5ml66xj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/21/Exception2/" data-id="ckcxjczsx0000b8tb6ig85bi1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -348,7 +397,7 @@ public static int getInt(String str) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/21/Exception/" data-id="ckcw8eoxy0001pgtb4vu02wo9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/21/Exception/" data-id="ckcxjczt50003b8tb924s28yf" class="article-share-link">Share</a>
       
       
     </footer>
@@ -411,7 +460,7 @@ public static int getStrLength(String str) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/21/A/" data-id="ckcw8eoxp0000pgtbcwokhgpb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/21/A/" data-id="ckcxjczt30001b8tb6ze7ebhz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -588,7 +637,7 @@ public static int getStrLength(String str) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/18/UML/" data-id="ckcw8eoyd000dpgtbffbcan5l" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/18/UML/" data-id="ckcxjczut000bb8tbeivv7qex" class="article-share-link">Share</a>
       
       
     </footer>
@@ -746,7 +795,7 @@ for(String str : strs){
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/17/Java3/" data-id="ckcw8eoy60008pgtbhbtoc423" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/17/Java3/" data-id="ckcxjczt90007b8tb4jur2msi" class="article-share-link">Share</a>
       
       
     </footer>
@@ -857,7 +906,7 @@ System.out.println(amount);</code></pre><p>  }<br>   //计算个人缴纳的个�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/Java2/" data-id="ckcw8eoy50007pgtb9dek7xe8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/Java2/" data-id="ckcxjczt70005b8tbb6lzba4q" class="article-share-link">Share</a>
       
       
     </footer>
@@ -896,46 +945,7 @@ System.out.println(amount);</code></pre><p>  }<br>   //计算个人缴纳的个�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/GitHub/" data-id="ckcw8eoy20004pgtb9p29bivz" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hexo" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/15/hexo/" class="article-date">
-  <time datetime="2020-07-15T09:20:45.000Z" itemprop="datePublished">2020-07-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/15/hexo/">hexo</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Hexo笔记"><a href="#Hexo笔记" class="headerlink" title="Hexo笔记"></a>Hexo笔记</h3><p>3.1<br>1、hexo是一个快速、简洁且高效的博客框架，它支持几条简短的命令发布博客<br>（1）执行创建命令创建博客文件夹 : hexo init blog<br>（2）进入博客目录： cd blog<br>2、npm install hexo-deployer-git –save 需在博客目录内安装<br>3、打开博客文件夹，在_config.yml的最后编辑：<br>deploy ：<br> type： git<br>repository：你的仓库地址<br>branch： master<br>4、Hexo的提交：hexo clean 用途是清除缓存，能让新发布的博客能快速生效<br>（hexo generate 作用是生成新的静态文件<br>hexo deploy 作用是把生成的文件部署到我们的博客上）</p>
-<p>3.2<br>1、用命令创建博客文件: hexo new + 博客名<br>2、hexo更换主题：更换成next的主题：git clone –depth 1 <a href="mailto:git@github.com">git@github.com</a>:iissnan/hexo-theme-next.git themes/next</p>
-<p>3.3<br>1、进入blog ：cd blog<br>2、生成public文件夹：hexo g<br>3、博客持久化： （1）博客变成git仓库：git init<br>                               git remote -v<br>  git remote add origin + 仓库地址<br>（2）创建一个新的分支：git checkout -b dev<br>（3）提交 ：git add -A<br>                         git commit -m “备注”<br>                     git push –set–upstream origin dev（可以先git push，然后复制命令）</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/hexo/" data-id="ckcw8eoyc000cpgtbf430a6lm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/GitHub/" data-id="ckcxjczt60004b8tb86uza8fq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -981,6 +991,10 @@ System.out.println(amount);</code></pre><p>  }<br>   //计算个人缴纳的个�
       <ul>
         
           <li>
+            <a href="/2020/07/22/Exception4/">Exception4</a>
+          </li>
+        
+          <li>
             <a href="/2020/07/22/Inner/">Inner</a>
           </li>
         
@@ -994,10 +1008,6 @@ System.out.println(amount);</code></pre><p>  }<br>   //计算个人缴纳的个�
         
           <li>
             <a href="/2020/07/21/Exception/">Exception</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/21/A/">A</a>
           </li>
         
       </ul>

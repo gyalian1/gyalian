@@ -64,6 +64,45 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-hexo" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/15/hexo/" class="article-date">
+  <time datetime="2020-07-15T09:20:45.000Z" itemprop="datePublished">2020-07-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/15/hexo/">hexo</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Hexo笔记"><a href="#Hexo笔记" class="headerlink" title="Hexo笔记"></a>Hexo笔记</h3><p>3.1<br>1、hexo是一个快速、简洁且高效的博客框架，它支持几条简短的命令发布博客<br>（1）执行创建命令创建博客文件夹 : hexo init blog<br>（2）进入博客目录： cd blog<br>2、npm install hexo-deployer-git –save 需在博客目录内安装<br>3、打开博客文件夹，在_config.yml的最后编辑：<br>deploy ：<br> type： git<br>repository：你的仓库地址<br>branch： master<br>4、Hexo的提交：hexo clean 用途是清除缓存，能让新发布的博客能快速生效<br>（hexo generate 作用是生成新的静态文件<br>hexo deploy 作用是把生成的文件部署到我们的博客上）</p>
+<p>3.2<br>1、用命令创建博客文件: hexo new + 博客名<br>2、hexo更换主题：更换成next的主题：git clone –depth 1 <a href="mailto:git@github.com">git@github.com</a>:iissnan/hexo-theme-next.git themes/next</p>
+<p>3.3<br>1、进入blog ：cd blog<br>2、生成public文件夹：hexo g<br>3、博客持久化： （1）博客变成git仓库：git init<br>                               git remote -v<br>  git remote add origin + 仓库地址<br>（2）创建一个新的分支：git checkout -b dev<br>（3）提交 ：git add -A<br>                         git commit -m “备注”<br>                     git push –set–upstream origin dev（可以先git push，然后复制命令）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/15/hexo/" data-id="ckcxjczvp000eb8tb7bluet4a" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Java" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/07/15/Java/" class="article-date">
@@ -91,7 +130,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/Java/" data-id="ckcw8eoy40006pgtbcngngntc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/Java/" data-id="ckcxjczux000cb8tb7dmhge63" class="article-share-link">Share</a>
       
       
     </footer>
@@ -128,7 +167,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/chu/" data-id="ckcw8eoy9000apgtb7thiabqe" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/chu/" data-id="ckcxjczta0008b8tb282a0c5t" class="article-share-link">Share</a>
       
       
     </footer>
@@ -164,7 +203,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/chushi/" data-id="ckcw8eoy80009pgtb2aa48if0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/chushi/" data-id="ckcxjcztb0009b8tb4gmwgfzx" class="article-share-link">Share</a>
       
       
     </footer>
@@ -200,7 +239,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/hello/" data-id="ckcw8eoya000bpgtb1jshgx1k" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/hello/" data-id="ckcxjcztd000ab8tbdkn3b9ka" class="article-share-link">Share</a>
       
       
     </footer>
@@ -246,6 +285,10 @@
       <ul>
         
           <li>
+            <a href="/2020/07/22/Exception4/">Exception4</a>
+          </li>
+        
+          <li>
             <a href="/2020/07/22/Inner/">Inner</a>
           </li>
         
@@ -259,10 +302,6 @@
         
           <li>
             <a href="/2020/07/21/Exception/">Exception</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/21/A/">A</a>
           </li>
         
       </ul>

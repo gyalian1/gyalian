@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Exception4 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="匿名类比较重要匿名类本质上就是一个局部内部类，不同的是匿名类只用于类的实例化，而不是声明 有一个接口Apublic interface A {  public void method();} public class ATest {  public static void main(String[] args){    A a &#x3D; new A(){       public void method">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Exception4">
+<meta property="og:url" content="http://yoursite.com/2020/07/22/Exception4/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="匿名类比较重要匿名类本质上就是一个局部内部类，不同的是匿名类只用于类的实例化，而不是声明 有一个接口Apublic interface A {  public void method();} public class ATest {  public static void main(String[] args){    A a &#x3D; new A(){       public void method">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://style.youkeda.com/img/ham/course/j2/weapon.svg">
+<meta property="article:published_time" content="2020-07-22T12:55:45.000Z">
+<meta property="article:modified_time" content="2020-07-22T15:17:32.027Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://style.youkeda.com/img/ham/course/j2/weapon.svg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Exception4" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/22/Exception4/" class="article-date">
+  <time datetime="2020-07-22T12:55:45.000Z" itemprop="datePublished">2020-07-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Exception4
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="匿名类"><a href="#匿名类" class="headerlink" title="匿名类"></a>匿名类</h1><p><strong>比较重要</strong><br>匿名类本质上就是一个局部内部类，不同的是匿名类只用于类的实例化，而不是声明</p>
+<p>有一个接口A<br>public interface A {<br>  public void method();<br>}</p>
+<p>public class ATest {<br>  public static void main(String[] args){<br>    A a = new A(){<br>       public void method(){<br>         System.out.println(“执行内部类”);<br>       }<br>    };<br>    a.method();<br>  }<br>}</p>
+<p>匿名内除了实现接口，也可以继承父类<br>public class Sub {<br>  public void print(){<br>  }<br>}<br>public class SubTest {<br>  public static void main(String[] args){<br>    Sub sub = new Sub(){<br>       public void print(){<br>         System.out.println(“执行内部类”);<br>       }<br>    };<br>    sub.print();<br>  }<br>}</p>
+<h2 id="5-3接口中的默认方法"><a href="#5-3接口中的默认方法" class="headerlink" title="5.3接口中的默认方法"></a>5.3接口中的默认方法</h2><p>abstract 需要声明在 class 类上以及需要抽象的方法上<br>// 定义一个武器的抽象类<br>public abstract class Weapon{<br>  // 抽象方法：攻击<br>  public abstract void attack();<br>}</p>
+<p>他的子类必须也实现抽象方法<br>public class GoldenBar extends Weapon {<br>  public void attack(){<br>    System.out.println(“使用金箍棒进行劈一棍”);<br>  }<br>}</p>
+<p><img src="https://style.youkeda.com/img/ham/course/j2/weapon.svg" alt=""></p>
+<p><strong>接口的默认方法</strong><br>public interface Vehicle {<br>   default void print(){<br>      System.out.println(“我是一辆车!”);<br>   }<br>}</p>
+<p>我们在接口的方法中使用了 default关键字，这个时候实现类如果没有自己的实现逻辑，就可以不用覆盖默认方法</p>
+<p><strong>覆盖接口默认方法实现</strong><br>public class Car implements Vehicle {<br>   public void print(){<br>      System.out.println(“我是一辆汽车!”);<br>   }<br>}</p>
+<p><strong>非覆盖接口默认方法实现</strong><br>public class Car implements Vehicle {<br>}</p>
+<p>public class CarTester {<br>   public static void main(String args[]){<br>      Vehicle vehicle = new Car();<br>      vehicle.print();<br>   }<br>}</p>
+<p><strong>例子</strong><br>5.3</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/22/Exception4/" data-id="ckcxjczt50002b8tbf048dilp" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/07/22/Inner/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Inner</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/22/Exception4/">Exception4</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/22/Inner/">Inner</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/21/Exception3/">Exception3</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/21/Exception2/">Exception2</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/21/Exception/">Exception</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
