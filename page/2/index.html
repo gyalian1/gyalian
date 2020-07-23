@@ -64,6 +64,164 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Java3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/17/Java3/" class="article-date">
+  <time datetime="2020-07-17T02:10:29.000Z" itemprop="datePublished">2020-07-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/17/Java3/">Java3</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="创建Java类文件的4个规范"><a href="#创建Java类文件的4个规范" class="headerlink" title="创建Java类文件的4个规范"></a>创建Java类文件的4个规范</h3><p><strong>1、文件名 是类名+.java  组成，比如说HelloWord.java</strong><br><strong>2、类名遵循大驼峰命名法，就是首字母大写，另外类名里不能有中文和特殊字符哦（比如：&amp;、#、@、* 等），只能是字母和数字。比如： HelloWord、Test、Test40</strong><br><strong>3、java类内容遵守固定的格式：<br>public class 类名称{}<br>比如: Java文件是House.java，那么文件内容是public class House{}</strong><br><strong>4、Java类是存放在Java包里的，默认情况下Java工程中的代码是存放在src/main/java目录中的<br><img src="https://style.youkeda.com/img/ham/course/j1/j1-8/createJava.png" alt=""><br><img src="https://style.youkeda.com/img/ham/course/j1/j1-8/newJavaFile.png" alt=""></strong></p>
+<h3 id="Java-笔记"><a href="#Java-笔记" class="headerlink" title="Java 笔记"></a>Java 笔记</h3><p><strong>8.1 Java包管理器</strong><br>1、package的导入（包）<br>因为 Java 体系非常庞大，为了管理更多的代码互不侵犯，所以采用一个叫 “包管理”的机制来管理代码，简单来说就是把不同的 Java 代码放在不同的文件夹里这个文件夹就是“包（package）”。对于使用不同包的代码，得需要先导入这个包<br>2、在java中导入包的语句  <strong>import 包名+类名；</strong>  包名+类名组成了完整的包路径<br>这个语句在类文件的最前面</p>
+<p><strong>LocalDate这个类的完整包路径是java.time.LocalDate</strong><br>import java.time.LocalDate;<br>public class DateTest {<br>  public static void main(String[] args) {<br>    // 得到当前的完整时间<br>    LocalDate now = LocalDate.now();<br>    // 打印出时间<br>    System.out.println(now.toString());<br>  }<br>}</p>
+<p>3、出现的错误<br>Compilation error: Line 7 - 找不到符号<br>  符号:   变量 LocalDate<br>  位置: 类 DateTest2</p>
+<p>  <strong>有两种可能</strong><br>  一是类型写错了<br>  二是类型没有import（导入）包</p>
+<p> <strong>4、日期时间和字符串的转化</strong><br> 借助一个日期格式化类来做格式化 <strong>DateTimeFormatter</strong><br><strong>完整包路径 java.time.format.DateTimeFormatter</strong><br> import java.time.LocalDate;<br>import java.time.format.DateTimeFormatter;</p>
+<p>public class DateTest5 {<br>  public static void main(String[] args) {<br>    LocalDate time = LocalDate.now();<br>    // 打印默认的时间数据<br>    System.out.println(time.toString());<br>    // 创建一个格式化方式<br>    DateTimeFormatter df = DateTimeFormatter.ofPattern(“yyyy年MM月dd”);<br>    // 执行时间的格式化处理，得到期望格式的时间字符串<br>    String timeStr = df.format(time);<br>    // 打印时间<br>    System.out.println(timeStr);<br>  }<br>}</p>
+<p><strong>改成什么样的格式直接（”yyyy年MM月dd”）</strong></p>
+<p>5、获取日期时间具体的值<br>import java.time.LocalDate;<br>public class DateTest7 {<br>  public static void main(String[] args) {<br>    LocalDate time = LocalDate.now();<br>    // 得到当前时间所在年<br>    int year = time.getYear();<br>    System.out.println(“当前年份 “ + year);<br>    // 得到当前时间所在月<br>    int month = time.getMonth().getValue();<br>    System.out.println(“当前月份 “ + month);<br>    // 得到当前时间在这个月中的天数<br>    int day = time.getDayOfMonth();<br>    System.out.println(“当前日 “ + day);<br>    // 得到当前时间所在星期数<br>    int dayOfWeek = time.getDayOfWeek().getValue();<br>    System.out.println(“当前星期 “ + dayOfWeek);<br>  }<br>}</p>
+<p><strong>8.1时间日期类的运用</strong></p>
+<p><strong>6、字符串转化为日期时间</strong><br>通过time.toString() 这个方法的执行吧time的数据变成了字符串<br>import java.time.LocalDate;</p>
+<p>public class DateTest8 {<br>  public static void main(String[] args) {<br>    // 定义一个时间字符串，日期是2019年1月1日<br>    String date = “2019-01-01”;</p>
+<pre><code>// 把字符串转化位 LocalDate 对象，并得到字符串匹配的日期
+LocalDate date2 = LocalDate.parse(date);
+// 打印出日期
+System.out.println(date2.toString());</code></pre><p>  }<br>}</p>
+<p><strong>prase方法可以把日期字符串转化为日期类型，这个字符串格式是 年-月-日 时:分:秒（英文格式是：yyyy-MM-dd HH:mm:ss）年是 4 位数字（yyyy），月是 2 位数字（MM），日是 2 位数字（DD）</strong></p>
+<p><strong>另一种不是yyyy-MM-dd的格式，需要借助DateTimeFormatter</strong><br>import java.time.LocalDate;<br>import java.time.format.DateTimeFormatter;<br>public class DateTest81 {<br>  public static void main(String[] args) {<br>    // 定义一个时间字符串，日期是2019年1月1日<br>    String date = “2019/01/01”;<br>    DateTimeFormatter df = DateTimeFormatter.ofPattern(“yyyy/MM/dd”);<br>    // 把字符串转化位 LocalDate 对象，并得到字符串匹配的日期<br>    LocalDate date2 = LocalDate.parse(date,df);<br>    // 打印出日期<br>    System.out.println(date2.toString());<br>  }<br>}</p>
+<p>7、时间日期的计算<br>LocalDate 类有一个 <strong>plusDays(天数)</strong> 方法用于执行天数的相加</p>
+<p>import java.time.LocalDate;<br>public class DateTest9 {<br>  public static void main(String[] args) {<br>    LocalDate leaveTime = getLeaveTime(“2019-05-01”, 4);<br>    System.out.println(leaveTime.toString());<br>  }<br>   //根据入住时间和入住天数得到离店时间<br>   //@param checkInTime<br>   // @param days<br>   // @return</p>
+<p>  public static LocalDate getLeaveTime(String checkInTime, int days) {<br>    // 把字符串转化为 LocalDate 类型<br>    LocalDate time = LocalDate.parse(checkInTime);<br>    // 使用 plusDays 添加天数，得到新的时间<br>    LocalDate leaveTime = time.plusDays(days);<br>    return leaveTime;<br>  }<br>}</p>
+<p><strong>计算时间</strong><br>加法运算：now.plusDays(天数)    now.plusWeeks（周数）  now.plusMonths(月数)<br>减法运算：now.minusDays（天数）   now.minusWeek（周数）  now.minusMonths（月数）</p>
+<p>import java.time.LocalDate;<br>public class DateTest10 {<br>  public static void main(String[] args) {<br>    LocalDate now = LocalDate.now();<br>    System.out.println(“当前：” + now.toString());<br>    System.out.println(“加法运算”);<br>    System.out.println(“加1天：” + now.plusDays(1));<br>    System.out.println(“加1周：” + now.plusWeeks(1));<br>    System.out.println(“加1月：” + now.plusMonths(1));<br>    System.out.println(“加1年：” + now.plusYears(1));</p>
+<pre><code>System.out.println(&quot;减法运算&quot;);
+System.out.println(&quot;减1天：&quot; + now.minusDays(1));
+System.out.println(&quot;减1周：&quot; + now.minusWeeks(1));
+System.out.println(&quot;减1月：&quot; + now.minusMonths(1));
+System.out.println(&quot;减1年：&quot; + now.minusYears(1));</code></pre><p>  }<br>}</p>
+<p>8、两个日期时间的判断<br>对两个时间进行判断，比如说判断两个时间是否是同一天、一个日期是否在另外一个日期的前面或者后面<br>import java.time.LocalDate;</p>
+<p>public class DateTest11 {<br>  public static void main(String[] args) {<br>    LocalDate now = LocalDate.now();<br>    // 可以对两个 LocalDate 进行比较，<br>    // 可以判断一个日期是否在另一个日期之前或之后，<br>    // 或者判断两个日期是否是同年同月同日。</p>
+<pre><code>boolean isBefore = now.minusDays(1).isBefore(LocalDate.now());
+System.out.println(&quot;是否在当天之前：&quot; + isBefore);
+boolean isAfter = now.plusDays(1).isAfter(LocalDate.now());
+System.out.println(&quot;是否在当天之后：&quot; + isAfter);
+
+// 判断是否是当天
+boolean sameDate = now.isEqual(LocalDate.now());
+System.out.println(&quot;是否在当天：&quot; + sameDate);</code></pre><p>  }<br>}</p>
+<p>9、例题<br>import java.time.LocalDate;<br>public class Test803 {<br>  public static void main(String[] args) {<br>     notice (“2019-03-08”);<br>     notice (“2019-04-08”);<br>     notice (“2019-04-09”);<br>  }<br>  public static void notice(String time){<br>    LocalDate dateTime = LocalDate.parse(time);<br>    LocalDate noticeTime = LocalDate.parse(“2019-04-08”);<br>    if (dateTime.isBefore(noticeTime)) {<br>      System.out.println(“活动还未开始”);<br>    } else if (dateTime.isAfter(noticeTime)) {<br>      System.out.println(“活动已经结束啦”);<br>    } else if (dateTime.equals(noticeTime)) {<br>      System.out.println(“活动开始啦”);<br>    }<br>  }<br>}</p>
+<p><strong>8.3面向对象–抽象</strong><br>LocalDateTime就是抽象了时间而来的时间对象<br>新建里面的Java类，输入类名称</p>
+<p><strong>8.4面向对象–包</strong><br>1、创建包和包下面的类<br>自定义包其实就是创建文件夹，包路径就是文件夹相对路径，比如说com.youkeda.test是一个包路径<br>（包路径和子路径直接使用  .  来分隔）<br>对应的文件路径是src/main/java/com/youkeda/test<br><img src="https://style.youkeda.com/img/ham/course/j1/j1-8/package.png" alt=""><br><img src="https://style.youkeda.com/img/ham/course/j1/j1-8/newpackage.png" alt=""></p>
+<p>2、包名的规则<br>一般来说包名的开始是一个公司或者一个组织的域名的反写，如果是个人也可以遵守类似的规则<br><strong>比如优课达的域名为youkeda.com，那么包名的起始就是com.youkeda，就需要创建com/youkeda这样的两级目录</strong><br>Java的规范建议使用包管理代码</p>
+<p>3、如果我们在某个包下创建 Java 文件，那么 Java 类的内容就需要多个一个声明包路径的语法<br>比如com.youkeda.test.Hello.java   (它的包名为  com.youkeda.test       类名称为 Hello)<br><strong>类代码：<br>package com.youkeda.test;<br>public class Hello {<br>}</strong></p>
+<p>4、package 包路径；<br>一个文件只有一个包路径，并且是在文件的第一行</p>
+<p><strong>在java里面新建包，com.youkeda.test  最后在test里面新建Java类，Hello.java</strong></p>
+<p>5、如何引入自定义的类<br>在com.youkeda.model.House里，知道House是在com.youkeda.model里面，怎么import里面</p>
+<p>package com.youkeda.test;<br>import java.time.LocalDate;<br>import java.time.format.DateTimeFormatter;<br>//引入 House 类对象<br>import com.youkeda.model.House;<br>public class Hello {<br>}</p>
+<p>不管是系统创建的还是我们自己创建的类对象，我们 import 的时候写上正确的完整类路径就可以了<br>import语句得在package之后，顺序不能错</p>
+<p><strong>8.5面向对象–属性/方法</strong><br>1、特征称为对象属性，而行为称为对象方法，完整的抽象过程分别是抽象对象名称、对象属性、对象方法</p>
+<p>public class House {<br>    // 房子的颜色是绿色<br>    public String color = “green”;<br>    // 房子的卧室有2间<br>    public int bedRooms = 2;<br>}</p>
+<p>这个和方法的变量不同点就是多了个 public 关键字，这个代表的是公共变量的意思</p>
+<p>2、对象方法<br>public class House {<br>    // 房子的颜色是绿色<br>    public String color = “green”;<br>    // 房子的卧室有2间<br>    public int bedRooms = 2;</p>
+<pre><code> // 打开水龙头
+public void runWater(){
+}
+
+ //打开电灯
+public void turnLightsOn(){
+}</code></pre><p>}</p>
+<p>没有static关键字，有static的方法叫静态方法，没有的叫对象方法</p>
+<p><strong>8.6实例化对象</strong><br><strong>1、实例化的语法：new 名称();</strong><br>//我的房子<br>House myHouse = new House();<br>//你的房子</p>
+<p>House youHouse = new House();</p>
+<p>//她的房子<br>House herHouse = new House();</p>
+<p>2、打开你房子的灯：youHouse.turnLightsOn();<br>把她的房子的颜色变成红色：herHouse.color = “red”;</p>
+<p>每个实例都可以被同样的方法、属性来操作</p>
+<p><strong>3、构造函数的实例化语法：new 构造函数();</strong><br>构造函数其实是一个比较特别的对象方法：<br>（1）它的名称是和类名一模一样的<br>比如House.java这个类的构造函数名称为 House<br>绝大多数情况下，构造函数是由Java系统自动创建的<br>（2）构造函数这个方法是没有返回值的<br>public class House{<br>     //这就是默认的构造函数<br>     public House(){<br>     }<br> }<br> （3）构造函数一般配合实例化一起使用，可以把构造函数当做类对象的初始化方法<br> <strong>4、两个不同的包连接起来用 import</strong></p>
+<p> <strong>8.7  构造函数</strong><br> 1、带参数构造函数<br> public class House {<br>    // 房子的颜色是绿色<br>    public String color = “green”;</p>
+<pre><code>// 自定义一个带 color 参数的构造函数
+public House(String color){
+  this.color = color;
+}</code></pre><p>}</p>
+<p>这里的this就等于myhouse，也就是说this代表实例化后的对象</p>
+<p>2、显示指定默认构造函数<br>在house里再加一句默认的：<br>public House（）{}<br>在HouseAction里面改成默认的：<br>       public static void main(String[] args) {<br>        House hourse = new House();<br>        hourse.turnLightsOn();<br>    }</p>
+<p>3、Java File是抽象电脑上的文件夹而来的<br><strong>(1)先要    import java.io.File</strong><br><strong>(2)首先要实例化File</strong><br><strong>// 实例化一个文件实例，指向到 d:/img/a.png 文件<br>      File file = new File(“d:/img/a.png”);</strong></p>
+<p>(3)File 还有两个常用的构造函数：<br>//根据parent路径名字符串和child路径名字符串创建一个新 File 实例<br>File(String parent, String child)</p>
+<p>//通过给定的父文件对象和子路径名字符串创建一个新的File实例<br>File(File parent, String child)</p>
+<p><strong>(4)获取文件大小的方法，实例化以后可以调用得到文件的大小</strong><br>// 返回字节数<br>public long length()</p>
+<p>//得到文件大小的字节数<br>long size = file.length();</p>
+<p><strong>8.8 ArrayList</strong><br>1、int 的 Java 对象就是 Integer；boolean 的 Java 对象就是 Boolean；double 的 Java 对象是 Double<br>2、有 Java 对象和没有对象的区别在于有对象的默认值是 null，比如 int 的默认值是 0，但是 Integer 的默认值是 null；boolean 的默认值是 false，但是 Boolean 的默认值是 null<br>3、由于 N 个文件的个数不确定，所以我们无法用数组来存储多个文件（因为数组的长度是事先确定的），这个时候我们就需要一个动态数组的方案来存储多个文件，这个动态数组在 Java 当中就是 java.util.ArrayList 对象</p>
+<pre><code> **4、ArrayList语法**
+ 使用 ArrayList 就必须要先实例化，实例化的语法都是一样的，使用 new 关键字，并且需要指定对象类型
+ // 这里的 Java 对象类型可以是任意的对象类型
+// 比如 String、Integer、House 等
+// 这里的 &lt;&gt; 是 Java 泛型的规范,记住这个语法就行了
+ArrayList&lt;Java 对象类型&gt; list = new ArrayList&lt;&gt;();</code></pre><p>（这个对象是放在java.util包下的。所以要是用需要先进行import）</p>
+<pre><code> **5、add方法**
+ 完成 ArrayList 实例化之后，就可以使用 ArrayList 的 add 方法进行数据的添加
+ import java.util.ArrayList;
+ public class ArrayListTest1{
+ public static void main(String[] args){
+// 创建一个 ArrayList 存储字符串集合
+ArrayList&lt;String&gt; strs = new ArrayList&lt;&gt;();
+// 添加数据到 ArrayList 实例里
+strs.add(&quot;张三&quot;);
+strs.add(&quot;李四&quot;);</code></pre><p>  }<br>}<br>    <strong>6、get/size方法</strong><br>    ArrayList具备数组的特点：（1）可以获取长度size（）；  （2）可以根据索引获取具体的值 get(索引)，ArrayList 的索引是从 0 开始的<br>    import java.util.ArrayList;<br>public class ArrayListTest1{<br>  public static void main(String[] args){<br>    // 创建一个 ArrayList 存储字符串集合<br>    ArrayList<String> strs = new ArrayList&lt;&gt;();</p>
+<pre><code>// 添加数据到 ArrayList 实例里
+strs.add(&quot;张三&quot;);
+strs.add(&quot;李四&quot;);
+
+// 获取集合的长度
+int size = strs.size();
+
+// 使用 for 循环迭代每一条记录
+for(int i=0;i&lt;size;i++){
+   // 根据索引获取值，值的类型是 String
+   String str = strs.get(i);
+   System.out.println(str);
+}</code></pre><p>  }</p>
+<pre><code>**7、for语句：  for( 集合变量的类型 变量名称 : 集合变量 )**
+import java.util.ArrayList;</code></pre><p>public class ArrayListTest1{<br>  public static void main(String[] args){<br>    // 创建一个 ArrayList 存储字符串集合<br>    ArrayList<String> strs = new ArrayList&lt;&gt;();</p>
+<pre><code>// 添加数据到 ArrayList 实例里
+strs.add(&quot;张三&quot;);
+strs.add(&quot;李四&quot;);
+
+// 获取集合的长度
+int size = strs.size();
+
+// 使用 for 循环迭代每一条记录
+for(String str : strs){
+   System.out.println(str);
+}</code></pre><p>  }<br>}</p>
+<p><strong>8、UML图中变量下面多了一个下划线代表的就是常量</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/17/Java3/" data-id="ckcz28cri000bvotb1jb4fjrj" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Java2" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/07/15/Java2/" class="article-date">
@@ -165,7 +323,7 @@ System.out.println(amount);</code></pre><p>  }<br>   //计算个人缴纳的个�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/Java2/" data-id="ckcyysygv000f7otb9wsk1sqa" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/Java2/" data-id="ckcz28crh000avotbh1gg53th" class="article-share-link">Share</a>
       
       
     </footer>
@@ -204,7 +362,7 @@ System.out.println(amount);</code></pre><p>  }<br>   //计算个人缴纳的个�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/GitHub/" data-id="ckcyysyg800077otbgmmb8taq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/GitHub/" data-id="ckcz28crf0007votbf4w5emm0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -243,7 +401,7 @@ System.out.println(amount);</code></pre><p>  }<br>   //计算个人缴纳的个�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/hexo/" data-id="ckcyysyhh000g7otb9hd66m8b" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/hexo/" data-id="ckcz28cs3000hvotb7xmi7j9z" class="article-share-link">Share</a>
       
       
     </footer>
@@ -280,7 +438,7 @@ System.out.println(amount);</code></pre><p>  }<br>   //计算个人缴纳的个�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/Java/" data-id="ckcyysyg900087otb0yv866b3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/Java/" data-id="ckcz28crg0009votbe6t98kgj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -317,7 +475,7 @@ System.out.println(amount);</code></pre><p>  }<br>   //计算个人缴纳的个�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/chu/" data-id="ckcyysyga00097otb0q335oj3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/chu/" data-id="ckcz28crm000evotb8zcn6thf" class="article-share-link">Share</a>
       
       
     </footer>
@@ -353,7 +511,7 @@ System.out.println(amount);</code></pre><p>  }<br>   //计算个人缴纳的个�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/chushi/" data-id="ckcyysygb000b7otbchc68zsr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/chushi/" data-id="ckcz28cro000gvotbebug70z0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -389,7 +547,7 @@ System.out.println(amount);</code></pre><p>  }<br>   //计算个人缴纳的个�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/hello/" data-id="ckcyysygd000c7otbdi1z1v66" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/hello/" data-id="ckcz28crn000fvotbh5gh57dn" class="article-share-link">Share</a>
       
       
     </footer>
@@ -435,6 +593,10 @@ System.out.println(amount);</code></pre><p>  }<br>   //计算个人缴纳的个�
       <ul>
         
           <li>
+            <a href="/2020/07/23/XJava1/">XJava1</a>
+          </li>
+        
+          <li>
             <a href="/2020/07/23/Exception6/">Exception6</a>
           </li>
         
@@ -448,10 +610,6 @@ System.out.println(amount);</code></pre><p>  }<br>   //计算个人缴纳的个�
         
           <li>
             <a href="/2020/07/22/Inner/">Inner</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/21/Exception3/">Exception3</a>
           </li>
         
       </ul>
