@@ -5,19 +5,24 @@
   
 
   
-  <title>Exception3 | Hexo</title>
+  <title>Exception5 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="4.4自定义异常1、创建异常类创建异常类只要继承于Exception即可 创建一个ParamNullExceptionpublic class ParamNullException extends Exception {}实现类：public User login(String userName,                  String password) throws ParamNull">
+  <meta name="description" content="对象关系1、聚合关系Aggregation所有者对象称为聚合对象，它的类称为聚合类从属对象称为被聚合对象，它的类称为被聚合类public class Company {    private List employees;} public class Employee {    private String name;}  2、组合关系Composition在组合关系中包含对象负责被包含对象的创建">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Exception3">
-<meta property="og:url" content="http://yoursite.com/2020/07/21/Exception3/index.html">
+<meta property="og:title" content="Exception5">
+<meta property="og:url" content="http://yoursite.com/2020/07/22/Exception5/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="4.4自定义异常1、创建异常类创建异常类只要继承于Exception即可 创建一个ParamNullExceptionpublic class ParamNullException extends Exception {}实现类：public User login(String userName,                  String password) throws ParamNull">
+<meta property="og:description" content="对象关系1、聚合关系Aggregation所有者对象称为聚合对象，它的类称为聚合类从属对象称为被聚合对象，它的类称为被聚合类public class Company {    private List employees;} public class Employee {    private String name;}  2、组合关系Composition在组合关系中包含对象负责被包含对象的创建">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-07-21T15:45:09.000Z">
-<meta property="article:modified_time" content="2020-07-21T16:28:30.698Z">
+<meta property="og:image" content="https://style.youkeda.com/img/ham/course/j2/aggregation.svg">
+<meta property="og:image" content="https://style.youkeda.com/img/ham/course/j2/composition.svg">
+<meta property="og:image" content="https://style.youkeda.com/img/ham/course/j2/dependency.svg">
+<meta property="og:image" content="https://style.youkeda.com/img/ham/course/j2/bar.svg">
+<meta property="article:published_time" content="2020-07-22T15:44:30.000Z">
+<meta property="article:modified_time" content="2020-07-23T12:28:46.187Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://style.youkeda.com/img/ham/course/j2/aggregation.svg">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -66,10 +71,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Exception3" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Exception5" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/07/21/Exception3/" class="article-date">
-  <time datetime="2020-07-21T15:45:09.000Z" itemprop="datePublished">2020-07-21</time>
+    <a href="/2020/07/22/Exception5/" class="article-date">
+  <time datetime="2020-07-22T15:44:30.000Z" itemprop="datePublished">2020-07-22</time>
 </a>
     
   </div>
@@ -80,7 +85,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Exception3
+      Exception5
     </h1>
   
 
@@ -88,23 +93,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="4-4自定义异常"><a href="#4-4自定义异常" class="headerlink" title="4.4自定义异常"></a>4.4自定义异常</h1><p>1、创建异常类<br>创建异常类只要继承于Exception即可</p>
-<p>创建一个ParamNullException<br>public class ParamNullException extends Exception {<br>}<br>实现类：<br>public User login(String userName,<br>                  String password) throws ParamNullException {<br>  if (userName == null || password == null) {<br>    throw new ParamNullException();<br>  }<br>  for (User user : USERS) {<br>    if (user.getUserName().equals(userName) &amp;&amp; user.getPassword().equals(password)) {<br>        return user;<br>    }<br>  }<br>  return null;<br>}</p>
-<p>2、自定义异常类的构造函数<br>public class ParamNullException extends Exception {</p>
-<p>  public ParamNullException() {</p>
-<p>  }</p>
-<p>  public ParamNullException(String msg) {<br>    super(msg);<br>  }<br>}</p>
-<p>3、finally<br>public void work() throws LeaveEarlyException {<br>    try {<br>      开门<br>      工作 8个小时 // 可能会抛出异常 DiseaseException<br>      关门</p>
-<pre><code>} catch (DiseaseException e){
-  throw new LeaveEarlyException();
-} finally{
-  关门
-}</code></pre><p>}</p>
+        <h1 id="对象关系"><a href="#对象关系" class="headerlink" title="对象关系"></a>对象关系</h1><p>1、聚合关系Aggregation<br>所有者对象称为聚合对象，它的类称为聚合类<br>从属对象称为被聚合对象，它的类称为被聚合类<br>public class Company {<br>    private List<Employee> employees;<br>}</p>
+<p>public class Employee {<br>    private String name;<br>}</p>
+<p><img src="https://style.youkeda.com/img/ham/course/j2/aggregation.svg" alt=""></p>
+<p>2、组合关系Composition<br>在组合关系中包含对象负责被包含对象的创建以及生命周期，也就是当包含对象被销毁时被曝含对象也会不存在<br><img src="https://style.youkeda.com/img/ham/course/j2/composition.svg" alt=""></p>
+<p>public class Car {<br>    // 实例化一个不可变的属性 engine<br>    private final Engine engine = new Engine();<br>}</p>
+<p>public class Engine {<br>    private String type;<br>}</p>
+<p>3、依赖关系Dependency<br>一个类的应用用作另一个类的方法的参数<br><img src="https://style.youkeda.com/img/ham/course/j2/dependency.svg" alt=""></p>
+<p>依赖的类是有属性变量的</p>
+<p>4、继承Inheritance/Realization关系<br>表达子类继承了父类<br><img src="https://style.youkeda.com/img/ham/course/j2/bar.svg" alt=""></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/21/Exception3/" data-id="ckcyysyg600057otbh63e8ja8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/22/Exception5/" data-id="ckcyysyg400037otb5fqnaw6m" class="article-share-link">Share</a>
       
       
     </footer>
@@ -113,19 +115,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2020/07/22/Inner/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/07/23/Exception6/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          Inner
+          Exception6
         
       </div>
     </a>
   
   
-    <a href="/2020/07/21/Exception2/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/07/22/Exception4/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Exception2</div>
+      <div class="article-nav-title">Exception4</div>
     </a>
   
 </nav>

@@ -64,6 +64,156 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Java2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/15/Java2/" class="article-date">
+  <time datetime="2020-07-15T14:51:32.000Z" itemprop="datePublished">2020-07-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/15/Java2/">Java2</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="逻辑语句"><a href="#逻辑语句" class="headerlink" title="逻辑语句"></a>逻辑语句</h3><p><strong>4.1  条件执行</strong><br>1、编程的很多工作都是要进行各种条件的判断，<br>Java和其他编程语言一样支持条件语句，条件语句就是让我们执行条件判断的语法<br>2、关键字 if 后括号中的代码叫做：条件表达式，如果它为真，大括号中的语句就会执行；反之，则什么都不会发生<br>if(表达式){代码块}<br>3、条件表达式可以包含任意的比较运算符（有时候也叫做关系运算符）<br>x == y   // x 等于 y<br>x != y   // x 不等于 y<br>x &gt;  y   // x 大于 y<br>x &lt;  y   // x 小于 y<br>x &gt;= y   // x 大于等于 y<br>x &lt;= y   // x 小于等于 y<br>(=符号是赋值运算，==是判断是否相同的比较运算符)<br>3、在main中调用两次report方法，传出小U，98；小D，58<br>public class ConditionTest4 {<br>     public static void main(String[] args){<br>        report(“小U”,98);<br>        report(“小D”,58);<br>      }<br>  public static void  report(String name, double score){<br>    if(score &gt;= 60){<br>      System.out.println(“恭喜”+ name+”通过了，” + “本次考试” + score + “分”);<br>    }<br>    if(score &lt;=60){<br>      System.out.println(name + “你还需要继续努力，本次考试” + score + “分”);<br>    }<br>    }<br>}<br>4、定义一个message方法，给18岁以下的xxxx，给60岁以上的xxxx<br>public class Message {<br>  public static void main(String[] args){<br>    message(12);<br>    message(65);<br>  }<br>  public static void message(int age){<br>    if(age &lt;= 18){<br>      System.out.println(“人人都应该编程，现在就可以加入啦”);<br>    }<br>    if (age &gt;=60){<br>      System.out.println(“港澳3日游，超低价”);<br>    }<br>  }<br>}</p>
+<p><strong>4.2  选择性执行</strong><br>1、选择性执行指的的就是有两条可选路径，我们通过判断条件来选择其中一条路径<br>if（条件表达式）{代码语句}<br>else{代码语句}<br>2、在main方法里调用三次student<br>public class ConditionTest6 {<br>  public static void main(String[] args) {<br>    student(“张三”,70);<br>    student(“里斯”,40);<br>    student(“小明”,90);<br>  }<br>  public static void student(String name,int score){<br>    if(score &gt;=60){<br>      System.out.println(name + “:恭喜你及格了”);<br>    }else{<br>      System.out.println(name + “:继续加油吧少年”);<br>    }<br>  }<br>}</p>
+<p><strong>4.3  条件判断链</strong><br>1、在某些时候我们会遇到条件判断多于两个的情况，并且需要根据条件的不同执行不同的分支，这个时候我们就需要新的技术：条件链<br>2、else  if<br>条件链的执行是先从第一个条件判断开始，如果判断不成功继续执行下一个判断，一直到没有条件符合的情况。<br>3、public class ConditionTest9 {<br>  public static void main(String[] args) {<br>      schedule(7.0);<br>      schedule(13.3);<br>      schedule(23.0);<br>  }<br>  public static void schedule(double time){<br>    if (time ==7.0){<br>      System.out.println(time + “起床了”);<br>    }else if (time ==13.3){<br>      System.out.println(time + “午睡时间”);<br>    }else if (time ==23.0){<br>      System.out.println(time + “睡觉了”);<br>    }<br>  }<br>}</p>
+<p><strong>4.4  嵌套条件</strong><br>1、在符合一个条件后再去判断条件，这也就是所谓的嵌套条件<br>2、public class StudentReport {<br>  public static void main(String[] args){<br>    report(“小明”,80);<br>    report(“小王”,90);<br>    report(“小四”,70);<br>    report(“小五”,50);<br>    report(“小六”,40);<br>  }<br>  public static void report(String name,double score){<br>    if(score &gt;= 60){<br>      message(name);<br>      if(score &gt;= 90){<br>        System.out.println(name+”,你本次的成绩为优秀”);<br>      } else if(score &gt;= 80){<br>        System.out.println(name+”,你本次的成绩为良好”);<br>      }else{<br>        System.out.println(name+”,你本次的成绩为及格”);<br>      }<br>    } else {<br>      System.out.println(name+”,你本次的成绩为不通过”);<br>    }<br>  }<br>  public static void message(String name){<br>    System.out.println(name+”恭喜你成功进阶”);<br>  }<br>}</p>
+<p><strong>4.5  返回语句</strong><br>1、在 Java 当中，可以通过返回语句来完成程序的中断（返回语句的目的是中断程序执行）<br>return<br>2、就是 return;语句之后是不能有其他代码的（除非是在嵌套代码里）<br>3、public class ConditionTest14 {<br>  public static void main(String[] args) {<br>    report(“小A”, 4, 426);<br>    report(“小B”, 4, 300);<br>    report(“小C”, 4, 500);<br>    report(“小D”, 6, 400);<br>    report(“小E”, 6, 505);<br>    report(“小F”, 6, 0);<br>  }<br>  public static void report(String name, int level, int score) {<br>    if (score &gt;= 425) {<br>      if (level == 4) {<br>        System.out.println(“恭喜你通过英语四级考试”);<br>      } else if (level == 6) {<br>        System.out.println(“恭喜你通过英语六级考试”);<br>      }<br>    }<br>    if(score == 0){<br>    System.out.println(name + “缺考了不打印成绩”);<br>    return;<br>  }<br>    System.out.println(name + “ 本次考试成绩是：” + score);<br>  }<br>}</p>
+<p><strong>4.6  递归</strong><br>1、递归的规范其实只有一句简短的话：一个方法也可以调用它自身<br>2、public class ConditionTest16 {<br>  public static void main(String[] args) {<br>    count(99);<br>  }<br>  public static void count(int number){<br>    System.out.println(number);<br>    number = number -1;<br>    if (number == 0){<br>      System.out.println(“不能再传了”);<br>      return;<br>    }<br>   count(number);<br>  }<br>}</p>
+<p><strong>5.1   返回值</strong><br>1、方法返回值类型的声明<br>// 验证码方法<br>public static void code(int len)</p>
+<p>// 随机数方法<br>public static double random()<br><strong>把void 换成了double，这个改变就是方法返回值得声明</strong><br><strong>如果写的是void，表示无返回值，否则就是有返回值</strong></p>
+<p>2、方法的返回语句<br>在方法返回类型声明为 double 之后我们在方法执行的时候就必须执行 return 返回结果; 这个返回结果的类型必须和方法声明的返回值一致</p>
+<p>3、public class Test52 {<br>  public static void main(String[] args) {<br>    // 得到4位随机码<br>    int captchaCode = code(4);<br>    System.out.println(“本次的验证码是:” + captchaCode);<br>    // 得到6位随机码<br>    captchaCode = code(6);<br>    System.out.println(“本次的验证码是:” + captchaCode);<br>    // 得到6位随机码<br>    captchaCode = code(8);<br>    System.out.println(“本次的验证码是:” + captchaCode);<br>  }<br>   // 得到验证码<br>  public static int code(int count) {<br>   int len = 100000;<br>    if (count == 4) {<br>      len = 1000;<br>    }<br>    double val = Math.random();<br>    int result = (int) ((val * 9 + 1) * len);<br>    return result;<br>  }<br>}</p>
+<p><strong>5.2  布尔&amp;&amp;逻辑运算符号</strong><br>1、true 和 false 在 Java 中是非常特殊的值，我们将这个类型称为布尔型<br>2、除了数学表达式之外，Java 还支持三种逻辑运算符：and（与）、or（或者）、not（非），对应的符号分别是: &amp;&amp;   ||   !</p>
+<pre><code>（1）   if(x&gt;0 &amp;&amp; x &lt;10){
+             // 表示 x 大于0 并且 x小于10时才为真
+           }
+
+（2）  if(x == 60 || x == 80){
+             // 表示 x 等于60 或者 x 等于80 都为真
+           }
+
+（3）  if(x!=0){
+             // 表示x不等于0的时候
+           }</code></pre><p>3、public class Test55 {</p>
+<p>  public static void main(String[] args) {<br>    // 如果传入的数字不是0-9的之间数字，那么打印：这不是个位数<br>    //你可以输入任意不是0-9的数字进行你的这段代码验证<br>     if (isSingleDigit(0)) {<br>            System.out.println(“该数字是0-9之间”);<br>        } else {<br>            System.out.println(“该数字不是0-9之间”);<br>        }<br>    }</p>
+<p>  public static boolean isSingleDigit(int x){<br>    return x&gt;=0 &amp;&amp; x &lt; 10;<br>  }</p>
+<p>}</p>
+<p>4、boolean类型  条件表达式：x&gt;0<br>if(x&gt;0){<br>  System.out.println(“x&gt;0”);<br>}<br>也可以写成：boolean flag = x&gt;0;<br>                        if(flag){<br>                                System.out.println(“x&gt;0”);<br>                            }<br>5、boolean也可以作为方法的参数或者返回类型。比如判断是否及格的方法<br>6、public class Test56 {</p>
+<p>  public static void main(String[] args) {<br>    int amount = compute(20000, 1500, true, true, true);<br>    System.out.println(amount);</p>
+<pre><code>amount = compute(40000, 1500, true, true, true);
+System.out.println(amount);</code></pre><p>  }<br>   //计算个人缴纳的个税<br>   // @param income         工资收入<br>   //@param socialSecurity 5险一金金额<br>   //@param onlyChild      是否独生子女<br>   // @param hasChild       是否有小孩在读书<br>   //@param hasParents     是否有60岁以上的父母需要赡养<br>   // @return</p>
+<p>  public static int compute(int income, int socialSecurity, boolean onlyChild, boolean hasChild, boolean hasParents) {<br>      if(onlyChild ==true&amp;&amp;hasChild ==true&amp;&amp;hasParents ==true){<br>        int tax = income-socialSecurity-5000-1000-2000;<br>        if(tax &gt;3000 &amp;&amp; tax&lt;=12000){<br>          return tax<em>10/100-210;<br>        } else if(tax&gt;12000 &amp;&amp;tax&lt;=25000){<br>          return tax</em>20/100-1410;<br>        } else if(tax&gt;25000 &amp;&amp;tax&lt;=35000){<br>          return tax*25/100-2660;<br>        }<br>      }<br>        return 0;</p>
+<pre><code>}</code></pre><p>  }</p>
+<p>  <strong>6.1 自增和自减</strong><br>  1、自减<br>  自减的语法是：变量名称–，比如 number–;<br>–的两个减号等于number= number-1<br>实际上只要固定减数字的都可以采用自减的语法，但是又有一点的区别：<br>number = number -2  可以写成  number-=2<br>2、自增<br>自增的语法是：变量名称++，比如number++<br>++两个加号等于number= number+1<br>number = number+2  可以写成number+=2</p>
+<p><strong>6.2数组</strong><br>1、在编程语言里，除了前面说的字符串、数字、布尔这三个基础的数据类型外，其实还有一个基础数据类型，那就是数组，数组就是一组类型相同的数据组合在一起</p>
+<p>数组的创建和普通变量的创建基本上差不多，唯一有差别的是数组类型后面多了一个[]（中括号）。比如，int[]表示“整型数组”类型，String[]表示“字符串数组”类型.</p>
+<p>// 声明一个 int 数组的变量，数组大小为6</p>
+<p>int[] numbers = new int[6];</p>
+<p>创建好数组变量后，就需要存储每一个数据，那么我们可以借助[下标]来完成操作; 同样如果想获取数组的某一个数据，也是用下标</p>
+<p>// 声明一个 int 数组的变量，数组大小为6</p>
+<p>int[] numbers = new int[6];</p>
+<p>numbers[0] = 1;</p>
+<p>numbers[1] = 3;</p>
+<p>numbers[2] = 5;</p>
+<p>numbers[3] = 7;</p>
+<p>numbers[4] = 9;</p>
+<p>numbers[5] = 11;</p>
+<p>int num = numbers[ X];</p>
+<p>System.out.println(num);<br>2、长度<br>数组对象都有一个值length，可以得到该数组的长度，数组的坐标都是从0开始的，所以如果想去数组的最后一个数据，正确的下表是length-1<br>3、数组越界错误<br>数组长度是8，size就是8，但是只有1234567，所以size[8]是不存在的<br>4、初始化变量<br>public static void main(String[] args) {<br>  int[] numbers = new int[8];<br>}<br>目的就是做了一个数组的初始化，这个初始化的作用就是开辟了该长度的存储空间</p>
+<p>5、数组初始化完后，并没有存储实际的值，int 类型的数据默认值是 0，所以如果没有完成数组的赋值，那么 int 数组的每一个值都是 0；String 类型的数据默认值是 null，没有赋值，那么String数组的每一个值都是null</p>
+<p><strong>6.3  使用for循环</strong><br>1、循环的知识相对有一点点抽象，简单的来说就是有个计数器一直在递增，递增到指定的值为止，在数组中，我们可以通过这个计数器的值得到数组的对应下标的值<br>2、循环的语法就是 for 语句，for 语句中小括号的内容就是指定了计数器如何工作<br>3、循环语句：<br>for(int i = 0; i&lt; tables.length;i++){<br>            String name = tables[i];<br>          System.out.println(name);<br>      }</p>
+<p><em>(int  i =0 ;  这句声明了一个新的计数器，它是从0开始工作的)</em><br><em>（i&lt; tables.length;  这句声明了计数器的条件，最大值不能超过 table.length）</em><br><em>(i++ 这句声明了计数器的工作机制，是递增，每次+1)</em><br><strong>4、简化写法：</strong><br>原始：<br>public static void main(String[] args) {<br>  String[] tables = new String[3];<br>  tables[0] = “张三”;<br>  tables[1] = “李四”;<br>  tables[2] = “王五”;</p>
+<p>  for(int i=0; i &lt; tables.length; i++){<br>    String name = tables[i];<br>    System.out.println(i+”：”+name);<br>  }<br>}<br>简化：<br>public static void main(String[] args) {<br> String[] tables = new String[]{“张三”,”李四”, “王五”};<br>  for(int i = 0; i &lt; tables.length; i++){<br>    String name = tables[i];<br>    System.out.println(i+”：”+name);<br>  }<br>}</p>
+<p><em>(new String[]{“张三”,”李四”, “王五”}; 这个语法就是初始化字符串数组数据       ，如果是数字数组：new int[]{39,40,89};      浮点数组是 new double[]{39,40,89};)</em></p>
+<p><strong>5、扩展<br>for (String name : tables) {<br>}<br>这种循环等同于<br>for(int i = 0; i &lt; tables.length; i++){<br>  String name = tables[i];<br>}</strong></p>
+<p><strong>6、循环中的嵌套语句<br>打印3<em>3的口诀表<br>public static void main(String[] args) {<br>  for (int i = 1; i &lt;= 3; i++) {<br>    String line = “”;<br>    for (int j = 1; j &lt;= i; j++) {<br>      // 拼接line字符串，打印出 类似 1<em>2=2 2</em>2=4 这样的效果<br>      line = line + j + “</em>“ + i + “=” + j * i + “ “;<br>    }<br>    System.out.println(line);<br>  }<br>}</strong></p>
+<p><strong>7、初始化的句子<br> String[] tables = new String[]{“张三”,”李四”, “王五”};</strong></p>
+<p><strong>8<br> public class Test66 {<br>  public static void main(String[] args) {<br>    String[] names = getNames();<br>    int[] scores = getScores();<br>    print(names, scores, 0);<br>  }<br>  public static void print(String[] names, int[] scores, int begin) {<br>   for ( begin=0;begin &lt;5;begin++){<br>     System.out.println(names[begin]+”:”+scores[begin]);<br>   }<br>  }<br>  public static int[] getScores() {<br>    int[] scores = new int[]{88,90,70,56,40};<br>    return scores;<br>  }<br>  public static String[] getNames() {<br>    String[] names = new String[]{“小D”,”小E”,”小F”,”小X”,”小Z”};<br>   return names;<br>}<br>}</strong></p>
+<p><strong>7.1调用字符串对象方法</strong><br>1、字符串长度length<br>方法中如果声明了返回类型，那么方法体中一定是有 return 语句来进行相同的数据类型返回值的<br>2、取出字符串中的一个字charAt<br>比如想取第二个字，使用charAt（index），就是具体坐标，从0开始的坐标<br>public static void main(String[] args) {<br>  String message = “Hello Java”;<br>  // 取出第一个字<br>  char str = message.charAt(0);<br>  System.out.println(str);<br>  // 取出第二个字<br>  str = message.charAt(1);<br>  System.out.println(str);<br>}</p>
+<p><em>结合字符串长度、for语句得到每一个字符</em><br>**<br>public class Test72 {<br>  public static void main(String[] args) {<br>    print(“今天天气挺好的”);<br>  }<br>  public static void print(String message){<br>    for (int i = 0; i &lt; message.length(); i++) {<br>      char str =  message.charAt(i);<br>      System.out.println(str);<br>    }<br>  }<br>}**<br>3、去掉左右多余的空格trim<br>public class Test721 {<br>  public static void main(String[] args) {<br>    String str = “ 优课达 “;<br>    // 打印一下现在的length<br>    System.out.println(str+”的长度是:”+str.length());<br>    // 处理一下去空格<br>    String newStr = str.trim();<br>    // 打印一下新字符串的length<br>    System.out.println(newStr+”的长度是:”+newStr.length());<br>    // 对比再打印一下老的字符串的length<br>    System.out.println(str+”的长度是:”+str.length());<br>  }<br>}<br>4、消息个数的验证方法<br>public class Test71 {<br>  public static void main(String[] args) {<br>    boolean countPass = validateCount(“今天天气挺好的”);<br>    System.out.println(countPass);<br>  }<br>  public static boolean validateCount(String message){<br>    if(message.length()&gt;140){<br>      return false;<br>    }<br>    return true;<br>  }<br>}</p>
+<p>5、用length方法和charAt方法取出最后一个字打印<br>public class Test75 {<br>  public static void main(String[] args) {<br>   String message =”Java 的世界非常大”;<br>   int n =message.length();<br>   char str = message.charAt(n-1);<br>   System.out.println(str);<br>  }<br>}</p>
+<p><strong>7.2  字符串常用的方法</strong><br>1、查找字符串 indexOf<br>想找出一段话中存在java这个词，用indexOf（“字符串“）<br>  public static void main(String[] args) {<br>    String str = “xxx”;<br>    int index = str.indexOf(“Java”);<br>    if(index!=-1){<br>      System.out.println(“匹配到了Java，索引位置是”+index);<br>    }else{<br>      System.out.println(“没有匹配到了Java”);<br>    }<br>  }</p>
+<p>2、查找第二个<br>第二个参数是一个数字类型，用于设定从什么位置开始查找。所以我们找到第一个匹配到的索引+匹配字符串长度就是开始值了，这个时候查找到的就是第二个匹配内容了<br>indexOf（“字符串“，”开始索引值“）<br>public static void main(String[] args) {<br>    String str = “Java是一种广泛使用的计算机编程语言，于1995年5月以Java的名称正式发布。”;<br>    int index = str.indexOf(“Java”);<br>    index = str.indexOf(“Java”, index + 4);<br>    System.out.println(“第二次匹配到了Java，索引位置是” + index);<br>  }</p>
+<p>3、字符串拼接substring<br>substring 方法有两种调用方式，一种是：substring(开始索引, 结束索引)，这个方法执行的结果就是拼接新的一个字符串从开始索引开始（含这个值）到结束索引结束（不含）；还有一种是 substring(开始索引)，这个方法执行的结果就是从开始索引开始（含这个值）一直到结束</p>
+<p>public static void main(String[] args) {<br>    String str = “xxx”；<br>    int index = str.indexOf(“Java”);<br>    if (index != -1) {<br>      System.out.println(“匹配到了Java，索引位置是” + index);<br>      String newStr = str.substring(index+4);<br>      System.out.println(newStr);<br>    } else {<br>      System.out.println(“没有匹配到了Java”);<br>    }<br>  }</p>
+<p>  (String newStr = str.substring(index+4);想取出 Java 之后的内容，那么就是 Java 这个的索引+它的长度 )<br>  4、只想取出 Java 之后的 3 个字符<br>  public class Test78 {<br>  public static void main(String[] args) {<br>    String str = “xxx”;<br>    int index = str.indexOf(“Java”);<br>    if (index != -1) {<br>      System.out.println(“匹配到了Java，索引位置是” + index);<br>      // 结束索引应该是 index+4+3<br>      String newStr = str.substring(index+4,index+7);<br>      System.out.println(newStr);<br>    } else {<br>      System.out.println(“没有匹配到了Java”);<br>    }<br>  }<br>}<br>5、字符串开始和结束内容的判断startsWith/endsWith<br>endsWith(“字符串”)<br>这个方法接受一个字符串参数，用于判断是否以该字符串结束的，所以返回类型是 boolean（布尔），我们根据返回值就可以判断<br> public static void main(String[] args) {<br>    String fileName = “报告.doc”;<br>    if(fileName.endsWith(“.doc”)){<br>      System.out.println(“是word文档”);<br>    }<br>  }</p>
+<p>  startsWith(“字符串”)<br>   public static void main(String[] args) {<br>    String url = “<a href="https://www.youkeda.com&quot;" target="_blank" rel="noopener">https://www.youkeda.com&quot;</a>;<br>    if(url.startsWith(“https”)){<br>      System.out.println(“网址是安全的”);<br>    }<br>  }<br>6、字符串替换replaceAll<br>replaceAll(“要替换的值”,”新值”)<br> public static void main(String[] args) {<br>    String str = “xxx”;<br>    String newStr = str.replaceAll(“Java”,”Python”);<br>    System.out.println(newStr);<br>    System.out.println(str);<br>  }<br>除了替换文本还可以删除内容<br>  public static void main(String[] args) {<br>    String fileName = “报告.doc”;<br>    String name = fileName.replaceAll(“.doc”,””);<br>    System.out.println(name);<br>  }</p>
+<p>  <strong>7.3 字符串分割</strong><br>  1、字符串分割spilt<br>多数时候处理这样的数据，会先把这种文本数据变成数组，每一行作为一条记录，从一个文本变成数组数据<br>split(“分割字符串”)<br>这个分割字符串可以是字符串也可以是特殊的符号，比如说换行的符号是\n<br>split 方法执行的结果是返回一个字符串数组对象</p>
+<p>public static void main(String[] args){<br>  String text = “姓名|年龄|性别\n张三|20|男\n李四|18|男\n小花|18|女”;<br>  // 使用 split 进行换行符的分割，得到一个新的数组对象<br>  String[] data = text.split(“\n”);<br>  // 因为第一行是标题不是数据，所以我们需要把长度-1<br>  // (注意要使用小括号包围，因为要先计算长度再组合字符串)<br>  System.out.println(“共有:”+(data.length-1)+” 条记录”);<br>}</p>
+<p>2、. |星号这三个字符如果作为分割符，需要加上\<br>str.spilt(“\|”)</p>
+<p> public class Test88    {<br>  public static void main(String[] args) {<br>    String text = “姓名|年龄|性别\n张三|20|男\n李四|18|男\n小花|18|女”;<br>    // 使用 split 进行换行符的分隔，得到一个新的数组对象<br>    String[] data = text.split(“\n”);<br>    // 因为第一行是标题不是数据，所以我们需要把长度-1<br>    // (注意要使用小括号包围，因为要先计算长度再组合字符串)<br>    System.out.println(“共有:” + (data.length - 1) + “ 条记录”);<br>    // 忽略第一行标题数据，所以我们把 i 设为0<br>    for (int i = 1; i &lt; data.length; i++) {<br>      // 使用 | 进行字符串分隔，得到一个新数组对象<br>      String[] lines = data[i].split(“\|”);<br>      System.out.println(“姓名:” + lines[0] + “ 年纪:” + lines[1] + “ 性别:” + lines[2]);<br>    }<br>  }<br>}<br>3、大小写转化toUpperCase/toLowerCase<br>toUpperCase（）此方法没有参数，它的作用就是把字符中的字母全变成大写并且返回出新字符串数据</p>
+<p>  public static void main(String[] args) {<br>    String text = “ZhanSan”;<br>    // 把拼音全部转化为大写字母<br>    String enName = text.toUpperCase();<br>    System.out.println(enName);<br>  }<br>  toLowerCase（）正好相反</p>
+<p>  4、字符串比较equals<br>  两个字符串是否相同使用equals（“ 被比较的字符串”)</p>
+<p>  public static void main(String[] args) {<br>    String text = “字符串”;<br>    // 使用 equals 方法判断是否相同<br>    if (text.equals(“字符串”)) {<br>      System.out.println(“equals 方法字符串相等”);<br>    }<br>    // 前后顺序无所谓,下面代码是一样的<br>    if (“字符串”.equals(text)) {<br>      System.out.println(“equals 方法字符串相等”);<br>    }<br>  }</p>
+<p>  5、数字和字符串转化 Integer.parseInt<br>  在 Java 当中，我们可以使用 Integer 这个对象的 parseInt方法进行处理，这个方法的作用就是让字符串变成数字</p>
+<p>  数字转化为字符串有两种方法<br>  （1) public static void main(String[] args) {<br>        int a = 100;<br>        //使用空字符串相加数字，会自动变成字符串类型<br>        String str = “”+a;<br>        System.out.println(str);<br>        }<br>      (2)还有一种是使用 String.valueOf() 方法，valueOf 方法参数接受数字、浮点、布尔类型转化为字符串<br>      public static void main(String[] args) {<br>        int a = 100;<br>        //使用valueOf强制把数字转化为字符串<br>        String str = String.valueOf(a);<br>        System.out.println(str);<br>        }</p>
+<p><strong>7.3例题</strong><br>public class Test94 {<br>  public static void main(String[] args) {<br>      String text =”姓名|英文名称|年龄|性别\n张三|Zhang San|20|男\n李四|Li Si|18|男\n小花|xiaohua|18|女”;<br>      String[] infos =eachStudent(text);<br>      System.out.println(“名称:” + infos[0] + “ 英文名称:” + infos[1].toUpperCase() + “ 年龄:” + infos[2] + “ 性别:” + infos[3]);<br>  }<br>  public static String[] eachStudent(String text) {<br>    String[] data = text.split(“\n”);<br>    for (int i = 1; i &lt; data.length; i++) {<br>      String[] lines = data[i].split(“\|”);<br>      if (lines[3].equals(“女”)) {<br>        return lines;<br>      }<br>    }<br>    return null;<br>  }<br>}</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/15/Java2/" data-id="ckcyysygv000f7otb9wsk1sqa" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-GitHub" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/15/GitHub/" class="article-date">
+  <time datetime="2020-07-15T14:07:20.000Z" itemprop="datePublished">2020-07-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/15/GitHub/">GitHub</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="GitHub笔记"><a href="#GitHub笔记" class="headerlink" title="GitHub笔记"></a>GitHub笔记</h3><p>1、绑定SSH:<br>（1）查看是否生成SSH ：cat ~/.ssh/id_rsa.pub<br>（如果有SSH则会显示，如果没有则会显示空白）<br>（2）生成SSH：ssh-keygen -t rsa -b 4096 -C “<a href="mailto:your_email@example.com">your_email@example.com</a>“<br>（输入后按3次回车键，生成SSH，改成注册github的邮箱）<br>（3）生成SSH后去获取它的命令：cat ~/.ssh/id_rsa.pub<br>（4）复制代码到Setting里的SSH，添加到Key里去<br>（复制的文件以ssh-rsa为开头的）<br>电脑本地和Github服务器之间的SSH（安全协议外壳），可以保证本地电脑和Github之间的安全连接<br>2、全局变量设置<br>（1）查看当前目录下的文件：ls<br>（2）查看当前目录下的文件，以及隐藏文件： ls -a<br>（3）在当前目录下创建一个文件： touch + 文件名<br>（4）在当前目录下创建一个文件夹：mkdir + 文件夹名<br>（5）进入某个文件夹： cd +加文件夹目录<br>（6）删除： rm -rf<br>（7）使用git clone的命令将github上的仓库下载到本地电脑上：git clone 仓库地址<br>(仓库地址在仓库的code或者clone or download里面点击Use HTTPS的地址，以git开头的 )<br>（8）告诉git你的名字 ：git config –global user.name “名字”<br>（9）告诉git你的邮箱 ：git config –global user.email “邮箱”<br>      [（8）（9）的配置只需进行一次 ]</p>
+<p>3、Git的提交<br>（1）git的提交分三步：1、git add<br>                                      2、git commit<br>                                      3、git push<br>（2）git add 的命令为：git add -A<br>（3）git commit的命令为：git commit -m +”本次提交的修改的备注”<br>（知识修改，没有创建使用 git commit -am+ “本次提交的修改的备注”）<br>（4）退出命令行：ctrl+c<br>（5）git push 的三个命令：第一次提交到本分支：git push origin master<br>（origin是远程仓库的默认名称，master是主分支名称）<br>从第二次提交到本分支：git push<br>提交到其他分支：git push origin b<br>（6）git pull 是抓取远程仓库的内容<br>（多人协同开发时需要，每次提交前git pull一下，可以避免冲突）</p>
+<p>4、绑定本地仓库到Github<br>（1）首先是在github创建一个同名的空仓库就不勾选方框<br>（2）绑定远程仓库：<br>                              1、首先cd进入文件夹<br>                              2、初始化为git仓库 git init<br>                        （是将一个文件夹初始化为一个空的git仓库）<br>                                3、绑定远程仓库<br>                             查看当前git仓库绑定的远程仓库：git remote -v<br>                              （使用命令，显示空白才可以远程仓库绑定，否则会有冲突）<br>                             用于绑定远程仓库 ：git remote add origin +仓库地址<br>                                  绑定成功后再git remote -v查看一下<br>                                  （1）绑定错误，删除绑定：git remote remove origin<br>                                    (2)最后提交：git add -A    git commit -m + “备注”  git push origin master</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/15/GitHub/" data-id="ckcyysyg800077otbgmmb8taq" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-hexo" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/07/15/hexo/" class="article-date">
@@ -93,7 +243,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/hexo/" data-id="ckcxjczvp000eb8tb7bluet4a" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/hexo/" data-id="ckcyysyhh000g7otb9hd66m8b" class="article-share-link">Share</a>
       
       
     </footer>
@@ -130,7 +280,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/Java/" data-id="ckcxjczux000cb8tb7dmhge63" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/Java/" data-id="ckcyysyg900087otb0yv866b3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -167,7 +317,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/chu/" data-id="ckcxjczta0008b8tb282a0c5t" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/chu/" data-id="ckcyysyga00097otb0q335oj3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -203,7 +353,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/chushi/" data-id="ckcxjcztb0009b8tb4gmwgfzx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/chushi/" data-id="ckcyysygb000b7otbchc68zsr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -239,7 +389,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/hello/" data-id="ckcxjcztd000ab8tbdkn3b9ka" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/hello/" data-id="ckcyysygd000c7otbdi1z1v66" class="article-share-link">Share</a>
       
       
     </footer>
@@ -285,6 +435,14 @@
       <ul>
         
           <li>
+            <a href="/2020/07/23/Exception6/">Exception6</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/22/Exception5/">Exception5</a>
+          </li>
+        
+          <li>
             <a href="/2020/07/22/Exception4/">Exception4</a>
           </li>
         
@@ -294,14 +452,6 @@
         
           <li>
             <a href="/2020/07/21/Exception3/">Exception3</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/21/Exception2/">Exception2</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/21/Exception/">Exception</a>
           </li>
         
       </ul>
