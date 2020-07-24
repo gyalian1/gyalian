@@ -17,7 +17,7 @@
 <meta property="og:image" content="https://qgt-document.oss-cn-beijing.aliyuncs.com/PY2/py2-1/ht%3Ahts%E5%8C%BA%E5%88%AB.jpg">
 <meta property="og:image" content="https://style.youkeda.com/img/ham/course/py2/py2-1-2.png">
 <meta property="article:published_time" content="2020-07-23T15:43:56.637Z">
-<meta property="article:modified_time" content="2020-07-23T17:18:25.616Z">
+<meta property="article:modified_time" content="2020-07-24T13:43:20.180Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://qgt-document.oss-cn-beijing.aliyuncs.com/PY2/py2-1/ht%3Ahts%E5%8C%BA%E5%88%AB.jpg">
@@ -204,11 +204,59 @@ String content = poster.postContent(url, datas);
 System.out.println(&quot;API调用结果&quot;);
 System.out.println(content);</code></pre><p>  }<br>}</p>
 <p><strong>2、详解<br>实现JSON方式提交数据的步骤：<br>(1) 将数据转换成JSON格式的字符串，调用JSON.toJSONString()<br>(2)创建RequestBody实例，指定提交的类型是application/json; charset=utf-8<br>（3）构建Request是你对象时i，调用.post(requestBody)表示使用JSON的方式提交数据</strong></p>
+<h1 id="Response网页"><a href="#Response网页" class="headerlink" title="Response网页"></a>Response网页</h1><p>1、为了取得响应状态码，可以使用语句：call.execute().code()</p>
+<p>**<br>package com.youkeda.test.http;</p>
+<p>import java.io.IOException;<br>import okhttp3.Call;<br>import okhttp3.OkHttpClient;<br>import okhttp3.Request;<br>import okhttp3.Response;</p>
+<p>public class GetPage {</p>
+<p>  //根据输入的url，读取页面内容并返回</p>
+<p>  public String getContent(String url) {<br>    // okHttpClient 实例<br>    OkHttpClient okHttpClient = new OkHttpClient();<br>    // 定义一个request<br>    Request request = new Request.Builder().url(url).build();<br>    // 使用client去请求<br>    Call call = okHttpClient.newCall(request);<br>    // 返回结果字符串<br>    String result = null;<br>    try {<br>      // 执行请求<br>    Response rep = call.execute();<br>      // 获取响应状态码<br>    int code = rep.code();<br>      System.out.println(“状态码：” + code);<br>      // 获取响应内容<br>    result = rep.body().string();<br>    } catch (IOException e) {<br>      // 抓取异常<br>      System.out.println(“request “ + url + “ error . “);<br>      e.printStackTrace();<br>    }<br>    return result;<br>  }</p>
+<p>  public static void main(String[] args) {<br>    String url = “<a href="https://www.ustc.edu.cn/&quot;" target="_blank" rel="noopener">https://www.ustc.edu.cn/&quot;</a>;<br>    GetPage getPage = new GetPage();<br>    String content = getPage.getContent(url);</p>
+<pre><code>System.out.println(&quot;请求结果字符串长度：&quot; + content.length());</code></pre><p>  }<br>}<br>**</p>
+<h1 id="3-2Response-非文本文件"><a href="#3-2Response-非文本文件" class="headerlink" title="3.2Response-非文本文件"></a>3.2Response-非文本文件</h1><p>1、请求图片、excel等各种非字符文本文件时，使用response.body().btyes();<br>**package com.youkeda.test.http;</p>
+<p>import java.io.IOException;<br>import okhttp3.Call;<br>import okhttp3.OkHttpClient;<br>import okhttp3.Request;<br>import okhttp3.Response;</p>
+<p>public class ImageAsker {</p>
+<p> //根据输入的url，读取页面内容并返回</p>
+<p>  public void getImage(String url) {<br>    // okHttpClient 实例<br>    OkHttpClient okHttpClient = new OkHttpClient();<br>    // 定义一个request<br>    Request request = new Request.Builder().url(url).build();<br>    try {<br>      // 执行请求<br>      Response response = okHttpClient.newCall(request).execute();<br>      byte[] bytes = response.body().bytes();<br>      System.out.println(“图片大小为：” + bytes.length + “ 字节”);<br>    } catch (IOException e) {<br>      // 抓取异常<br>      System.out.println(“request “ + url + “ error . “);<br>      e.printStackTrace();<br>    }<br>  }</p>
+<p>  public static void main(String[] args) {<br>    String url = “<a href="https://style.youkeda.com/img/ham/course/py2/douban.png&quot;" target="_blank" rel="noopener">https://style.youkeda.com/img/ham/course/py2/douban.png&quot;</a>;<br>    ImageAsker asker = new ImageAsker();<br>    asker.getImage(url);<br>  }<br>}<br>**</p>
+<h1 id="3-3Response-JSON"><a href="#3-3Response-JSON" class="headerlink" title="3.3Response-JSON"></a>3.3Response-JSON</h1><p>1、首先是pom.xml的编写<br>**<dependencies></p>
+<pre><code>  &lt;dependency&gt;
+    &lt;groupId&gt;com.squareup.okhttp3&lt;/groupId&gt;
+    &lt;artifactId&gt;okhttp&lt;/artifactId&gt;
+    &lt;version&gt;4.1.0&lt;/version&gt;
+  &lt;/dependency&gt;
+
+  &lt;!-- JSON 操作库 --&gt;
+  &lt;dependency&gt;
+    &lt;groupId&gt;com.alibaba&lt;/groupId&gt;
+    &lt;artifactId&gt;fastjson&lt;/artifactId&gt;
+    &lt;version&gt;1.2.62&lt;/version&gt;
+  &lt;/dependency&gt;
+
+&lt;/dependencies&gt;**</code></pre><p>   2、代码的编写JSON.parseObject()<br>   import com.alibaba.fastjson.JSON;<br>   import java.util.HashMap;<br>   import java.util.Map;<br>   Map contentObj = JSON.parseObject(content, Map.class);</p>
+<p>   **package com.youkeda.test.http;</p>
+<p>import com.alibaba.fastjson.JSON;<br>import java.io.IOException;<br>import java.util.HashMap;<br>import java.util.Map;<br>import okhttp3.Call;<br>import okhttp3.OkHttpClient;<br>import okhttp3.Request;<br>import okhttp3.Response;</p>
+<p>public class ApiAsker {</p>
+<p>  //根据输入的url，读取页面内容并返回</p>
+<p>  public String getContent(String url) {<br>    // okHttpClient 实例<br>    OkHttpClient okHttpClient = new OkHttpClient();<br>    // 定义一个request<br>    Request request = new Request.Builder().url(url).build();<br>    // 使用client去请求<br>    Call call = okHttpClient.newCall(request);<br>    // 返回结果字符串<br>    String result = null;<br>    try {<br>      // 执行请求<br>      Response response = call.execute();<br>      // 获取响应内容<br>      result = response.body().string();<br>    } catch (IOException e) {<br>      // 抓取异常<br>      System.out.println(“request “ + url + “ error . “);<br>      e.printStackTrace();<br>    }<br>    return result;<br>  }</p>
+<p>  public static void main(String[] args) {<br>    String url = “<a href="http://ip-api.com/json/&quot;" target="_blank" rel="noopener">http://ip-api.com/json/&quot;</a>;<br>    ApiAsker asker = new ApiAsker();<br>    String content = asker.getContent(url);</p>
+<pre><code>System.out.println(&quot;查询结果文本：&quot; + content);
+Map contentObj = JSON.parseObject(content, Map.class);
+System.out.println(&quot;JSON 格式字符串转换为 Map 对象&quot;);</code></pre><p>  }<br>}<br>**</p>
+<h1 id="3-4-解析JSON对象"><a href="#3-4-解析JSON对象" class="headerlink" title="3.4 解析JSON对象"></a>3.4 解析JSON对象</h1><p>**package com.youkeda.test.http;</p>
+<p>import com.alibaba.fastjson.JSON;<br>import java.io.IOException;<br>import java.util.HashMap;<br>import java.util.Map;<br>import okhttp3.Call;<br>import okhttp3.OkHttpClient;<br>import okhttp3.Request;<br>import okhttp3.Response;</p>
+<p>public class ApiAsker {</p>
+<p>  //根据输入的url，读取页面内容并返回</p>
+<p>  public String getContent(String url) {<br>    // okHttpClient 实例<br>    OkHttpClient okHttpClient = new OkHttpClient();<br>    // 定义一个request<br>    Request request = new Request.Builder().url(url).build();<br>    // 使用client去请求<br>    Call call = okHttpClient.newCall(request);<br>    // 返回结果字符串<br>    String result = null;<br>    try {<br>      // 执行请求<br>      Response response = call.execute();<br>      // 获取响应内容<br>      result = response.body().string();<br>    } catch (IOException e) {<br>      // 抓取异常<br>      System.out.println(“request “ + url + “ error . “);<br>      e.printStackTrace();<br>    }<br>    return result;<br>  }</p>
+<p>  public static void main(String[] args) {<br>    String url = “<a href="http://ip-api.com/json/&quot;" target="_blank" rel="noopener">http://ip-api.com/json/&quot;</a>;<br>    ApiAsker asker = new ApiAsker();<br>    String content = asker.getContent(url);</p>
+<pre><code>System.out.println(&quot;查询结果文本：&quot; + content);
+Map contentObj = JSON.parseObject(content, Map.class);
+System.out.println(&quot;当前 IP 为：&quot; + contentObj.get(&quot;query&quot;));</code></pre><p>  }<br>}<br>**</p>
+<p>**更复杂的多次嵌套结构的JSON数据<br>Map contentObj = JSON.parseObject(content, Map.class);<br>Map dataObj = (Map)contentObj.get(“data”);<br>String city = (String)dataObj.get(“city”);</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/23/XJava1/" data-id="ckcz28crl000dvotb7k15awy5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/23/XJava1/" data-id="ckd0f6se40008q8tb620meb5s" class="article-share-link">Share</a>
       
       
     </footer>
@@ -216,6 +264,15 @@ System.out.println(content);</code></pre><p>  }<br>}</p>
   
     
 <nav id="article-nav">
+  
+    <a href="/2020/07/24/XJava2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          XJava2
+        
+      </div>
+    </a>
   
   
     <a href="/2020/07/23/Exception6/" id="article-nav-older" class="article-nav-link-wrap">
@@ -257,6 +314,10 @@ System.out.println(content);</code></pre><p>  }<br>}</p>
       <ul>
         
           <li>
+            <a href="/2020/07/24/XJava2/">XJava2</a>
+          </li>
+        
+          <li>
             <a href="/2020/07/23/XJava1/">XJava1</a>
           </li>
         
@@ -270,10 +331,6 @@ System.out.println(content);</code></pre><p>  }<br>}</p>
         
           <li>
             <a href="/2020/07/22/Exception4/">Exception4</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/22/Inner/">Inner</a>
           </li>
         
       </ul>

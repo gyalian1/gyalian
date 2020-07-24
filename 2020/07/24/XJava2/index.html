@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>XJava2 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="4.1User-Agent1���ж������Ƿ����������һ����ʵ�����������Ҫ��HTTP��ϢͷHeaders��ȡ��User-Agent��Ϣ�󣬲����ж�2��HTTP��ϢͷHeaders���������ڷ��������ʱ�򣬳�������������⡣���Ը��Ӹ������ϢHeaders��Ϣ������д��URL�еģ��������ص�">
+<meta property="og:type" content="article">
+<meta property="og:title" content="XJava2">
+<meta property="og:url" content="http://yoursite.com/2020/07/24/XJava2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="4.1User-Agent1���ж������Ƿ����������һ����ʵ�����������Ҫ��HTTP��ϢͷHeaders��ȡ��User-Agent��Ϣ�󣬲����ж�2��HTTP��ϢͷHeaders���������ڷ��������ʱ�򣬳�������������⡣���Ը��Ӹ������ϢHeaders��Ϣ������д��URL�еģ��������ص�">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-24T12:26:27.000Z">
+<meta property="article:modified_time" content="2020-07-24T16:08:39.259Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-XJava2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/24/XJava2/" class="article-date">
+  <time datetime="2020-07-24T12:26:27.000Z" itemprop="datePublished">2020-07-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      XJava2
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="4-1User-Agent"><a href="#4-1User-Agent" class="headerlink" title="4.1User-Agent"></a>4.1User-Agent</h1><p>1���ж������Ƿ����������һ����ʵ�����������Ҫ��HTTP��ϢͷHeaders��ȡ��User-Agent��Ϣ�󣬲����ж�<br>2��HTTP��ϢͷHeaders���������ڷ��������ʱ�򣬳�������������⡣���Ը��Ӹ������Ϣ<br>Headers��Ϣ������д��URL�еģ��������ص����ݡ�<br>3��User-Agent�Ǵ����Headers�е�һ��������Ϣ����������ָ��URL���������ʱ����߷���˵�ǰ�û�����������͡��汾����������ϵͳ��CPU�ȷ���˽�ļ�����Ϣ<br>User-Agent��д����<br>Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.835.163 Safari/535.1<br>4��okhttp3���Ѿ�֧��Headers�ˡ�ֻ��Ҫ�ڹ���Resquest�����ʱ�����addHeader��������<br>Request request = new Request.Builder()<br>    .url(url)<br>    .addHeader(“User-Agent”, “”)<br>    .build();<br><strong>5�����ִ���<br> public String getContent(String url) {<br>    // okHttpClient ʵ��<br>    OkHttpClient okHttpClient = new OkHttpClient();<br>    // ����һ��request<br>    Request request = new Request.Builder()<br>        .url(url)<br>        // ����һ�� header ��Ϣ<br>        .addHeader(“User-Agent”, “Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.835.163 Safari/535.1”)<br>        .build();<br>    // ���ؽ���ַ���<br>    String result = null;</strong></p>
+<h1 id="4-2-Referer"><a href="#4-2-Referer" class="headerlink" title="4.2 Referer"></a>4.2 Referer</h1><p>�������������ҳ�е�ͼƬʱ�����Զ���HTTP��Ϣͷ��һ��Referer��Ϣ����ʾ������Դ<br>1�������е�Referer<br>Ϊ��ģ��������Զ�Referer��Ϣ��Ϊ�����Ե������<br>Request request = new Request.Builder()<br>    .url(url)<br>    .addHeader(“Referer”, “<a href="https://ham.youkeda.com/course/j14/3/1/0&quot;" target="_blank" rel="noopener">https://ham.youkeda.com/course/j14/3/1/0&quot;</a>)<br>    .build();<br>2����Referer��Ϣ����ΪͼƬԭʼʹ�õ���վ<br>Request request = new Request.Builder()<br>        .url(url)<br>        .addHeader(“Referer”, “<a href="https://unreach.yuque.com&quot;" target="_blank" rel="noopener">https://unreach.yuque.com&quot;</a>)<br>        .build();</p>
+<h1 id="4-3Host"><a href="#4-3Host" class="headerlink" title="4.3Host"></a>4.3Host</h1><p>Host��ʾ��ǰ�����������HostҲ������Headers���ݵ��ֶ�֮һ<br>Request request = new Request.Builder()<br>    .url(url)<br>    .addHeader(“Host”, “<a href="http://www.douban.com&quot;" target="_blank" rel="noopener">www.douban.com&quot;</a>)<br>    .build();<br> <strong>Host��ֵһ����һ�������Ҳ���Э��ͷ</strong></p>
+<p><strong>������һ��request��<br>    Request request = new Request.Builder()<br>        .url(url)<br>        .addHeader(“User-Agent”, “Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36”)<br>        .addHeader(“Referer”, “<a href="https://www.douban.com/&quot;" target="_blank" rel="noopener">https://www.douban.com/&quot;</a>)<br>        .addHeader(“Host”, “<a href="http://www.douban.com&quot;" target="_blank" rel="noopener">www.douban.com&quot;</a>)<br>        .build();<br>    // ���ؽ���ַ���<br>    String result = null;</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/24/XJava2/" data-id="ckd0f6se9000aq8tbekqqegr4" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/07/23/XJava1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">XJava1</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/24/XJava2/">XJava2</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/23/XJava1/">XJava1</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/23/Exception6/">Exception6</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/22/Exception5/">Exception5</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/22/Exception4/">Exception4</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

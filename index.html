@@ -64,6 +64,46 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-XJava2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/24/XJava2/" class="article-date">
+  <time datetime="2020-07-24T12:26:27.000Z" itemprop="datePublished">2020-07-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/24/XJava2/">XJava2</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="4-1User-Agent"><a href="#4-1User-Agent" class="headerlink" title="4.1User-Agent"></a>4.1User-Agent</h1><p>1���ж������Ƿ����������һ����ʵ�����������Ҫ��HTTP��ϢͷHeaders��ȡ��User-Agent��Ϣ�󣬲����ж�<br>2��HTTP��ϢͷHeaders���������ڷ��������ʱ�򣬳�������������⡣���Ը��Ӹ������Ϣ<br>Headers��Ϣ������д��URL�еģ��������ص����ݡ�<br>3��User-Agent�Ǵ����Headers�е�һ��������Ϣ����������ָ��URL���������ʱ����߷���˵�ǰ�û�����������͡��汾����������ϵͳ��CPU�ȷ���˽�ļ�����Ϣ<br>User-Agent��д����<br>Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.835.163 Safari/535.1<br>4��okhttp3���Ѿ�֧��Headers�ˡ�ֻ��Ҫ�ڹ���Resquest�����ʱ�����addHeader��������<br>Request request = new Request.Builder()<br>    .url(url)<br>    .addHeader(“User-Agent”, “”)<br>    .build();<br><strong>5�����ִ���<br> public String getContent(String url) {<br>    // okHttpClient ʵ��<br>    OkHttpClient okHttpClient = new OkHttpClient();<br>    // ����һ��request<br>    Request request = new Request.Builder()<br>        .url(url)<br>        // ����һ�� header ��Ϣ<br>        .addHeader(“User-Agent”, “Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.835.163 Safari/535.1”)<br>        .build();<br>    // ���ؽ���ַ���<br>    String result = null;</strong></p>
+<h1 id="4-2-Referer"><a href="#4-2-Referer" class="headerlink" title="4.2 Referer"></a>4.2 Referer</h1><p>�������������ҳ�е�ͼƬʱ�����Զ���HTTP��Ϣͷ��һ��Referer��Ϣ����ʾ������Դ<br>1�������е�Referer<br>Ϊ��ģ��������Զ�Referer��Ϣ��Ϊ�����Ե������<br>Request request = new Request.Builder()<br>    .url(url)<br>    .addHeader(“Referer”, “<a href="https://ham.youkeda.com/course/j14/3/1/0&quot;" target="_blank" rel="noopener">https://ham.youkeda.com/course/j14/3/1/0&quot;</a>)<br>    .build();<br>2����Referer��Ϣ����ΪͼƬԭʼʹ�õ���վ<br>Request request = new Request.Builder()<br>        .url(url)<br>        .addHeader(“Referer”, “<a href="https://unreach.yuque.com&quot;" target="_blank" rel="noopener">https://unreach.yuque.com&quot;</a>)<br>        .build();</p>
+<h1 id="4-3Host"><a href="#4-3Host" class="headerlink" title="4.3Host"></a>4.3Host</h1><p>Host��ʾ��ǰ�����������HostҲ������Headers���ݵ��ֶ�֮һ<br>Request request = new Request.Builder()<br>    .url(url)<br>    .addHeader(“Host”, “<a href="http://www.douban.com&quot;" target="_blank" rel="noopener">www.douban.com&quot;</a>)<br>    .build();<br> <strong>Host��ֵһ����һ�������Ҳ���Э��ͷ</strong></p>
+<p><strong>������һ��request��<br>    Request request = new Request.Builder()<br>        .url(url)<br>        .addHeader(“User-Agent”, “Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36”)<br>        .addHeader(“Referer”, “<a href="https://www.douban.com/&quot;" target="_blank" rel="noopener">https://www.douban.com/&quot;</a>)<br>        .addHeader(“Host”, “<a href="http://www.douban.com&quot;" target="_blank" rel="noopener">www.douban.com&quot;</a>)<br>        .build();<br>    // ���ؽ���ַ���<br>    String result = null;</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/24/XJava2/" data-id="ckd0f6se9000aq8tbekqqegr4" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-XJava1" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/07/23/XJava1/" class="article-date">
@@ -199,11 +239,59 @@ String content = poster.postContent(url, datas);
 System.out.println(&quot;API调用结果&quot;);
 System.out.println(content);</code></pre><p>  }<br>}</p>
 <p><strong>2、详解<br>实现JSON方式提交数据的步骤：<br>(1) 将数据转换成JSON格式的字符串，调用JSON.toJSONString()<br>(2)创建RequestBody实例，指定提交的类型是application/json; charset=utf-8<br>（3）构建Request是你对象时i，调用.post(requestBody)表示使用JSON的方式提交数据</strong></p>
+<h1 id="Response网页"><a href="#Response网页" class="headerlink" title="Response网页"></a>Response网页</h1><p>1、为了取得响应状态码，可以使用语句：call.execute().code()</p>
+<p>**<br>package com.youkeda.test.http;</p>
+<p>import java.io.IOException;<br>import okhttp3.Call;<br>import okhttp3.OkHttpClient;<br>import okhttp3.Request;<br>import okhttp3.Response;</p>
+<p>public class GetPage {</p>
+<p>  //根据输入的url，读取页面内容并返回</p>
+<p>  public String getContent(String url) {<br>    // okHttpClient 实例<br>    OkHttpClient okHttpClient = new OkHttpClient();<br>    // 定义一个request<br>    Request request = new Request.Builder().url(url).build();<br>    // 使用client去请求<br>    Call call = okHttpClient.newCall(request);<br>    // 返回结果字符串<br>    String result = null;<br>    try {<br>      // 执行请求<br>    Response rep = call.execute();<br>      // 获取响应状态码<br>    int code = rep.code();<br>      System.out.println(“状态码：” + code);<br>      // 获取响应内容<br>    result = rep.body().string();<br>    } catch (IOException e) {<br>      // 抓取异常<br>      System.out.println(“request “ + url + “ error . “);<br>      e.printStackTrace();<br>    }<br>    return result;<br>  }</p>
+<p>  public static void main(String[] args) {<br>    String url = “<a href="https://www.ustc.edu.cn/&quot;" target="_blank" rel="noopener">https://www.ustc.edu.cn/&quot;</a>;<br>    GetPage getPage = new GetPage();<br>    String content = getPage.getContent(url);</p>
+<pre><code>System.out.println(&quot;请求结果字符串长度：&quot; + content.length());</code></pre><p>  }<br>}<br>**</p>
+<h1 id="3-2Response-非文本文件"><a href="#3-2Response-非文本文件" class="headerlink" title="3.2Response-非文本文件"></a>3.2Response-非文本文件</h1><p>1、请求图片、excel等各种非字符文本文件时，使用response.body().btyes();<br>**package com.youkeda.test.http;</p>
+<p>import java.io.IOException;<br>import okhttp3.Call;<br>import okhttp3.OkHttpClient;<br>import okhttp3.Request;<br>import okhttp3.Response;</p>
+<p>public class ImageAsker {</p>
+<p> //根据输入的url，读取页面内容并返回</p>
+<p>  public void getImage(String url) {<br>    // okHttpClient 实例<br>    OkHttpClient okHttpClient = new OkHttpClient();<br>    // 定义一个request<br>    Request request = new Request.Builder().url(url).build();<br>    try {<br>      // 执行请求<br>      Response response = okHttpClient.newCall(request).execute();<br>      byte[] bytes = response.body().bytes();<br>      System.out.println(“图片大小为：” + bytes.length + “ 字节”);<br>    } catch (IOException e) {<br>      // 抓取异常<br>      System.out.println(“request “ + url + “ error . “);<br>      e.printStackTrace();<br>    }<br>  }</p>
+<p>  public static void main(String[] args) {<br>    String url = “<a href="https://style.youkeda.com/img/ham/course/py2/douban.png&quot;" target="_blank" rel="noopener">https://style.youkeda.com/img/ham/course/py2/douban.png&quot;</a>;<br>    ImageAsker asker = new ImageAsker();<br>    asker.getImage(url);<br>  }<br>}<br>**</p>
+<h1 id="3-3Response-JSON"><a href="#3-3Response-JSON" class="headerlink" title="3.3Response-JSON"></a>3.3Response-JSON</h1><p>1、首先是pom.xml的编写<br>**<dependencies></p>
+<pre><code>  &lt;dependency&gt;
+    &lt;groupId&gt;com.squareup.okhttp3&lt;/groupId&gt;
+    &lt;artifactId&gt;okhttp&lt;/artifactId&gt;
+    &lt;version&gt;4.1.0&lt;/version&gt;
+  &lt;/dependency&gt;
+
+  &lt;!-- JSON 操作库 --&gt;
+  &lt;dependency&gt;
+    &lt;groupId&gt;com.alibaba&lt;/groupId&gt;
+    &lt;artifactId&gt;fastjson&lt;/artifactId&gt;
+    &lt;version&gt;1.2.62&lt;/version&gt;
+  &lt;/dependency&gt;
+
+&lt;/dependencies&gt;**</code></pre><p>   2、代码的编写JSON.parseObject()<br>   import com.alibaba.fastjson.JSON;<br>   import java.util.HashMap;<br>   import java.util.Map;<br>   Map contentObj = JSON.parseObject(content, Map.class);</p>
+<p>   **package com.youkeda.test.http;</p>
+<p>import com.alibaba.fastjson.JSON;<br>import java.io.IOException;<br>import java.util.HashMap;<br>import java.util.Map;<br>import okhttp3.Call;<br>import okhttp3.OkHttpClient;<br>import okhttp3.Request;<br>import okhttp3.Response;</p>
+<p>public class ApiAsker {</p>
+<p>  //根据输入的url，读取页面内容并返回</p>
+<p>  public String getContent(String url) {<br>    // okHttpClient 实例<br>    OkHttpClient okHttpClient = new OkHttpClient();<br>    // 定义一个request<br>    Request request = new Request.Builder().url(url).build();<br>    // 使用client去请求<br>    Call call = okHttpClient.newCall(request);<br>    // 返回结果字符串<br>    String result = null;<br>    try {<br>      // 执行请求<br>      Response response = call.execute();<br>      // 获取响应内容<br>      result = response.body().string();<br>    } catch (IOException e) {<br>      // 抓取异常<br>      System.out.println(“request “ + url + “ error . “);<br>      e.printStackTrace();<br>    }<br>    return result;<br>  }</p>
+<p>  public static void main(String[] args) {<br>    String url = “<a href="http://ip-api.com/json/&quot;" target="_blank" rel="noopener">http://ip-api.com/json/&quot;</a>;<br>    ApiAsker asker = new ApiAsker();<br>    String content = asker.getContent(url);</p>
+<pre><code>System.out.println(&quot;查询结果文本：&quot; + content);
+Map contentObj = JSON.parseObject(content, Map.class);
+System.out.println(&quot;JSON 格式字符串转换为 Map 对象&quot;);</code></pre><p>  }<br>}<br>**</p>
+<h1 id="3-4-解析JSON对象"><a href="#3-4-解析JSON对象" class="headerlink" title="3.4 解析JSON对象"></a>3.4 解析JSON对象</h1><p>**package com.youkeda.test.http;</p>
+<p>import com.alibaba.fastjson.JSON;<br>import java.io.IOException;<br>import java.util.HashMap;<br>import java.util.Map;<br>import okhttp3.Call;<br>import okhttp3.OkHttpClient;<br>import okhttp3.Request;<br>import okhttp3.Response;</p>
+<p>public class ApiAsker {</p>
+<p>  //根据输入的url，读取页面内容并返回</p>
+<p>  public String getContent(String url) {<br>    // okHttpClient 实例<br>    OkHttpClient okHttpClient = new OkHttpClient();<br>    // 定义一个request<br>    Request request = new Request.Builder().url(url).build();<br>    // 使用client去请求<br>    Call call = okHttpClient.newCall(request);<br>    // 返回结果字符串<br>    String result = null;<br>    try {<br>      // 执行请求<br>      Response response = call.execute();<br>      // 获取响应内容<br>      result = response.body().string();<br>    } catch (IOException e) {<br>      // 抓取异常<br>      System.out.println(“request “ + url + “ error . “);<br>      e.printStackTrace();<br>    }<br>    return result;<br>  }</p>
+<p>  public static void main(String[] args) {<br>    String url = “<a href="http://ip-api.com/json/&quot;" target="_blank" rel="noopener">http://ip-api.com/json/&quot;</a>;<br>    ApiAsker asker = new ApiAsker();<br>    String content = asker.getContent(url);</p>
+<pre><code>System.out.println(&quot;查询结果文本：&quot; + content);
+Map contentObj = JSON.parseObject(content, Map.class);
+System.out.println(&quot;当前 IP 为：&quot; + contentObj.get(&quot;query&quot;));</code></pre><p>  }<br>}<br>**</p>
+<p>**更复杂的多次嵌套结构的JSON数据<br>Map contentObj = JSON.parseObject(content, Map.class);<br>Map dataObj = (Map)contentObj.get(“data”);<br>String city = (String)dataObj.get(“city”);</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/23/XJava1/" data-id="ckcz28crl000dvotb7k15awy5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/23/XJava1/" data-id="ckd0f6se40008q8tb620meb5s" class="article-share-link">Share</a>
       
       
     </footer>
@@ -414,7 +502,7 @@ for (int i=0; i&lt;ar.size(); i++) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/23/Exception6/" data-id="ckcz28cre0006votb2ifz2kld" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/23/Exception6/" data-id="ckd0f6sew000hq8tb83k2e98c" class="article-share-link">Share</a>
       
       
     </footer>
@@ -459,7 +547,7 @@ for (int i=0; i&lt;ar.size(); i++) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/22/Exception5/" data-id="ckcz28crd0005votbb4u2er61" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/22/Exception5/" data-id="ckd0f6sdt0003q8tbbpshaaok" class="article-share-link">Share</a>
       
       
     </footer>
@@ -508,7 +596,7 @@ for (int i=0; i&lt;ar.size(); i++) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/22/Exception4/" data-id="ckcz28crc0004votb5aj13hom" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/22/Exception4/" data-id="ckd0f6sdy0005q8tbh9zada4q" class="article-share-link">Share</a>
       
       
     </footer>
@@ -564,7 +652,7 @@ System.out.println(&quot;减法的结果是:&quot;+sub);</code></pre><p>  }</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/22/Inner/" data-id="ckcz28crg0008votbb9r91yuq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/22/Inner/" data-id="ckd0f6se20007q8tb1oht485s" class="article-share-link">Share</a>
       
       
     </footer>
@@ -612,7 +700,7 @@ System.out.println(&quot;减法的结果是:&quot;+sub);</code></pre><p>  }</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/21/Exception3/" data-id="ckcz28crb0003votb3qcra8qa" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/21/Exception3/" data-id="ckd0f6sdw0004q8tbgqbhhddy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -687,7 +775,7 @@ public static int getInt(String str) throws Exception {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/21/Exception2/" data-id="ckcz28cra0002votb61dh1x2x" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/21/Exception2/" data-id="ckd0f6sdq0002q8tbd8c6ctha" class="article-share-link">Share</a>
       
       
     </footer>
@@ -802,7 +890,7 @@ public static int getInt(String str) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/21/Exception/" data-id="ckcz28cr80001votbfvxx6ccd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/21/Exception/" data-id="ckd0f6sd80000q8tb2qq52k3a" class="article-share-link">Share</a>
       
       
     </footer>
@@ -865,184 +953,7 @@ public static int getStrLength(String str) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/21/A/" data-id="ckcz28cr30000votbfckt0n1n" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-UML" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/18/UML/" class="article-date">
-  <time datetime="2020-07-18T15:32:13.000Z" itemprop="datePublished">2020-07-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/18/UML/">UML</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Java面向对象"><a href="#Java面向对象" class="headerlink" title="Java面向对象"></a>Java面向对象</h3><p><strong>1.1面向对象入门</strong><br>1、在Java中对象其实就是一个class类，在Java的世界中所有的程序都是由Class（对象、类）组成的<br>在编程世界里有一个专门的图形表示的语言来管理和维护对象，这个语言就是 UML（统一建模语言）<br>2、UML 的目标之一就是为开发团队提供标准、通用的面向对象设计语言。UML提供了一套图形标准，通过使用 UML 可以让编程人员能够阅读和交流系统架构图、设计图，就好比建筑工人看施工图来施工一样。<br>3、UML 不是只针对 Java 语言的，它适合于所有编程语言<br>4、举例：<br><img src="https://style.youkeda.com/img/ham/course/group_user.svg" alt=""><br>转化成代码：<br>      package com.qq.model;<br>      public class Group{<br>          //群唯一的ID<br>          String id;<br>          //群号<br>          String groupNo;<br>          //群图标<br>          String icon;<br>          //群名称<br>          String name;<br>          //群公告<br>          String notice;<br>          //群简介<br>          String desc;<br>          // 群成员<br>          ArrayList<User> users;<br>      }</p>
-<p><strong>1.2 类的关联关系</strong><br>1、Java是面向对象的语言<br>2、对象是对问题领域中事物的抽象，象是对问题领域中事物的抽象能力<br>3、对象的特性：（1）万物皆可对象<br>                          （2）每个对象的事唯一的<br>                        对象的唯一是指的类实例化后的每个实例都是唯一的，对于相同事物抽象后的类可以是相同的<br>                          （3）对象具备属性和办法<br>                        每一个对象都拥有自己的属性定义和值，加上我们前面学习过的方法，那么属性+方法对象就是完整的了<br>4、举例<br><img src="https://style.youkeda.com/img/ham/course/j2/student_major_3.svg" alt=""><br> 代码：<br>        package com.youkeda.model;<br>        import java.time.LocalDate;</p>
-<pre><code>public class Student {
-    String id;
-    String name;
-    String gender;
-    String sid;
-    String schoolName;
-    LocalDate startDate;
-    Major major;
-}</code></pre><p>5、举例<br><img src="https://style.youkeda.com/img/ham/course/j2/student_major_4.svg" alt=""><br>代码：package com.youkeda.model;<br>          import java.time.LocalDate;<br>          public class Student {<br>              String id;<br>              String name;<br>              String gender;<br>              String sid;<br>              School school;<br>              LocalDate startDate;<br>              Major major;<br>          }</p>
-<p><strong>1.3访问控制修饰符</strong><br>1、访问控制分为4种级别<br><strong>（1）公开级别：  public修饰，对外公开<br>（2）受保护级别： protected修饰，向子类及同一个包中的类公开<br>（3）默认级别：  没有访问修饰符，向同一个包中的类公开<br>（4）私有级别：  private修饰，只有类本身可以访问，不对外公开</strong><br>2、访问修饰符：<br>（1）类<br>我们在创建类的时候，可以选择public和默认这两种，至于 protected 和 private这两个是不允许使用的。不过默认情况下，我们都是创建 public 的 class<br>public class Hello{ }    或者class Hello{ }<br>（2）类的方法/实例变量<br>一般情况下类的成员变量（属性）就叫做实例变量<br>公开访问：<br>public class Hello {<br>  // 声明一个公开访问的字符串类型实例变量<br>  public String msg = “Hello”;</p>
-<p>  // 声明一个公开访问的方法<br>  public String say(String word){<br>      return msg + word;<br>  }</p>
-<p>}</p>
-<p>私有访问：<br>public class Hello {<br>  // 声明一个公开访问的字符串类型类变量<br>  public String msg = “Hello”;</p>
-<p>  // 声明一个私有访问的方法<br>  private String say(String word){<br>      return msg + word;<br>  }<br>}</p>
-<p>声明了一个私有方法，那么除了在类中可以调用，其他的地方都不可以调用的，规则如上面所说的一样。这意味着：如果我们想屏蔽代码细节，我们可以把具体的方法或者变量声明为私有的权限范围</p>
-<p>3、package com.qq.model;</p>
-<p>public class User {</p>
-<p>  private String id;</p>
-<p>  private String name;</p>
-<p>  public void printName(){</p>
-<p>  }</p>
-<p>}</p>
-<p><strong>（1）是（红色）正方形图标，说明当前的访问控制修饰符是private<br>（2）是（绿色）圆形图标，说明是public<br>（3)  是（黄）菱形图标，说明是protected<br>颜色不重要，图形才是重点</strong></p>
-<p><strong>1.4封装</strong><br>1、封装简单的来说就是把对象的属性隐藏起来，只能通过公开的方法来得到或者设置属性值。<br>public class User{<br>  //定义了一个关于名称的实例变量<br>  private String name;</p>
-<p>  //获取 name 的值</p>
-<p>  public String getName(){<br>    return this.name;<br>  }</p>
-<p>   //设置 name 的值</p>
-<p>  public void setName(String name){<br>    this.name = name;<br>  }</p>
-<p>}</p>
-<p>3、getter、setter方法，这个方法名的格式：<br>get + 属性名称（属性名的首字母要大写），用于获取属性<br>set + 属性名称  （属性名的首字母要大写），用于设置属性</p>
-<p>4、变量作用域<br>类的实例变量怎么被访问，this<br><img src="https://style.youkeda.com/img/ham/course/j2/setter2.svg" alt=""><br>this 就是类被实例化的对象，通过this就可以很轻松的调用实例内的成员和方法</p>
-<p>5、public void say(String name){<br>  // 这个 private 是错误的<br>  private String msg = “hello”;</p>
-<p>  // 这个 name 变量名是错误的，因为重复了<br>  String name = “a”;</p>
-<p>  int age = 18;<br>  // 这个字符串 age 变量名是错误的，因为重复了<br>  String age = “18岁”;<br>}</p>
-<p>6、public class User{<br>  private String name;<br>  //这个数字 name 变量名称是错误的，因为重复了<br>  private int name;<br>}</p>
-<p>7、<img src="https://style.youkeda.com/img/ham/course/j2/user3.svg" alt=""><br><img src="https://style.youkeda.com/img/ham/course/j2/setter3.svg" alt=""></p>
-<p>8、getter和setter属性在代码中，是每一个都要对应的getter、setter<br><strong>9、有LocalDate的代码，需要加入import java.time.LocalDate;</strong></p>
-<p><strong>1.5常量</strong><br>1、不需要通过实例化才能得到变量，而可以直接获取或者操作变量<br>public static ArrayList<School>schools = new ArrayList&lt;&gt;();<br>        static关键字                                          变量实例化</p>
-<p>2、想存储和调用学校的记录<br>public class SchoolService{<br>  // 学校数据的常量<br>  public static ArrayList<School> schools = new ArrayList&lt;&gt;();<br>}</p>
-<p> 当定义了静态变量后，可以直接操作schools变量了<br> public class SchoolServiceTest{</p>
-<p>  public static void main(String[] args){<br>    School school = new School();<br>    school.setId(“1”);<br>    school.setName(“北京大学”);</p>
-<pre><code>// 存储数据
-SchoolService.schools.add(school);</code></pre><p>  }<br>}<br>3、为了和变量区分开，所以一般情况下，常量的变量名采用全大写字母来定义，单词之间用   _   分隔，所以学校的常量为SCHOOLS</p>
-<p><strong>4、常用字符串的常量</strong><br>//用户Session key<br>public static final String USER_KEY = “m_key”;</p>
-<p>//手机验证码 key<br>public static final String SMS_KEY = “m_sms_key”;</p>
-<p><strong>final 代表着这个变量不可以被再次修改，用来保证代码的安全</strong></p>
-<p>public class UserService{</p>
-<p> // 用户Session key</p>
-<p>  public static final String USER_KEY = “m_key”;</p>
-<p>  public boolean hasKey(String key){<br>    // 使用常量的时候<br>    if(key.equals(USER_KEY)){<br>      return true;<br>    }<br>    return false;<br>  }<br>}</p>
-<p><strong>内存缓存</strong><br>static关键字除了声明静态变量外，还可以声明一个静态代码块（可以在其中执行代码并且调用static变量）<br>package com.youkeda.service;<br>import com.youkeda.model.School;<br>// 学校服务<br>public class SchoolService{<br>  // 学校数据的常量<br>  public static ArrayList<School> SCHOOLS = new ArrayList&lt;&gt;();  </p>
-<p>  // 声明一个静态代码块，用于初始化学校数据<br>  static{<br>    School school = new School();<br>    school.setId(“1”);<br>    school.setName(“北京大学”);<br>    SCHOOLS.add(school);</p>
-<pre><code>school = new School();
-school.setId(&quot;2&quot;);
-school.setName(&quot;清华大学&quot;);
-SCHOOLS.add(school);</code></pre><p>  }</p>
-<p>  public static void main(String[] args){<br>    // 测试打印一下内存的数据<br>    for(int i=0;i&lt;SCHOOLS.size();i++){<br>      School school = SCHOOLS.get(i);<br>      System.out.println(school.getName());<br>    }<br>  }</p>
-<p>}</p>
-<p><strong>2.1 继承语法</strong><br>1、extends  继承语法<br>public class Dog extends Animal{  }<br>Dog 称为Animal的子类，Animal称为父类</p>
-<p><em>Animal.java</em><br>package com.youkeda.model;<br>public class Animal {<br>    private String name;<br>    private int age;<br>    public String getName() {<br>        return name;<br>    }<br>    public void setName(String name) {<br>        this.name = name;<br>    }</p>
-<pre><code>public int getAge() {
-    return age;
-}
-public void setAge(int age) {
-    this.age = age;
-}</code></pre><p>}</p>
-<p><em>Dog.java</em><br>package com.youkeda.model;<br>public class Dog extends Animal{<br>}</p>
-<p>2、UML继承<br>在继承关系中，private级别的变量或者方法子类是获取不到的，子类如果想获取父类的变量和方法可以设置父类的变量和方法为 protected 或者 public 访问控制符</p>
-<p><strong>2.2方法覆盖</strong><br>1、在父子类当中，子类如果想要重写父类定义的方法这个行为就叫方法覆盖<br>假如说：在Dog对象里覆盖eat方法，并打印出xxxx</p>
-<p>package com.youkeda.model;<br>public class Dog extends Animal{<br>    public void eat(){<br>        System.out.println(“xxxx”);<br>    }<br>}</p>
-<p><strong>2、利用父子类实例化</strong><br>（1）实例化Dog对象<br>public class Test {<br>  public static void main(String[] args){<br>    // 实例化 dog 对象<br>    Dog d = new Dog();<br>    d.setName(“小灰”);<br>    d.setAge(3);<br>    System.out.println(d.getName()+”—“+d.getAge());<br>  }<br>}<br>（2）实例化Animal对象<br>public class Test {<br>  public static void main(String[] args){<br>    // 实例化 dog 对象并赋值给 Animal 对象<br>    Animal d = new Dog();<br>    d.setName(“小灰”);<br>    d.setAge(3);<br>    System.out.println(d.getName()+”—“+d.getAge());<br>  }<br>}</p>
-<p><strong>父类对象可以直接是子类的实例，子类的对象可以转化为父类的对象，但是父类的不能转化为子类</strong><br>加上d.eat();</p>
-<p><strong>2.3 super关键词</strong><br>1、this 关键字可以操作实例内的变量或者方法<br>操作父类也有一个关键词super<br>super只发生在子类中<br>public class Dog extends Animal{</p>
-<pre><code>public void eat(){
-    // 调用父类的方法
-    super.eat();
-    System.out.println(&quot;狗狗喜欢吃肉骨头&quot;);
-}</code></pre><p>}</p>
-<p>2、子类的构造函数</p>
-<p>当父类只有一个有参数的构造函数的时候，子类也必须要具备这个构造函数，或者调用 super方法来实现新的构造函数</p>
-<p>public class CustomFile{<br>  // 存储文件路径的变量<br>  public String filePath;<br>  // 存储文件后缀变量，通过后缀来区分文件类型<br>  public String ext;</p>
-<p>  // 声明一个构造函数，接受文件路径<br>  public CustomFile(String filePath){<br>    //给类变量 filePath 赋值<br>    //this代表的是当前类的实例<br>    this.filePath = filePath;<br>  }</p>
-<p> //获取文件名称</p>
-<p>  public String getName(){<br>    // 比如文件路径是 /Users/mac/work/face.png<br>    // 把文件路径分隔成数组（分隔符是 / ）<br>    // 数组的最后一位就是文件名<br>    String[] paths = filePath.split(“/“);<br>    // 数组的最后一位需要减1，因为数组是从索引0开始的。<br>    return  paths[paths.length-1];<br>  }<br>}</p>
-<p>public class JavaFile extends CustomFile{<br>  private String packageName;<br>  // 声明一个构造函数<br>  public JavaFile(String filePath,String packageName){<br>    super(filePath);<br>    this.packageName = packageName;<br>  }</p>
-<p>  public String getPackageName(){<br>      return this.packageName;<br>  }</p>
-<p>}</p>
-<p><strong>3.1接口的语法</strong><br>1、interface 接口<br>在java中，接口也是一个类，也包含方法，定义一个接口类以后，可以支持多个现实类<br><img src="https://style.youkeda.com/img/ham/course/j2/LoginService.svg" alt=""></p>
-<p>接口的方法都是public<br>接口的方法默认不需要方法体</p>
-<p>2、UML接口的定义<br>大写的  I<br>public interface LoginService {</p>
-<p>  String getLoginPageUrl();</p>
-<p>}</p>
-<p><strong>3、接口的例子看优课达3.1.3</strong></p>
-<p><strong>3.2接口实现类</strong><br>1、实现接口的语法：implements</p>
-<p><strong>超级难</strong></p>
-<p><strong>3.3常用接口</strong><br>1、java中最常见的两个接口：Map和List<br>2、面向接口开发的核心之一：尽可能用接口来设计属性或者方法<br>3、Map（映射）是遵循key：value这种形式的集合，key 、value的类型可以是任何的java对象<br>如果想得到一个Map的实例可以使用HashMap</p>
-<p>import java.util.Map;<br>import java.util.HashMap;<br>// key value 得是 Java 类型<br>Map&lt;key,value&gt; map = new HashMap&lt;&gt;();</p>
-<p><strong>数字映射为英文</strong><br>首先使用map.put(key,value)完成数据的存储<br>key是数字类型，value是字符串类型，所以Map&lt;Integer,String&gt;</p>
-<p>import java.util.Map;<br>import java.util.HashMap;</p>
-<p> //MapTest</p>
-<p>public class MapTest {<br>    public static void main(String[] args) {<br>      Map&lt;Integer,String&gt; map = new HashMap&lt;&gt;();</p>
-<pre><code>  map.put(1,&quot;Monday&quot;);
-  map.put(2,&quot;Tuesday&quot;);
-  map.put(3,&quot;Wednesday&quot;);
-  map.put(4,&quot;Thursday&quot;);
-  map.put(5,&quot;Friday&quot;);
-  map.put(6,&quot;Saturday&quot;);
-  map.put(7,&quot;Sunday&quot;);
-
-  // 获取数字3对应的星期值
-  String weekText = map.get(3);
-  System.out.println(weekText);
-}</code></pre><p>}</p>
-<p>集合的大小加的方法：size（）和遍历能力for<br>int size = map.size();<br>System.out.println(size);</p>
-<p>for (Map.Entry&lt;Integer,String&gt; entry : map.entrySet()){ </p>
-<p>   System.out.println(“Key = “ + entry.getKey() +<br>                  “, Value = “ + entry.getValue());<br> }</p>
-<p> 4、List<br> List是ArrayList的接口<br> List<String> strings = new ArrayList&lt;&gt;();</p>
-<p> 另外一种遍历方法：<br> List<String> strings = new ArrayList&lt;&gt;();<br>for(String str : strings){<br>    System.out.println(str);<br>}</p>
-<p><strong>4.1Java异常机制</strong><br>1、java.lang.NullPointerException是经常的异常，当操作的不是真正的对象而是null时，就会抛出NullPointerException<br>2、如何捕获异常<br><strong>try{ 开始捕获<br>}<br>catch（）抓住异常</strong></p>
-<p>public class ExceptionTest2 {</p>
-<pre><code>public static void main(String[] args) {
-
-    try {
-
-        int len = getStrLength(null);
-
-    } catch (NullPointerException e) {
-
-        //可以记录一下异常信息或者执行其他代码逻辑
-
-    }
-
-    System.out.println(&quot;程序执行到这&quot;);
-}
-
-// 获取字符串的长度
-public static int getStrLength(String str) {
-    return str.length();
-}</code></pre><p>}</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/18/UML/" data-id="ckcz28crk000cvotbeo5q24cn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/21/A/" data-id="ckd0f6sdm0001q8tb8shn2gwu" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1088,6 +999,10 @@ public static int getStrLength(String str) {
       <ul>
         
           <li>
+            <a href="/2020/07/24/XJava2/">XJava2</a>
+          </li>
+        
+          <li>
             <a href="/2020/07/23/XJava1/">XJava1</a>
           </li>
         
@@ -1101,10 +1016,6 @@ public static int getStrLength(String str) {
         
           <li>
             <a href="/2020/07/22/Exception4/">Exception4</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/22/Inner/">Inner</a>
           </li>
         
       </ul>
