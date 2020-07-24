@@ -64,6 +64,161 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-XJava3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/25/XJava3/" class="article-date">
+  <time datetime="2020-07-24T16:10:17.000Z" itemprop="datePublished">2020-07-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/25/XJava3/">XJava3</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="5-1下载文件"><a href="#5-1下载文件" class="headerlink" title="5.1下载文件"></a>5.1下载文件</h1><p>1、在java中写文件的三个步骤：创建文件对象—&gt;写入内容—&gt;关闭写入操作<br>2、在程序中写入字符串的语句：<br>import java.io.File;<br>import java.io.FileWriter;</p>
+<p>// 文件对象<br>File file = new File(“foo.txt”);</p>
+<p>// 写入内容<br>FileWriter fileWritter = new FileWriter(file.getName());<br>fileWritter.write(content);</p>
+<p>// 关闭<br>fileWritter.close();</p>
+<p>3、写入二进制文件<br>写入二进制内容，需要用FileOutputStream,必须执行刷新、关闭操作<br>package com.youkeda.test.http;</p>
+<p>import java.io.IOException;<br>import okhttp3.Call;<br>import okhttp3.OkHttpClient;<br>import okhttp3.Request;<br>import okhttp3.Response;<br>import java.io.File;<br>import java.io.FileOutputStream;</p>
+<p>public class ExcelAsker {</p>
+<p>  //根据输入的url，读取页面内容并返回</p>
+<p>  public byte[] getFile(String url) {<br>    // okHttpClient 实例<br>    OkHttpClient okHttpClient = new OkHttpClient();<br>    // 定义一个request<br>    Request request = new Request.Builder().url(url).build();<br>    byte[] bytes = null;<br>    try {<br>      // 执行请求<br>      Response response = okHttpClient.newCall(request).execute();<br>      bytes = response.body().bytes();<br>    } catch (IOException e) {<br>      // 抓取异常<br>      System.out.println(“request “ + url + “ error . “);<br>      e.printStackTrace();<br>    }</p>
+<pre><code>return bytes;</code></pre><p>  }</p>
+<p>  public static void main(String[] args) {<br>    String url = “<a href="https://style.youkeda.com/img/ham/course/py2/china-city-list.xlsx&quot;" target="_blank" rel="noopener">https://style.youkeda.com/img/ham/course/py2/china-city-list.xlsx&quot;</a>;<br>    ExcelAsker asker = new ExcelAsker();<br>    byte[] data = asker.getFile(url);</p>
+<pre><code>try {
+  // 文件对象
+  File file = new File(&quot;china-city-list.xlsx&quot;);  
+
+  // 写文件
+  FileOutputStream fos = new FileOutputStream(file);  
+  fos.write(data);  
+
+  // 必须刷新并关闭
+  fos.flush();  
+  fos.close();  
+} catch (IOException e) {
+  e.printStackTrace();
+}</code></pre><p>  }<br>}</p>
+<h1 id="5-2下载图片"><a href="#5-2下载图片" class="headerlink" title="5.2下载图片"></a>5.2下载图片</h1><p>**try {<br>      File file = new File(“e270-iknhexh8551480.jpg”);</p>
+<pre><code>  FileOutputStream fos = new FileOutputStream(file);
+  fos.write(data);
+
+  fos.flush();
+  fos.close();
+
+  System.out.println(&quot;下载成功&quot;);
+} catch (IOException e) {
+  e.printStackTrace();
+}**</code></pre><h1 id="5-3解析excel"><a href="#5-3解析excel" class="headerlink" title="5.3解析excel"></a>5.3解析excel</h1><p>1、依赖库<br>使用前必须在pom.xml文件中加入对库的依赖<br><dependency><br>  <groupId>com.alibaba</groupId><br>  <artifactId>easyexcel</artifactId><br>  <version>2.1.6</version><br></dependency></p>
+<p>2、调用库<br>解析文件的第一个步骤是读取文件内容，调用EasyExcel.read()方法传入文件名称<br>然后解析第一个工作表调用sheet（0）<br>最后的doReadSync()表示同步方式读取文件内容，返回一个读取到的内容集合List</p>
+<p>package com.youkeda.test.http;</p>
+<p>import com.alibaba.excel.EasyExcel;<br>import com.alibaba.fastjson.JSON;<br>import java.io.File;<br>import java.io.FileOutputStream;<br>import java.io.IOException;<br>import java.util.List;<br>import java.util.Map;<br>import okhttp3.OkHttpClient;<br>import okhttp3.Request;<br>import okhttp3.Response;</p>
+<p>public class ExcelAsker {</p>
+<p>  //根据输入的url，读取页面内容并返回</p>
+<p>  public byte[] getFile(String url) {<br>    // okHttpClient 实例<br>    OkHttpClient okHttpClient = new OkHttpClient();<br>    // 定义一个request<br>    Request request = new Request.Builder().url(url).build();<br>    byte[] bytes = null;<br>    try {<br>      // 执行请求<br>      Response response = okHttpClient.newCall(request).execute();<br>      bytes = response.body().bytes();<br>    } catch (IOException e) {<br>      // 抓取异常<br>      System.out.println(“request “ + url + “ error . “);<br>      e.printStackTrace();<br>    }</p>
+<pre><code>return bytes;</code></pre><p>  }</p>
+<p>  public static void main(String[] args) {<br>    String url = “<a href="https://style.youkeda.com/img/ham/course/py2/xzq_201907.xlsx&quot;" target="_blank" rel="noopener">https://style.youkeda.com/img/ham/course/py2/xzq_201907.xlsx&quot;</a>;<br>    ExcelAsker asker = new ExcelAsker();<br>    byte[] data = asker.getFile(url);</p>
+<pre><code>try {
+  File file = new File(&quot;xzq_201907.xlsx&quot;);
+
+  FileOutputStream fos = new FileOutputStream(file);
+  fos.write(data);
+
+  fos.flush();
+  fos.close();
+
+  System.out.println(&quot;下载成功&quot;);
+} catch (IOException e) {
+  e.printStackTrace();
+}
+
+List&lt;Map&lt;Integer, String&gt;&gt; sheetDatas = EasyExcel.read(&quot;xzq_201907.xlsx&quot;).sheet(0).doReadSync();
+for (Map&lt;Integer, String&gt; rowData : sheetDatas) {
+  for (Integer index : rowData.keySet()) {
+    System.out.print(&quot;列号：&quot; + index + &quot;，列值：&quot; + rowData.get(index) + &quot;。&quot;);    
+  }  
+  System.out.println(&quot;&quot;);  
+}</code></pre><p>  }<br>}</p>
+<p>3、自动转换为类<br>DemoData就是自定义的类，表示一行数据，类的每个属性都表示一列的值<br>List<DemoData>就表示把每一行都转换为一个DemoData的是实例对象，放入List集合中<br>// 属性定义的顺序必须与列顺序保持一致<br>public class DemoData {<br>  private String code1;<br>  private String city1;<br>  private String code2;<br>  private String city2;<br>  private String code3;<br>  private String city3;<br>}</p>
+<p>package com.youkeda.test.http;</p>
+<p>import com.alibaba.excel.EasyExcel;<br>import com.alibaba.fastjson.JSON;<br>import java.io.File;<br>import java.io.FileOutputStream;<br>import java.io.IOException;<br>import java.util.List;<br>import java.util.Map;<br>import okhttp3.OkHttpClient;<br>import okhttp3.Request;<br>import okhttp3.Response;</p>
+<p>public class ExcelAsker {</p>
+<p> //根据输入的url，读取页面内容并返回</p>
+<p>  public byte[] getFile(String url) {<br>    // okHttpClient 实例<br>    OkHttpClient okHttpClient = new OkHttpClient();<br>    // 定义一个request<br>    Request request = new Request.Builder().url(url).build();<br>    byte[] bytes = null;<br>    try {<br>      // 执行请求<br>      Response response = okHttpClient.newCall(request).execute();<br>      bytes = response.body().bytes();<br>    } catch (IOException e) {<br>      // 抓取异常<br>      System.out.println(“request “ + url + “ error . “);<br>      e.printStackTrace();<br>    }</p>
+<pre><code>return bytes;</code></pre><p>  }</p>
+<p>  public static void main(String[] args) {<br>    String url = “<a href="https://style.youkeda.com/img/ham/course/py2/xzq_201907.xlsx&quot;" target="_blank" rel="noopener">https://style.youkeda.com/img/ham/course/py2/xzq_201907.xlsx&quot;</a>;<br>    ExcelAsker asker = new ExcelAsker();<br>    byte[] data = asker.getFile(url);</p>
+<pre><code>try {
+  File file = new File(&quot;xzq_201907.xlsx&quot;);
+
+  FileOutputStream fos = new FileOutputStream(file);
+  fos.write(data);
+
+  fos.flush();
+  fos.close();
+
+  System.out.println(&quot;下载成功&quot;);
+} catch (IOException e) {
+  e.printStackTrace();
+}
+
+List&lt;DemoData&gt; sheetDatas = EasyExcel.read(&quot;xzq_201907.xlsx&quot;).head(DemoData.class).sheet(0).doReadSync();
+for (DemoData rowData : sheetDatas) {
+  System.out.println(JSON.toJSONString(rowData));
+}</code></pre><p>  }<br>}</p>
+<p><strong>4、例子</strong><br>package com.youkeda.test.http;</p>
+<p>import com.alibaba.excel.EasyExcel;<br>import com.alibaba.fastjson.JSON;<br>import java.io.File;<br>import java.io.FileOutputStream;<br>import java.io.IOException;<br>import java.util.List;<br>import java.util.Map;<br>import okhttp3.OkHttpClient;<br>import okhttp3.Request;<br>import okhttp3.Response;</p>
+<p>public class ExcelAsker {</p>
+<p>   //根据输入的url，读取页面内容并返回</p>
+<p>  public byte[] getFile(String url) {<br>    // okHttpClient 实例<br>    OkHttpClient okHttpClient = new OkHttpClient();<br>    // 定义一个request<br>    Request request = new Request.Builder().url(url).build();<br>    byte[] bytes = null;<br>    try {<br>      // 执行请求<br>      Response response = okHttpClient.newCall(request).execute();<br>      bytes = response.body().bytes();<br>    } catch (IOException e) {<br>      // 抓取异常<br>      System.out.println(“request “ + url + “ error . “);<br>      e.printStackTrace();<br>    }</p>
+<pre><code>return bytes;</code></pre><p>  }</p>
+<p>  public static void main(String[] args) {<br>    String url = “<a href="https://style.youkeda.com/img/ham/course/py2/china-city-list.xlsx&quot;" target="_blank" rel="noopener">https://style.youkeda.com/img/ham/course/py2/china-city-list.xlsx&quot;</a>;<br>    ExcelAsker asker = new ExcelAsker();<br>    byte[] data = asker.getFile(url);</p>
+<pre><code>try {
+  File file = new File(&quot;china-city-list.xlsx&quot;);
+
+  FileOutputStream fos = new FileOutputStream(file);
+  fos.write(data);
+
+  fos.flush();
+  fos.close();
+
+  System.out.println(&quot;下载成功&quot;);
+} catch (IOException e) {
+  e.printStackTrace();
+}
+
+List&lt;Map&lt;Integer, String&gt;&gt; sheetDatas = EasyExcel.read(&quot;china-city-list.xlsx&quot;).sheet(0).doReadSync();
+for (Map&lt;Integer, String&gt; rowData : sheetDatas) {
+  for (Integer index : rowData.keySet()) {
+    System.out.print(rowData.get(index) + &quot; &quot;);
+  }
+  System.out.println(&quot;&quot;);
+}</code></pre><p>  }<br>}</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/25/XJava3/" data-id="ckd0h1b60000fbgtbgno6gegr" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-XJava2" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/07/24/XJava2/" class="article-date">
@@ -94,7 +249,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/24/XJava2/" data-id="ckd0f6se9000aq8tbekqqegr4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/24/XJava2/" data-id="ckd0h1b5z000ebgtb23wbewig" class="article-share-link">Share</a>
       
       
     </footer>
@@ -291,7 +446,7 @@ System.out.println(&quot;当前 IP 为：&quot; + contentObj.get(&quot;query&quo
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/23/XJava1/" data-id="ckd0f6se40008q8tb620meb5s" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/23/XJava1/" data-id="ckd0h1b5y000dbgtbe6ie0cgy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -502,7 +657,7 @@ for (int i=0; i&lt;ar.size(); i++) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/23/Exception6/" data-id="ckd0f6sew000hq8tb83k2e98c" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/23/Exception6/" data-id="ckd0h1b5p0006bgtbbn6ug6q4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -547,7 +702,7 @@ for (int i=0; i&lt;ar.size(); i++) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/22/Exception5/" data-id="ckd0f6sdt0003q8tbbpshaaok" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/22/Exception5/" data-id="ckd0h1b5o0005bgtbeda894rv" class="article-share-link">Share</a>
       
       
     </footer>
@@ -596,7 +751,7 @@ for (int i=0; i&lt;ar.size(); i++) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/22/Exception4/" data-id="ckd0f6sdy0005q8tbh9zada4q" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/22/Exception4/" data-id="ckd0h1b5m0004bgtbceh71lq1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -652,7 +807,7 @@ System.out.println(&quot;减法的结果是:&quot;+sub);</code></pre><p>  }</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/22/Inner/" data-id="ckd0f6se20007q8tb1oht485s" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/22/Inner/" data-id="ckd0h1b5r0008bgtb1845071s" class="article-share-link">Share</a>
       
       
     </footer>
@@ -700,7 +855,7 @@ System.out.println(&quot;减法的结果是:&quot;+sub);</code></pre><p>  }</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/21/Exception3/" data-id="ckd0f6sdw0004q8tbgqbhhddy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/21/Exception3/" data-id="ckd0h1b5l0003bgtb9ri4cg88" class="article-share-link">Share</a>
       
       
     </footer>
@@ -775,7 +930,7 @@ public static int getInt(String str) throws Exception {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/21/Exception2/" data-id="ckd0f6sdq0002q8tbd8c6ctha" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/21/Exception2/" data-id="ckd0h1b5j0002bgtbgulr3tnj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -890,70 +1045,7 @@ public static int getInt(String str) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/21/Exception/" data-id="ckd0f6sd80000q8tb2qq52k3a" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-A" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/21/A/" class="article-date">
-  <time datetime="2020-07-21T12:46:33.000Z" itemprop="datePublished">2020-07-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/21/A/">A</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="判断参数的合法性if-语句"><a href="#判断参数的合法性if-语句" class="headerlink" title="判断参数的合法性if 语句"></a>判断参数的合法性if 语句</h1><p>public class ExceptionTest2 {</p>
-<pre><code>public static void main(String[] args) {
-
-    getStrLength(null);
-}
-
-// 获取字符串的长度
-public static int getStrLength(String str) {
-   if(str == null){
-     return 0;
-   }else{
-
-    return str.length();
-}</code></pre><p>  }<br>}</p>
-<p>使用异常try-catch语句<br>public class ExceptionTest2 {<br> public static void main(String[] args) {</p>
-<pre><code>    try {
-        int len = getStrLength(null);
-    } catch (NullPointerException e) {
-
-    }
-
-    System.out.println(&quot;程序执行到这&quot;);
-}
-
-public static int getStrLength(String str) {
-    return str.length();
-}</code></pre><p>}</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/21/A/" data-id="ckd0f6sdm0001q8tb8shn2gwu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/21/Exception/" data-id="ckd0h1b5g0001bgtb5td1fjmu" class="article-share-link">Share</a>
       
       
     </footer>
@@ -999,6 +1091,10 @@ public static int getStrLength(String str) {
       <ul>
         
           <li>
+            <a href="/2020/07/25/XJava3/">XJava3</a>
+          </li>
+        
+          <li>
             <a href="/2020/07/24/XJava2/">XJava2</a>
           </li>
         
@@ -1012,10 +1108,6 @@ public static int getStrLength(String str) {
         
           <li>
             <a href="/2020/07/22/Exception5/">Exception5</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/22/Exception4/">Exception4</a>
           </li>
         
       </ul>
