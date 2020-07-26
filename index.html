@@ -64,6 +64,125 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-XJava4" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/25/XJava4/" class="article-date">
+  <time datetime="2020-07-25T03:14:05.000Z" itemprop="datePublished">2020-07-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/25/XJava4/">XJava4</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="6-1cookie"><a href="#6-1cookie" class="headerlink" title="6.1cookie"></a>6.1cookie</h1><p>1、 找到cookie，复制内容到cookie.txt中<br>2、代码实现：<br>package com.youkeda.test.http;</p>
+<p>import java.io.IOException;<br>import okhttp3.Call;<br>import okhttp3.OkHttpClient;<br>import okhttp3.Request;<br>import okhttp3.Response;</p>
+<p>public class PageAsker {</p>
+<p> （根据输入的url，读取页面内容并返回）</p>
+<p>  public String getContent(String url) {<br>    // okHttpClient 实例<br>    OkHttpClient okHttpClient = new OkHttpClient();<br>    // 定义一个request<br>    Request request = new Request.Builder()<br>        .url(url)<br>        .addHeader(“User-Agent”, “Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36”)<br>        .addHeader(“Referer”, “<a href="https://www.douban.com&quot;" target="_blank" rel="noopener">https://www.douban.com&quot;</a>)<br>        .addHeader(“Host”, “<a href="http://www.douban.com&quot;" target="_blank" rel="noopener">www.douban.com&quot;</a>)<br>        .addHeader(“Cookie”, ReadFileTool.readContent(“cookie.txt”))<br>        .build();<br>    // 返回结果字符串<br>    String result = null;<br>    try {<br>      // 执行请求<br>      Response response = okHttpClient.newCall(request).execute();<br>      result = response.body().string();<br>    } catch (IOException e) {<br>      System.out.println(“request “ + url + “ error . “);<br>      e.printStackTrace();<br>    }<br>    return result;<br>  }</p>
+<p>  public static void main(String[] args) {<br>    String url = “<a href="https://www.douban.com/mine&quot;" target="_blank" rel="noopener">https://www.douban.com/mine&quot;</a>;<br>    PageAsker asker = new PageAsker();<br>    String content = asker.getContent(url);</p>
+<pre><code>System.out.println(content);</code></pre><p>  }<br>}</p>
+<h1 id="6-2session"><a href="#6-2session" class="headerlink" title="6.2session"></a>6.2session</h1><p>1、时光网登录<br><a href="http://my.mtime.com/profile/basic/" target="_blank" rel="noopener">http://my.mtime.com/profile/basic/</a><br>2、未登陆时，“检查”，“NetWork”，再登录<br><img src="https://style.youkeda.com/img/ham/course/py2/py2-6-1-6.png" alt=""><br>3、例子<br>package com.youkeda.test.http;</p>
+<p>import java.io.IOException;<br>import java.util.ArrayList;<br>import java.util.HashMap;<br>import java.util.List;<br>import java.util.Map;<br>import okhttp3.Cookie;<br>import okhttp3.CookieJar;<br>import okhttp3.FormBody;<br>import okhttp3.FormBody.Builder;<br>import okhttp3.HttpUrl;<br>import okhttp3.OkHttpClient;<br>import okhttp3.Request;</p>
+<p>public class PageLoginer {</p>
+<p>  // 用 CookieJar 实现 cookie 的存储，便于登录后请求其它 URL 可以复用<br>  private static final OkHttpClient okHttpClient = new OkHttpClient.Builder()<br>      .cookieJar(new CookieJar() {<br>        private final HashMap&lt;String, List<Cookie>&gt; cookieStore = new HashMap&lt;&gt;();</p>
+<pre><code>  @Override
+  public void saveFromResponse(HttpUrl url, List&lt;Cookie&gt; cookies) {
+    cookieStore.put(&quot;mtime.com&quot;, cookies);
+    System.out.println(&quot;[saveFromResponse]url.host()=&quot; + url.host());
+  }
+
+  @Override
+  public List&lt;Cookie&gt; loadForRequest(HttpUrl url) {
+    System.out.println(&quot;[loadForRequest]url.host()=&quot; + url.host());
+    List&lt;Cookie&gt; cookies = cookieStore.get(&quot;mtime.com&quot;);
+    return cookies != null ? cookies : new ArrayList&lt;&gt;();
+  }
+})
+.build();</code></pre><p>  public String postContent(String url, Map&lt;String, String&gt; formData) {<br>    //post方式提交的数据<br>    Builder builder = new FormBody.Builder();<br>    // 放入表单数据<br>    for (String key : formData.keySet()) {<br>      builder.add(key, formData.get(key));<br>    }<br>    // 构建 FormBody 对象<br>    FormBody formBody = builder.build();<br>    // 指定 post 方式提交FormBody<br>    Request request = new Request.Builder()<br>        .url(url)<br>        .post(formBody)<br>        .addHeader(“User-Agent”,<br>            “Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36”)<br>        .addHeader(“Referer”,<br>            “<a href="https://passport.mtime.com/member/signin/?redirectUrl=http%3A%2F%2Fwww.mtime.com%2F&quot;" target="_blank" rel="noopener">https://passport.mtime.com/member/signin/?redirectUrl=http%3A%2F%2Fwww.mtime.com%2F&quot;</a>)<br>        .addHeader(“Host”, “passport.mtime.com”)<br>        .build();</p>
+<pre><code>// 返回结果字符串
+String result = null;
+try {
+  result = okHttpClient.newCall(request).execute().body().string();
+} catch (IOException e) {
+  System.out.println(&quot;request &quot; + url + &quot; error . &quot;);
+  e.printStackTrace();
+}
+return result;</code></pre><p>  }</p>
+<p>  public static void main(String[] args) {<br>    // 登录页面 url<br>    String url = “<a href="https://passport.mtime.com/member/signinLogin&quot;" target="_blank" rel="noopener">https://passport.mtime.com/member/signinLogin&quot;</a>;<br>    // 登录表单数据<br>    Map&lt;String, String&gt; formData = new HashMap();<br>    formData.put(“loginEmailText”, “13777467803”);<br>    formData.put(“loginPasswordText”, “aa787bc9cc97ba5d27cc042ecffe1489”);<br>    formData.put(“isvcode”, “true”);<br>    formData.put(“isAutoSign”, “false”);</p>
+<pre><code>PageLoginer asker = new PageLoginer();
+String content = asker.postContent(url, formData);
+
+System.out.println(content);</code></pre><p>  }<br>}</p>
+<h1 id="6-3复用session"><a href="#6-3复用session" class="headerlink" title="6.3复用session"></a>6.3复用session</h1><p>1、把OkHttpClient对象进行重构，改为变量private static final OkHttpClient okHttpClient<br>2、例子<br>package com.youkeda.test.http;</p>
+<p>import java.io.IOException;<br>import java.util.ArrayList;<br>import java.util.HashMap;<br>import java.util.List;<br>import java.util.Map;<br>import okhttp3.Cookie;<br>import okhttp3.CookieJar;<br>import okhttp3.FormBody;<br>import okhttp3.FormBody.Builder;<br>import okhttp3.HttpUrl;<br>import okhttp3.OkHttpClient;<br>import okhttp3.Request;</p>
+<p>public class PageLoginer {</p>
+<p>  // 用 CookieJar 实现 cookie 的存储，便于登录后请求其它 URL 可以复用<br>  private static final OkHttpClient okHttpClient = new OkHttpClient.Builder()<br>      .cookieJar(new CookieJar() {<br>        private final HashMap&lt;String, List<Cookie>&gt; cookieStore = new HashMap&lt;&gt;();</p>
+<pre><code>  @Override
+  public void saveFromResponse(HttpUrl url, List&lt;Cookie&gt; cookies) {
+    cookieStore.put(&quot;mtime.com&quot;, cookies);
+    //System.out.println(&quot;[saveFromResponse]url.host()=&quot; + url.host());
+  }
+
+  @Override
+  public List&lt;Cookie&gt; loadForRequest(HttpUrl url) {
+    //System.out.println(&quot;[loadForRequest]url.host()=&quot; + url.host());
+    List&lt;Cookie&gt; cookies = cookieStore.get(&quot;mtime.com&quot;);
+    return cookies != null ? cookies : new ArrayList&lt;&gt;();
+  }
+})
+.build();</code></pre><p>  （向指定的 URL 提交数据，并返回提交后的结果）</p>
+<p>  public String postContent(String url, Map&lt;String, String&gt; formData) {<br>    //post方式提交的数据<br>    Builder builder = new FormBody.Builder();<br>    // 放入表单数据<br>    for (String key : formData.keySet()) {<br>      builder.add(key, formData.get(key));<br>    }<br>    // 构建 FormBody 对象<br>    FormBody formBody = builder.build();<br>    // 指定 post 方式提交FormBody<br>    Request request = new Request.Builder()<br>        .url(url)<br>        .post(formBody)<br>        .addHeader(“User-Agent”,<br>            “Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36”)<br>        .addHeader(“Referer”,<br>            “<a href="https://passport.mtime.com/member/signin/?redirectUrl=http%3A%2F%2Fwww.mtime.com%2F&quot;" target="_blank" rel="noopener">https://passport.mtime.com/member/signin/?redirectUrl=http%3A%2F%2Fwww.mtime.com%2F&quot;</a>)<br>        .addHeader(“Host”, “passport.mtime.com”)<br>        .build();</p>
+<pre><code>return doExcute(request);</code></pre><p>  }</p>
+<p>（根据输入的url，读取页面内容并返回）</p>
+<p>  public String getContent(String url) {<br>    // 定义一个request<br>    Request request = new Request.Builder()<br>        .url(url)<br>        .addHeader(“User-Agent”,<br>            “Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36”)<br>        .addHeader(“Host”, “my.mtime.com”)<br>        .build();</p>
+<pre><code>return doExcute(request);</code></pre><p>  }</p>
+<p>  private String doExcute(Request request) {<br>    // 返回结果字符串<br>    String result = null;<br>    try {<br>      result = okHttpClient.newCall(request).execute().body().string();<br>    } catch (IOException e) {<br>      // 抓取异常<br>      System.out.println(“request “ + request.url() + “ error . “);<br>      e.printStackTrace();<br>    }</p>
+<pre><code>return result;</code></pre><p>  }</p>
+<p>  public static void main(String[] args) {<br>    PageLoginer asker = new PageLoginer();</p>
+<pre><code>// 完成登录
+String url = &quot;https://passport.mtime.com/member/signinLogin&quot;;
+// 登录表单数据
+Map&lt;String, String&gt; formData = new HashMap();
+formData.put(&quot;loginEmailText&quot;, &quot;13777467803&quot;);
+formData.put(&quot;loginPasswordText&quot;, &quot;aa787bc9cc97ba5d27cc042ecffe1489&quot;);
+formData.put(&quot;isvcode&quot;, &quot;true&quot;);
+formData.put(&quot;isAutoSign&quot;, &quot;false&quot;);
+String content = asker.postContent(url, formData);
+System.out.println(&quot;login result:&quot;);
+System.out.println(content);
+
+// 请求我的订单
+String myOrderUrl = &quot;http://my.mtime.com/account/ecommerce/orderList/&quot;;
+String myOrderContent = asker.getContent(myOrderUrl);
+System.out.println(&quot;orderList result:&quot;);
+System.out.println(myOrderContent);</code></pre><p>  }<br>}</p>
+<p>3、static表示类变量，意味着无论new多少个PageLoginer对象，PageLoginer.okHttpClient都只有一个<br>4、final表示okhTTPClient一旦第一次new出对象，不能再次new新对象</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/25/XJava4/" data-id="ckd2u745s000dp4tb8uvn3upm" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-XJava3" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/07/25/XJava3/" class="article-date">
@@ -209,7 +328,7 @@ for (Map&lt;Integer, String&gt; rowData : sheetDatas) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/25/XJava3/" data-id="ckd0h1b60000fbgtbgno6gegr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/25/XJava3/" data-id="ckd2u7460000ip4tb9jhk4a9a" class="article-share-link">Share</a>
       
       
     </footer>
@@ -249,7 +368,7 @@ for (Map&lt;Integer, String&gt; rowData : sheetDatas) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/24/XJava2/" data-id="ckd0h1b5z000ebgtb23wbewig" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/24/XJava2/" data-id="ckd2u745w000hp4tba7wi3qmp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -446,7 +565,7 @@ System.out.println(&quot;当前 IP 为：&quot; + contentObj.get(&quot;query&quo
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/23/XJava1/" data-id="ckd0h1b5y000dbgtbe6ie0cgy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/23/XJava1/" data-id="ckd2u745q000cp4tbgl8fbzx6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -657,7 +776,7 @@ for (int i=0; i&lt;ar.size(); i++) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/23/Exception6/" data-id="ckd0h1b5p0006bgtbbn6ug6q4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/23/Exception6/" data-id="ckd2u745l000ap4tb2m2f8okk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -702,7 +821,7 @@ for (int i=0; i&lt;ar.size(); i++) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/22/Exception5/" data-id="ckd0h1b5o0005bgtbeda894rv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/22/Exception5/" data-id="ckd2u74480004p4tb9eel74vc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -751,7 +870,7 @@ for (int i=0; i&lt;ar.size(); i++) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/22/Exception4/" data-id="ckd0h1b5m0004bgtbceh71lq1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/22/Exception4/" data-id="ckd2u74480005p4tb4pd0g6d5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -807,7 +926,7 @@ System.out.println(&quot;减法的结果是:&quot;+sub);</code></pre><p>  }</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/22/Inner/" data-id="ckd0h1b5r0008bgtb1845071s" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/22/Inner/" data-id="ckd2u745k0008p4tb9tmg0n8q" class="article-share-link">Share</a>
       
       
     </footer>
@@ -855,7 +974,7 @@ System.out.println(&quot;减法的结果是:&quot;+sub);</code></pre><p>  }</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/21/Exception3/" data-id="ckd0h1b5l0003bgtb9ri4cg88" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/21/Exception3/" data-id="ckd2u74470003p4tb4efy6ptc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -930,122 +1049,7 @@ public static int getInt(String str) throws Exception {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/21/Exception2/" data-id="ckd0h1b5j0002bgtbgulr3tnj" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Exception" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/21/Exception/" class="article-date">
-  <time datetime="2020-07-21T13:02:02.000Z" itemprop="datePublished">2020-07-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/21/Exception/">Exception</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="4-2Java异常类"><a href="#4-2Java异常类" class="headerlink" title="4.2Java异常类"></a>4.2Java异常类</h1><p>1、常见的异常类<br>（1）IOException ：操作输入流和输出流时可能出现的异常<br>（2）ArithmeticException ：数学异常（如果整数除以0，就会出现这种异常  int a=12/0;   //抛出ArithmeticException）<br>（3）NullPointerException ：空指针异常。（String d = null;<br>                                                                      System.out.println(d.length()); // 抛出NullPointerException）<br>（4）ArrayIndexOutOfBoundsException ：下标越界异常，一般出现在数组里<br>                                                                        int[] array = new int[4];<br>                                                                        array[0]=1;<br>                                                                        array[7]=1;// 抛出 ArrayIndexOutOfBoundsException<br>（5）ClassCastException ：当类型转化失败的时候就会出现该异常<br>（6）IllegalArgumentException ：非常参数异常，可以用来检查方法的参数是否合法<br>2、异常的作用域<br>public class ExceptionTest2 {</p>
-<pre><code>public static void main(String[] args) {
-    int len = 0;
-    try {
-        len = getStrLength(null);
-    } catch (NullPointerException e) {
-    }
-
-    System.out.println(&quot;程序执行到这&quot;+len);
-}
-
-// 获取字符串的长度
-public static int getStrLength(String str) {
-    return str.length();
-}</code></pre><p>}</p>
-<p>作用域的提升就是把代码块的变量在代码块之前先定义</p>
-<p>3、多个异常捕获<br><strong>想把某些字符串转换为数字就需要Integer.parseInt(str)方法</strong><br>public class ExceptionTest3 {</p>
-<pre><code>public static void main(String[] args) {
-    int num = getInt(&quot;20&quot;);
-    System.out.println(num);
-}
-
-// 字符串转换为数字
-public static int getInt(String str) {
-    return Integer.parseInt(str);
-}</code></pre><p>}</p>
-<p>想要捕获两种异常：<br>public class ExceptionTest4 {</p>
-<pre><code>public static void main(String[] args) {
-    int num = 0;
-    try {
-      num = getInt(&quot;小王&quot;);
-    } catch (NumberFormatException e) {
-    } catch (NullPointerException e) {
-    }
-
-    System.out.println(num);
-}
-
-// 字符串转换为数字
-public static int getInt(String str) {
-    return Integer.parseInt(str);
-}</code></pre><p>}</p>
-<p>由于这些Exceptions都是继承于Exception，所以可以直接用<br>public class ExceptionTest4 {</p>
-<pre><code>public static void main(String[] args) {
-    int num = 0;
-    try {
-      num = getInt(&quot;小王&quot;);
-    } catch (Exception e) {
-    }
-    System.out.println(num);
-}
-
-// 字符串转换为数字
-public static int getInt(String str) {
-    return Integer.parseInt(str);
-}</code></pre><p>}</p>
-<p>4、例子<br>使用 split() 方法把字符串 content 转化为字符串数组<br>String content = “10,20,,50,小明”;<br>        String[] a = content.split(“,”);<br>把字符串数组转化为 int 数组，如果字符串不是数字则用0替代<br>求和一下这个 int 数组，得到数组累加后的值，打印出求和后的值</p>
-<p>public class ExceptionTest4 {</p>
-<pre><code>public static void main(String[] args) {
-    String content = &quot;10,20,,50,小明&quot;;
-
-    String[] a = content.split(&quot;,&quot;);
-    int[] nums = new int[a.length];
-
-    int total=0;
-    for(int i=0;i&lt;a.length;i++){
-        try {
-              int num = Integer.parseInt(a[i]);
-              nums[i] = num;
-              System.out.println(nums[i]);
-            } catch (Exception e) {
-              nums[i]=0;
-              System.out.println(nums[i]);
-    }
-
-    total +=nums[i];
-    }
-    System.out.println(total);
-}</code></pre><p>}</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/21/Exception/" data-id="ckd0h1b5g0001bgtb5td1fjmu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/21/Exception2/" data-id="ckd2u74440002p4tbf2cjft7b" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1059,7 +1063,7 @@ public static int getInt(String str) {
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
   </nav>
 
 </section>
@@ -1091,6 +1095,10 @@ public static int getInt(String str) {
       <ul>
         
           <li>
+            <a href="/2020/07/25/XJava4/">XJava4</a>
+          </li>
+        
+          <li>
             <a href="/2020/07/25/XJava3/">XJava3</a>
           </li>
         
@@ -1104,10 +1112,6 @@ public static int getInt(String str) {
         
           <li>
             <a href="/2020/07/23/Exception6/">Exception6</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/22/Exception5/">Exception5</a>
           </li>
         
       </ul>
