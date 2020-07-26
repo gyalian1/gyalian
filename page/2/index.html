@@ -64,6 +64,81 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Exception2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/21/Exception2/" class="article-date">
+  <time datetime="2020-07-21T14:04:18.000Z" itemprop="datePublished">2020-07-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/21/Exception2/">Exception2</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="4-3-抛出异常"><a href="#4-3-抛出异常" class="headerlink" title="4.3 抛出异常"></a>4.3 抛出异常</h1><p>1、java.lang.IllegalArgumentException这个异常用于检查参数是否合法<br>public class ExceptionTest5 {</p>
+<pre><code>public static void main(String[] args) {
+    int num = getInt(null);
+    System.out.println(num);
+}
+
+public static int getInt(String str){
+    if(str == null){
+        throw new IllegalArgumentException(&quot;姓名不能为空&quot;);
+    }
+    return Integer.parseInt(str);
+}</code></pre><p>}</p>
+<p>在你想抛出的地方使用throw关键字就可以抛出异常。throw后是具体的异常事例（异常也是java类，也需要new实例化）</p>
+<p>若果是Exception，想要在某方法你抛出异常，就必须在此方法签名上声明它<br>调用者捕获它<br>public class ExceptionTest8 {</p>
+<pre><code>public static void main(String[] args) {
+    int num = 0;
+    try {
+        num = getInt(null);
+    } catch (Exception e) {
+        System.out.println(e.getMessage());
+    }
+    System.out.println(num);
+}
+
+public static int getInt(String str) throws Exception {
+    if (str == null) {
+        throw new Exception(&quot;姓名不能为空&quot;);
+    }
+    return Integer.parseInt(str);
+}</code></pre><p>}</p>
+<p> UserService userService = new UserServiceImpl();</p>
+<pre><code>  User user = new User();
+  try{
+   user = userService.login(&quot;xihongshi&quot;,&quot;Didi5&quot;);
+  }catch (Exception e) {
+       System.out.println(e.getMessage());
+   }
+   System.out.println(user.getNickName()+&quot;:&quot;+user.getUserName());
+}</code></pre><p>2、例子<br>4.3.2的例子，  throws Exception</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/21/Exception2/" data-id="ckd389z0f0001q8tb66m5df8f" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Exception" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/07/21/Exception/" class="article-date">
@@ -169,7 +244,7 @@ public static int getInt(String str) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/21/Exception/" data-id="ckd2u743t0000p4tba9774foc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/21/Exception/" data-id="ckd389z0j0002q8tbckp7be83" class="article-share-link">Share</a>
       
       
     </footer>
@@ -232,7 +307,7 @@ public static int getStrLength(String str) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/21/A/" data-id="ckd2u743y0001p4tb1cwt1xsm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/21/A/" data-id="ckd389z020000q8tb7ezz9hnh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -409,7 +484,7 @@ public static int getStrLength(String str) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/18/UML/" data-id="ckd2u745m000bp4tb8mhlbl1v" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/18/UML/" data-id="ckd389z10000cq8tb2g1ib8pc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -567,7 +642,7 @@ for(String str : strs){
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/17/Java3/" data-id="ckd2u745k0009p4tbhghj5a3c" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/17/Java3/" data-id="ckd389z0x000bq8tb1dy6b8er" class="article-share-link">Share</a>
       
       
     </footer>
@@ -678,7 +753,7 @@ System.out.println(amount);</code></pre><p>  }<br>   //计算个人缴纳的个�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/Java2/" data-id="ckd2u746x000jp4tbb81rarlw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/Java2/" data-id="ckd389z0u000aq8tb6lryf059" class="article-share-link">Share</a>
       
       
     </footer>
@@ -717,7 +792,7 @@ System.out.println(amount);</code></pre><p>  }<br>   //计算个人缴纳的个�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/GitHub/" data-id="ckd2u744a0006p4tb37wcd0jj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/GitHub/" data-id="ckd389z0r0007q8tbbmr8h58y" class="article-share-link">Share</a>
       
       
     </footer>
@@ -756,7 +831,7 @@ System.out.println(amount);</code></pre><p>  }<br>   //计算个人缴纳的个�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/hexo/" data-id="ckd2u746z000kp4tbfe4q6u51" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/hexo/" data-id="ckd389z21000lq8tb27b5fmdh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -793,7 +868,7 @@ System.out.println(amount);</code></pre><p>  }<br>   //计算个人缴纳的个�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/Java/" data-id="ckd2u745j0007p4tb4mqae0wt" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/Java/" data-id="ckd389z0t0009q8tbdogz1g2e" class="article-share-link">Share</a>
       
       
     </footer>
@@ -830,43 +905,7 @@ System.out.println(amount);</code></pre><p>  }<br>   //计算个人缴纳的个�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/chu/" data-id="ckd2u745t000ep4tbd9yq5klo" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-chushi" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/15/chushi/" class="article-date">
-  <time datetime="2020-07-15T05:42:03.000Z" itemprop="datePublished">2020-07-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/15/chushi/">chushi</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="���ڷܶ�"><a href="#���ڷܶ�" class="headerlink" title="���ڷܶ�"></a>���ڷܶ�</h3>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/chushi/" data-id="ckd2u745u000fp4tbgt38fsq0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/chu/" data-id="ckd389z1g000iq8tbhy316x3o" class="article-share-link">Share</a>
       
       
     </footer>
@@ -912,6 +951,10 @@ System.out.println(amount);</code></pre><p>  }<br>   //计算个人缴纳的个�
       <ul>
         
           <li>
+            <a href="/2020/07/26/XS1/">XS1</a>
+          </li>
+        
+          <li>
             <a href="/2020/07/25/XJava4/">XJava4</a>
           </li>
         
@@ -925,10 +968,6 @@ System.out.println(amount);</code></pre><p>  }<br>   //计算个人缴纳的个�
         
           <li>
             <a href="/2020/07/23/XJava1/">XJava1</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/23/Exception6/">Exception6</a>
           </li>
         
       </ul>

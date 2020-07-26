@@ -64,6 +64,73 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-XS1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/26/XS1/" class="article-date">
+  <time datetime="2020-07-26T13:46:26.000Z" itemprop="datePublished">2020-07-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/26/XS1/">XS1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="2-2时间复杂度"><a href="#2-2时间复杂度" class="headerlink" title="2.2时间复杂度"></a>2.2时间复杂度</h1><p>1、使用步数作为时间复杂度的计算<br>数组的每次索引值得读取，就算作一步，称为unit_time<br>2、步数log（N），对数时间—O（log（N））<br><strong>数组值获取（O（1））</strong></p>
+<p><strong>3、猜数字游戏（O(logN))</strong><br>O（log（N））比O（1）增长得更快一点，性能更差一点<br><img src="//style.youkeda.com/img/course/a1/2/2-2-4.svg" alt=""></p>
+<p>时间复杂度为2N+2，用大O记法，线性时间为O（2N+2）</p>
+<p><strong>4、计算N的阶乘(O（N））</strong><br>大O记法表示的是代码执行时间随数据规模增长的变化趋势，而在这种情况下，常量、系数部分并不左右增长趋势，所以可以忽略。<br>所以O（2 N+2）可以表示为O（N）<br><img src="//style.youkeda.com/img/course/a1/2/ON.png" alt=""></p>
+<p><strong>5、计算一个数组中的所有组合方式（O（N^2))</strong><br>public void combine(String args[]) {<br>    for (int i = 0; i &lt; args.length; i++) { //step1<br>        for (int j = i + 1; j &lt; args.length; j++) { //step2<br>            System.out.println(args[i] + args[j]); //step3<br>        }<br>    }<br>}</p>
+<p><strong>6、规律</strong><br>大O记法，只保留最大趋势公式：指数&gt;线性&gt;对数&gt;常数<br>只需要关注for循环嵌套情况</p>
+<h1 id="2-3空间复杂度"><a href="#2-3空间复杂度" class="headerlink" title="2.3空间复杂度"></a>2.3空间复杂度</h1><p>1、O(1)<br>int a= 0;<br>int j = 0;</p>
+<p>O(N)<br>int a[] = new int[n];</p>
+<h1 id="2-4性能优化小案例1-二分法查找"><a href="#2-4性能优化小案例1-二分法查找" class="headerlink" title="2.4性能优化小案例1-二分法查找"></a>2.4性能优化小案例1-二分法查找</h1><p>1、线性查找，依次遍历整个数组，判断给定的数字是否存在<br>public static int find(int[] array, int aim) {<br>    for (int i = 0; i &lt; array.length; i++) {<br>        if (aim == array[i]) {<br>            return i;<br>        }<br>    }<br>    return -1;<br>}</p>
+<p>2、二分查找法<br>定义两个变量left、right，分别表示数字可筛选区域左侧右侧的索引（下标）<br>public static int find(int[] array, int aim) {<br>    // 初始化left = 最左侧, right = 最右侧<br>    int left = 0;<br>    int right = array.length - 1;</p>
+<pre><code>// 当left &gt; right则表示遍历完成
+while (left &lt;= right) {
+    // 获取中间的值
+    int middle = (left + right) / 2;
+    int middleValue = array[middle];
+    if (middleValue == aim) {
+        // 已经找到目标
+        return middle;
+    } else if (middleValue &lt; aim) {
+        // 目标在middle的右侧，重置left
+        left = middle + 1;
+    } else {
+        // 目标在middle的左侧，重置right
+        right = middle - 1;
+    }
+}
+return -1;</code></pre><p>}</p>
+<h1 id="2-5-性能优化小案例2–二次问题"><a href="#2-5-性能优化小案例2–二次问题" class="headerlink" title="2.5 性能优化小案例2–二次问题"></a>2.5 性能优化小案例2–二次问题</h1><p><strong>1、暴力破解法</strong><br>第一步，我们选择第一个元素 0, 判断与后面 7 个元素是否相同。 第二步，我们选择第二个元素 8, 判断与后面 6 个元素是否相同。 … 以此类推<br>代码：<br>public static ArrayList<Integer> repeat(int[] array) {<br>    ArrayList<Integer> result = new ArrayList&lt;&gt;();<br>    for(int i = 0; i &lt; array.length; i++){<br>        // 以此判断i位置元素和后面j位置元素是否相等<br>        for(int j = i + 1; j &lt; array.length; j++){<br>            if(array[i] == array[j]){<br>                result.add(array[i]);<br>            }<br>        }<br>    }<br>    return result;<br>}</p>
+<p><strong>2、标记法</strong><br>首先申请一个数组，数组名称为exists，表示数组是否存在<br>exists[0] = 1;<br>exists[8] = 1;</p>
+<p>public static ArrayList<Integer> repeat(int[] array) {<br>    ArrayList<Integer> result = new ArrayList&lt;&gt;();<br>    int[] exists = new int[11];<br>    for (int i = 0; i &lt; array.length; i++) {<br>        int value = array[i];<br>        // 如果当前位置已经为1，则表示重复<br>        if (exists[value] == 1) {<br>            result.add(value);<br>        } else {<br>            // 否则将当前位置设置为1<br>            exists[value] = 1;<br>        }<br>    }<br>    return result;<br>}</p>
+<h1 id="3-1计算机内存管理"><a href="#3-1计算机内存管理" class="headerlink" title="3.1计算机内存管理"></a>3.1计算机内存管理</h1><p>连续两个方格内存地址差8.因为电脑基本是64位的，64位表示内存存储最小的使用单位为64bit，也就是8个byte</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/26/XS1/" data-id="ckd389z1f000hq8tbeciuay66" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-XJava4" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/07/25/XJava4/" class="article-date">
@@ -173,7 +240,7 @@ System.out.println(myOrderContent);</code></pre><p>  }<br>}</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/25/XJava4/" data-id="ckd2u745s000dp4tb8uvn3upm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/25/XJava4/" data-id="ckd389z1d000gq8tb8x649ieo" class="article-share-link">Share</a>
       
       
     </footer>
@@ -328,7 +395,7 @@ for (Map&lt;Integer, String&gt; rowData : sheetDatas) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/25/XJava3/" data-id="ckd2u7460000ip4tb9jhk4a9a" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/25/XJava3/" data-id="ckd389z1c000fq8tb5l3t7ro4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -368,7 +435,7 @@ for (Map&lt;Integer, String&gt; rowData : sheetDatas) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/24/XJava2/" data-id="ckd2u745w000hp4tba7wi3qmp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/24/XJava2/" data-id="ckd389z1a000eq8tb3fii2ipj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -565,7 +632,7 @@ System.out.println(&quot;当前 IP 为：&quot; + contentObj.get(&quot;query&quo
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/23/XJava1/" data-id="ckd2u745q000cp4tbgl8fbzx6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/23/XJava1/" data-id="ckd389z14000dq8tb3obzbw8v" class="article-share-link">Share</a>
       
       
     </footer>
@@ -776,7 +843,7 @@ for (int i=0; i&lt;ar.size(); i++) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/23/Exception6/" data-id="ckd2u745l000ap4tb2m2f8okk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/23/Exception6/" data-id="ckd389z0r0006q8tb8kq19xtb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -821,7 +888,7 @@ for (int i=0; i&lt;ar.size(); i++) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/22/Exception5/" data-id="ckd2u74480004p4tb9eel74vc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/22/Exception5/" data-id="ckd389z0p0005q8tb1qtu4zqi" class="article-share-link">Share</a>
       
       
     </footer>
@@ -870,7 +937,7 @@ for (int i=0; i&lt;ar.size(); i++) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/22/Exception4/" data-id="ckd2u74480005p4tb4pd0g6d5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/22/Exception4/" data-id="ckd389z0o0004q8tbbga616qw" class="article-share-link">Share</a>
       
       
     </footer>
@@ -926,7 +993,7 @@ System.out.println(&quot;减法的结果是:&quot;+sub);</code></pre><p>  }</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/22/Inner/" data-id="ckd2u745k0008p4tb9tmg0n8q" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/22/Inner/" data-id="ckd389z0s0008q8tbgv7y2sp1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -974,82 +1041,7 @@ System.out.println(&quot;减法的结果是:&quot;+sub);</code></pre><p>  }</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/21/Exception3/" data-id="ckd2u74470003p4tb4efy6ptc" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Exception2" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/21/Exception2/" class="article-date">
-  <time datetime="2020-07-21T14:04:18.000Z" itemprop="datePublished">2020-07-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/21/Exception2/">Exception2</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="4-3-抛出异常"><a href="#4-3-抛出异常" class="headerlink" title="4.3 抛出异常"></a>4.3 抛出异常</h1><p>1、java.lang.IllegalArgumentException这个异常用于检查参数是否合法<br>public class ExceptionTest5 {</p>
-<pre><code>public static void main(String[] args) {
-    int num = getInt(null);
-    System.out.println(num);
-}
-
-public static int getInt(String str){
-    if(str == null){
-        throw new IllegalArgumentException(&quot;姓名不能为空&quot;);
-    }
-    return Integer.parseInt(str);
-}</code></pre><p>}</p>
-<p>在你想抛出的地方使用throw关键字就可以抛出异常。throw后是具体的异常事例（异常也是java类，也需要new实例化）</p>
-<p>若果是Exception，想要在某方法你抛出异常，就必须在此方法签名上声明它<br>调用者捕获它<br>public class ExceptionTest8 {</p>
-<pre><code>public static void main(String[] args) {
-    int num = 0;
-    try {
-        num = getInt(null);
-    } catch (Exception e) {
-        System.out.println(e.getMessage());
-    }
-    System.out.println(num);
-}
-
-public static int getInt(String str) throws Exception {
-    if (str == null) {
-        throw new Exception(&quot;姓名不能为空&quot;);
-    }
-    return Integer.parseInt(str);
-}</code></pre><p>}</p>
-<p> UserService userService = new UserServiceImpl();</p>
-<pre><code>  User user = new User();
-  try{
-   user = userService.login(&quot;xihongshi&quot;,&quot;Didi5&quot;);
-  }catch (Exception e) {
-       System.out.println(e.getMessage());
-   }
-   System.out.println(user.getNickName()+&quot;:&quot;+user.getUserName());
-}</code></pre><p>2、例子<br>4.3.2的例子，  throws Exception</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/21/Exception2/" data-id="ckd2u74440002p4tbf2cjft7b" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/21/Exception3/" data-id="ckd389z0l0003q8tb2muf00s8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1095,6 +1087,10 @@ public static int getInt(String str) throws Exception {
       <ul>
         
           <li>
+            <a href="/2020/07/26/XS1/">XS1</a>
+          </li>
+        
+          <li>
             <a href="/2020/07/25/XJava4/">XJava4</a>
           </li>
         
@@ -1108,10 +1104,6 @@ public static int getInt(String str) throws Exception {
         
           <li>
             <a href="/2020/07/23/XJava1/">XJava1</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/23/Exception6/">Exception6</a>
           </li>
         
       </ul>
