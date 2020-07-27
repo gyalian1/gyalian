@@ -117,11 +117,62 @@ return -1;</code></pre><p>}</p>
 <p><strong>2、标记法</strong><br>首先申请一个数组，数组名称为exists，表示数组是否存在<br>exists[0] = 1;<br>exists[8] = 1;</p>
 <p>public static ArrayList<Integer> repeat(int[] array) {<br>    ArrayList<Integer> result = new ArrayList&lt;&gt;();<br>    int[] exists = new int[11];<br>    for (int i = 0; i &lt; array.length; i++) {<br>        int value = array[i];<br>        // 如果当前位置已经为1，则表示重复<br>        if (exists[value] == 1) {<br>            result.add(value);<br>        } else {<br>            // 否则将当前位置设置为1<br>            exists[value] = 1;<br>        }<br>    }<br>    return result;<br>}</p>
 <h1 id="3-1计算机内存管理"><a href="#3-1计算机内存管理" class="headerlink" title="3.1计算机内存管理"></a>3.1计算机内存管理</h1><p>连续两个方格内存地址差8.因为电脑基本是64位的，64位表示内存存储最小的使用单位为64bit，也就是8个byte</p>
+<h1 id="3-2数组–存储和读取"><a href="#3-2数组–存储和读取" class="headerlink" title="3.2数组–存储和读取"></a>3.2数组–存储和读取</h1><p>1、每个数组都有对应的内存地址，将其称为数组开始地址start_address<br>已确定每个数组元素的内存空间大小，称为item_size<br>2、例子<br>package com.youkeda;</p>
+<p>public class YKDArrayList {</p>
+<p>  // 此处需要声明一个数组，作为底层存储<br>  int[] array = new int[20];<br>  int size = 0;</p>
+<p>  public YKDArrayList() {<br>    //因为还未学习插入，所以暂时内置数据<br>    this.array[0] = 1;<br>    this.array[1] = 10;<br>    this.array[2] = 30;<br>    this.size = 3;<br>  }</p>
+<p>  // 获取数组的长度<br>  public int size() {<br>    return this.size;<br>  }</p>
+<p>  // 数组获取某个索引值<br>  public int get(int index) {<br>    return this.array[index];<br>  }</p>
+<p>  public static void main(String[] args) {<br>    YKDArrayList arrayList = new YKDArrayList();<br>    System.out.println(arrayList.get(0));<br>  }<br>}</p>
+<h1 id="3-3数组-插入和删除"><a href="#3-3数组-插入和删除" class="headerlink" title="3.3数组-插入和删除"></a>3.3数组-插入和删除</h1><p>1、把安排设置一个类，预留明天20个任务<br>public class Schedule {</p>
+<p>  String[] array = new String[20];<br>  private int size = 0;</p>
+<p>  // 内置4个安排<br>  public Schedule(){<br>    array[0] = “eat breakfirst”;<br>    array[1] = “shopping”;<br>    array[2] = “have lunch”;<br>    array[3] = “have dinner”;<br>    this.size = 4;<br>  }</p>
+<p>  public void print(){<br>    for(int i = 0; i &lt; this.size; i++){<br>      System.out.print(this.array[i] + “ “);<br>    }<br>  }</p>
+<p>  public static void main(String[] args) {<br>    Schedule schedule = new Schedule();<br>    schedule.print();<br>  }<br>}</p>
+<p><strong>2、尾部插入</strong><br>public class Schedule {<br>  ……<br>  // 末尾插入<br>  public void add(String task){<br>    this.array[this.size] = task;<br>    this.size++;<br>  }<br>}</p>
+<p><strong>3、中间插入</strong><br>（1）移动watch movie<br>（2）移动have dinner<br>（3）插入afternoon tea</p>
+<p>// 第三个位置插入<br>public void insert3Position(String task) {<br>  // 索引值为3的地方<br>  int index = 3;<br>  // 第一步：从右侧开始依次右移<br>  for (int i = this.size - 1; i &gt;= index; i–) {<br>    this.array[i + 1] = this.array[i];<br>  }<br>  // 第二部：插入元素<br>  this.array[index] = task;<br>  // 调整size<br>  this.size++;<br>}</p>
+<p><strong>添加元素在中间，且判断插入位置是否出现越界问题</strong><br>// 添加元素在中间<br>  public void add(int index, int element) {<br>    if(index &gt;this.size || index &lt;0){<br>      System.out.println(“数组越界”);<br>    }<br>    else{<br>      // 第一步：从右侧开始依次右移<br>      for (int i = this.size - 1; i &gt;= index; i–) {<br>        this.array[i + 1] = this.array[i];<br>      }<br>      // 第二部：插入元素<br>      this.array[index] = element;<br>      // 调整size<br>      this.size++;<br>  }<br>  }</p>
+<p><strong>4、空间不够</strong><br>（1）开辟新空间<br>（2）拷贝原数组<br>（3）插入操作<br>如果所有的内存空间不足以存储我们的数组，这时系统就会抛出异常—–Out Of Memory</p>
+<p><strong>5、数组删除</strong><br>// 删除元素<br>  public void remove(int index) {<br>   if (index &lt; 0 || index &gt; this.size) {<br>      return;<br>    }<br>      for (int i = this.size-1; i &gt;= index; i–) {<br>         this.array[index]=this.array[i + 1] ;<br>      }</p>
+<pre><code>  this.size--;
+}</code></pre><p> **6、支持扩容和拷贝<br> package com.youkeda;</p>
+<p>public class YKDArrayList {</p>
+<p>  // 此处需要声明一个数组，作为底层存储<br>  int[] array = new int[20];<br>  int size = 0;</p>
+<p>  public YKDArrayList() {<br>  }</p>
+<p>  // 获取数组的长度<br>  public int size() {<br>    return this.size;<br>  }</p>
+<p>  // 数组获取某个索引值<br>  public int get(int index) {<br>    return this.array[index];<br>  }</p>
+<p>  // 添加元素在末尾<br>  public void add(int element) {<br>    //相当于调用传入this.size<br>    this.add(this.size, element);<br>  }</p>
+<p>  // 添加元素在中间<br>  public void add(int index, int element) {<br>    if (index &lt; 0 || index &gt; this.size) {<br>      return;<br>    }</p>
+<pre><code>// 支持扩容
+// TODO
+ this.judgeMemory(this.size + 1);
+// 元素依次右移
+for (int i = this.size - 1; i &gt;= index; i--) {
+  this.array[i + 1] = this.array[i];
+}
+// 插入元素
+this.array[index] = element;
+// 调整size
+this.size++;</code></pre><p>  }</p>
+<p>  // 删除元素<br>  public void remove(int index) {<br>    if (index &lt; 0 || index &gt; this.size - 1) {<br>      return;<br>    }</p>
+<pre><code>// 元素依次左移
+for (int i = index; i &lt; this.size - 1; i++) {
+  this.array[i] = this.array[i + 1];
+}
+// 删除最后一个元素
+this.array[this.size - 1] = 0;
+// 调整size
+this.size--;</code></pre><p>  }<br>  private void judgeMemory(int size) {<br>    // 如果内存不满足，则需要扩容<br>    if (size &gt; this.array.length) {<br>      // 申明两倍空间<br>      int[] newArray = new int[this.array.length * 2];<br>      // 拷贝操作<br>      this.copy(this.array, newArray);<br>      // 新数组赋值给原数组<br>      this.array = newArray;<br>    }<br>  }</p>
+<p>// 拷贝操作<br>  private void copy(int[] source, int[] aim) {<br>    for (int i = 0; i &lt; source.length; i++) {<br>      aim[i] = source[i];<br>    }<br>  }<br>  public static void main(String[] args) {<br>    YKDArrayList ykdArrayList = new YKDArrayList();<br>    ykdArrayList.add(1);<br>    ykdArrayList.add(2);<br>    ykdArrayList.add(3);<br>    ykdArrayList.add(4);</p>
+<pre><code>ykdArrayList.add(0, 5);
+
+ykdArrayList.remove(3);</code></pre><p>  }<br>}<br>**</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/26/XS1/" data-id="ckd389z1f000hq8tbeciuay66" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/26/XS1/" data-id="ckd4pjm32000eqgtbgmbvf2gh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -240,7 +291,7 @@ System.out.println(myOrderContent);</code></pre><p>  }<br>}</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/25/XJava4/" data-id="ckd389z1d000gq8tb8x649ieo" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/25/XJava4/" data-id="ckd4pjm3m000kqgtb46mxg3dk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -395,7 +446,7 @@ for (Map&lt;Integer, String&gt; rowData : sheetDatas) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/25/XJava3/" data-id="ckd389z1c000fq8tb5l3t7ro4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/25/XJava3/" data-id="ckd4pjm35000iqgtb0h0r1iib" class="article-share-link">Share</a>
       
       
     </footer>
@@ -435,7 +486,7 @@ for (Map&lt;Integer, String&gt; rowData : sheetDatas) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/24/XJava2/" data-id="ckd389z1a000eq8tb3fii2ipj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/24/XJava2/" data-id="ckd4pjm30000cqgtb9n6redjp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -632,7 +683,7 @@ System.out.println(&quot;当前 IP 为：&quot; + contentObj.get(&quot;query&quo
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/23/XJava1/" data-id="ckd389z14000dq8tb3obzbw8v" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/23/XJava1/" data-id="ckd4pjm2y000bqgtbfw0t9f4y" class="article-share-link">Share</a>
       
       
     </footer>
@@ -843,7 +894,7 @@ for (int i=0; i&lt;ar.size(); i++) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/23/Exception6/" data-id="ckd389z0r0006q8tb8kq19xtb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/23/Exception6/" data-id="ckd4pjm2r0008qgtbhg7ahb8n" class="article-share-link">Share</a>
       
       
     </footer>
@@ -888,7 +939,7 @@ for (int i=0; i&lt;ar.size(); i++) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/22/Exception5/" data-id="ckd389z0p0005q8tb1qtu4zqi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/22/Exception5/" data-id="ckd4pjm2m0003qgtbc4w7bekd" class="article-share-link">Share</a>
       
       
     </footer>
@@ -937,7 +988,7 @@ for (int i=0; i&lt;ar.size(); i++) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/22/Exception4/" data-id="ckd389z0o0004q8tbbga616qw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/22/Exception4/" data-id="ckd4pjm2o0005qgtbf6kaa05i" class="article-share-link">Share</a>
       
       
     </footer>
@@ -993,7 +1044,7 @@ System.out.println(&quot;减法的结果是:&quot;+sub);</code></pre><p>  }</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/22/Inner/" data-id="ckd389z0s0008q8tbgv7y2sp1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/22/Inner/" data-id="ckd4pjm31000dqgtbevnm9r36" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1041,7 +1092,7 @@ System.out.println(&quot;减法的结果是:&quot;+sub);</code></pre><p>  }</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/21/Exception3/" data-id="ckd389z0l0003q8tb2muf00s8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/21/Exception3/" data-id="ckd4pjm2n0004qgtb4hll9yso" class="article-share-link">Share</a>
       
       
     </footer>
